@@ -1,0 +1,14 @@
+{
+  "name": "@ipguk/infofile-reader-and-writer",
+  "version": "1.0.0",
+  "description": "File reader and writer for IPG Automotive infofiles",
+  "main": "index.js",
+  "author": "IPG Automotive UK",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^28.1.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
