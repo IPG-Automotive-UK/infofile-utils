@@ -1,5 +1,419 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getDouble tests can get a double value 1`] = `
+Object {
+  "key": "WheelCarrier.fl.mass",
+  "value": 18,
+}
+`;
+
+exports[`getDouble tests can get a double value for a key that does not exist 1`] = `
+Object {
+  "key": "RandomKey",
+  "value": NaN,
+}
+`;
+
+exports[`getDouble tests can get an array of double values 1`] = `
+Array [
+  Object {
+    "key": "WheelCarrier.fl.mass",
+    "value": 18,
+  },
+  Object {
+    "key": "SuspF.Spring.l0",
+    "value": 0.3541,
+  },
+]
+`;
+
+exports[`getDouble tests can get an array of double values where one key does not exist 1`] = `
+Array [
+  Object {
+    "key": "SuspF.Spring.l0",
+    "value": 0.3541,
+  },
+  Object {
+    "key": "RandomKey",
+    "value": NaN,
+  },
+]
+`;
+
+exports[`getKeyValues tests can get a key where key the key value is a number 1`] = `
+Object {
+  "key": "SuspF.Spring.l0",
+  "value": 0.3541,
+}
+`;
+
+exports[`getKeyValues tests can get a key where keyValue is a multiline string 1`] = `
+Object {
+  "key": "Description",
+  "value": Array [
+    "Typical, unvalidated data for passenger car",
+    "with Front Wheel Drive",
+    "Tire: RT 195/65 R15",
+  ],
+}
+`;
+
+exports[`getKeyValues tests can get a key where keyValue is a string 1`] = `
+Object {
+  "key": "SuspF.Spring.Kind",
+  "value": "Hookean 1",
+}
+`;
+
+exports[`getKeyValues tests can get a key where keys are an array with differnt keyValue types 1`] = `
+Array [
+  Object {
+    "key": "SuspF.Spring.Kind",
+    "value": "Hookean 1",
+  },
+  Object {
+    "key": "SuspF.Spring.l0",
+    "value": 0.3541,
+  },
+  Object {
+    "key": "Aero.Marker.pos",
+    "value": Array [
+      4.28,
+      0,
+      0.6,
+    ],
+  },
+  Object {
+    "key": "Aero.Coeff",
+    "value": Array [
+      Array [
+        -180,
+        -0.4,
+        0,
+        0.1,
+        0,
+        -0.01,
+        0,
+      ],
+      Array [
+        -120,
+        -0.2,
+        -1.4,
+        0.7,
+        -0.2,
+        -0.021,
+        0.06,
+      ],
+      Array [
+        -90,
+        0,
+        -1.7,
+        0.9,
+        -0.2,
+        0,
+        0,
+      ],
+      Array [
+        -45,
+        0.3,
+        -1.2,
+        0.6,
+        -0.16,
+        0.025,
+        -0.1,
+      ],
+      Array [
+        0,
+        0.2,
+        0,
+        0.1,
+        0,
+        -0.03,
+        0,
+      ],
+      Array [
+        45,
+        0.3,
+        1.2,
+        0.6,
+        0.16,
+        0.025,
+        0.1,
+      ],
+      Array [
+        90,
+        0,
+        1.7,
+        0.9,
+        0.2,
+        0,
+        0,
+      ],
+      Array [
+        120,
+        -0.2,
+        1.4,
+        0.7,
+        0.2,
+        -0.021,
+        -0.06,
+      ],
+      Array [
+        180,
+        -0.4,
+        0,
+        0.1,
+        0,
+        -0.01,
+        0,
+      ],
+    ],
+  },
+]
+`;
+
+exports[`getKeyValues tests can get a key where the key value is a matrix 1`] = `
+Object {
+  "key": "Aero.Coeff",
+  "value": Array [
+    Array [
+      -180,
+      -0.4,
+      0,
+      0.1,
+      0,
+      -0.01,
+      0,
+    ],
+    Array [
+      -120,
+      -0.2,
+      -1.4,
+      0.7,
+      -0.2,
+      -0.021,
+      0.06,
+    ],
+    Array [
+      -90,
+      0,
+      -1.7,
+      0.9,
+      -0.2,
+      0,
+      0,
+    ],
+    Array [
+      -45,
+      0.3,
+      -1.2,
+      0.6,
+      -0.16,
+      0.025,
+      -0.1,
+    ],
+    Array [
+      0,
+      0.2,
+      0,
+      0.1,
+      0,
+      -0.03,
+      0,
+    ],
+    Array [
+      45,
+      0.3,
+      1.2,
+      0.6,
+      0.16,
+      0.025,
+      0.1,
+    ],
+    Array [
+      90,
+      0,
+      1.7,
+      0.9,
+      0.2,
+      0,
+      0,
+    ],
+    Array [
+      120,
+      -0.2,
+      1.4,
+      0.7,
+      0.2,
+      -0.021,
+      -0.06,
+    ],
+    Array [
+      180,
+      -0.4,
+      0,
+      0.1,
+      0,
+      -0.01,
+      0,
+    ],
+  ],
+}
+`;
+
+exports[`getKeyValues tests can get a key where the key value is a vector 1`] = `
+Object {
+  "key": "Aero.Marker.pos",
+  "value": Array [
+    4.28,
+    0,
+    0.6,
+  ],
+}
+`;
+
+exports[`getLong tests can get a long value 1`] = `
+Object {
+  "key": "Body.mass",
+  "value": 1301,
+}
+`;
+
+exports[`getLong tests can get a long value for a key that does not exist 1`] = `
+Object {
+  "key": "RandomKey",
+  "value": NaN,
+}
+`;
+
+exports[`getLong tests can get an array of long values 1`] = `
+Array [
+  Object {
+    "key": "Body.mass",
+    "value": 1301,
+  },
+  Object {
+    "key": "nAxle",
+    "value": 2,
+  },
+]
+`;
+
+exports[`getLong tests can get an array of long values where one key does not exist 1`] = `
+Array [
+  Object {
+    "key": "Aero.Crosswind.Kind",
+    "value": 0,
+  },
+  Object {
+    "key": "RandomKey",
+    "value": NaN,
+  },
+]
+`;
+
+exports[`getString tests can get a string value 1`] = `
+Object {
+  "key": "Aero.Crosswind.Kind",
+  "value": "Step",
+}
+`;
+
+exports[`getString tests can get a string value for a key that does not exist 1`] = `
+Object {
+  "key": "RandomKey",
+  "value": "",
+}
+`;
+
+exports[`getString tests can get an array of string values 1`] = `
+Array [
+  Object {
+    "key": "Aero.Crosswind.Kind",
+    "value": "Step",
+  },
+  Object {
+    "key": "Aero.Kind",
+    "value": "Coeff6x1 1",
+  },
+]
+`;
+
+exports[`getString tests can get an array of string values where one key does not exist 1`] = `
+Array [
+  Object {
+    "key": "Aero.Crosswind.Kind",
+    "value": "Step",
+  },
+  Object {
+    "key": "RandomKey",
+    "value": "",
+  },
+]
+`;
+
+exports[`getText tests can get a text value 1`] = `
+Object {
+  "key": "Description",
+  "value": Array [
+    "Typical, unvalidated data for passenger car",
+    "with Front Wheel Drive",
+    "Tire: RT 195/65 R15",
+  ],
+}
+`;
+
+exports[`getText tests can get a text value for a key that does not exist 1`] = `
+Object {
+  "key": "RandomKey",
+  "value": Array [],
+}
+`;
+
+exports[`getText tests can get an array of text values 1`] = `
+Array [
+  Object {
+    "key": "Description",
+    "value": Array [
+      "Typical, unvalidated data for passenger car",
+      "with Front Wheel Drive",
+      "Tire: RT 195/65 R15",
+    ],
+  },
+  Object {
+    "key": "Aero.Coeff",
+    "value": Array [
+      "-180 -0.4 0.0 0.1 0.0 -0.01 0.0",
+      "-120 -0.2 -1.4 0.7 -0.2 -0.021 0.06",
+      "-90 0.0 -1.7 0.9 -0.2 0.0 0.0",
+      "-45 0.3 -1.2 0.6 -0.16 0.025 -0.1",
+      "0 0.2 0.0 0.1 0.0 -0.03 0.0",
+      "45 0.3 1.2 0.6 0.16 0.025 0.1",
+      "90 0.0 1.7 0.9 0.2 0.000 0.0",
+      "120 -0.2 1.4 0.7 0.2 -0.021 -0.06",
+      "180 -0.4 0.0 0.1 0.0 -0.010 0.0",
+    ],
+  },
+]
+`;
+
+exports[`getText tests can get an array of text values where one key does not exist 1`] = `
+Array [
+  Object {
+    "key": "Description",
+    "value": Array [
+      "Typical, unvalidated data for passenger car",
+      "with Front Wheel Drive",
+      "Tire: RT 195/65 R15",
+    ],
+  },
+  Object {
+    "key": "RandomKey",
+    "value": Array [],
+  },
+]
+`;
+
 exports[`listKey tests can get all aero keys from infofile 1`] = `
 Array [
   "Aero.Ax",
@@ -359,6 +773,21 @@ Array [
   "WheelCarrier.rr.mass",
   "WheelCarrier.rr.pos",
   "nAxle",
+]
+`;
+
+exports[`listKey tests can get an array of prefixes with one key that doesn't exist 1`] = `
+Array [
+  "Aero.Ax",
+  "Aero.Coeff",
+  "Aero.Crosswind.Kind",
+  "Aero.Kind",
+  "Aero.Marker.pos",
+  "Aero.lReference",
+  "Aero.pos",
+  "Body.I",
+  "Body.mass",
+  "Body.pos",
 ]
 `;
 
