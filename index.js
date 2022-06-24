@@ -174,7 +174,6 @@ function isInfofilePathAndKeyValuesValid({
   }
 }
 
-// check that
 // function to get the info file keys
 function listKeys({ infofilePath, keyPrefix = "" }) {
   // check that infofilePath has been provided
@@ -206,11 +205,22 @@ function listKeys({ infofilePath, keyPrefix = "" }) {
         const prefixKeys = infofile.listKeys(prefix);
         keys.push(...prefixKeys);
       });
+
+      // delete the infofile handle
+      infofile.delete();
+
+      // return the keys
       return keys;
     }
 
     // get the keys for the specified prefix
-    return infofile.listKeys(keyPrefix);
+    const listKeys = infofile.listKeys(keyPrefix);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the keys
+    return listKeys;
   } catch (error) {
     console.error(error);
   }
@@ -238,11 +248,21 @@ function keyKinds({ infofilePath, key }) {
       keyKinds.push({ key: key, keyKind: keyKind });
     });
 
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the key kinds
     return keyKinds;
   }
 
   // get the key kinds for the specified key
-  return { key: key, keyKind: infofile.keyKind(key) };
+  const keyKind = { key: key, keyKind: infofile.keyKind(key) };
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the key kinds
+  return keyKind;
 }
 
 // function to get the value of a key that is a string
@@ -266,11 +286,22 @@ function getString({ infofilePath, key }) {
       const value = infofile.getString(key);
       values.push({ key: key, value: value });
     });
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
     return values;
   }
 
   // get the value of the specified key
-  return { key: key, value: infofile.getString(key) };
+  const value = { key: key, value: infofile.getString(key) };
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return value;
 }
 
 // function to get the value of key that is a long integer
@@ -294,11 +325,22 @@ function getLong({ infofilePath, key }) {
       const value = infofile.getLong(key);
       values.push({ key: key, value: value });
     });
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
     return values;
   }
 
   // get the value of the specified key
-  return { key: key, value: infofile.getLong(key) };
+  const value = { key: key, value: infofile.getLong(key) };
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return value;
 }
 
 // function to get the value of key that is a double
@@ -322,11 +364,22 @@ function getDouble({ infofilePath, key }) {
       const value = infofile.getDouble(key);
       values.push({ key: key, value: value });
     });
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
     return values;
   }
 
   // get the value of the specified key
-  return { key: key, value: infofile.getDouble(key) };
+  const value = { key: key, value: infofile.getDouble(key) };
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return value;
 }
 
 // function to get the value of key that is text
@@ -350,11 +403,22 @@ function getText({ infofilePath, key }) {
       const value = infofile.getText(key);
       values.push({ key: key, value: value });
     });
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
     return values;
   }
 
   // get the value of the specified key
-  return { key: key, value: infofile.getText(key) };
+  const value = { key: key, value: infofile.getText(key) };
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return value;
 }
 
 // helper function to get key value
@@ -413,6 +477,7 @@ function getKeyValue({ infofileHandle, key }) {
   }
 }
 
+// function to get key values for any key data type, numbers are returned as doubles
 function getKeyValues({ infofilePath, key }) {
   // check that infofilePath and key exist
   isInfofilePathAndKeyValid({ infofilePath, key });
@@ -434,11 +499,66 @@ function getKeyValues({ infofilePath, key }) {
       keyValues.push(keyValue);
     });
 
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
     return keyValues;
   }
 
   // get the value of the specified key
-  return getKeyValue({ infofileHandle: infofile, key: key });
+  const keyValue = getKeyValue({ infofileHandle: infofile, key: key });
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return keyValue;
+}
+
+// function to delete a key
+function deleteKey({ infofilePath, key }) {
+  // check that infofilePath and key exist
+  isInfofilePathAndKeyValid({ infofilePath, key });
+
+  // read the info file
+  const infofile = readInfoFile({ infofilePath });
+
+  // check that key is a valid string or an array of strings
+  keyValid = isValidStringOrArrayOfStrings(key);
+  if (!keyValid) {
+    throw new Error("key must be a string or an array of strings");
+  }
+
+  // if the key is an array of keys, get delete all the keys
+  if (Array.isArray(key)) {
+    const values = [];
+    key.forEach((key) => {
+      const value = infofile.deleteKey(key);
+      values.push({ key: key, value: value });
+    });
+
+    // write the info file
+    infofile.write(infofilePath);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the values
+    return values;
+  }
+
+  // delete the specified key
+  const value = { key: key, value: infofile.deleteKey(key) };
+
+  // write the info file
+  infofile.write(infofilePath);
+
+  // delete the infofile handle
+  infofile.delete();
+
+  // return the value
+  return value;
 }
 
 // function to set the value of key that is a string
@@ -467,7 +587,13 @@ function setString({ infofilePath, keyValues }) {
       values.push({ key: thiskeyValuePair.key, value: thisvalue });
     });
     try {
+      // write the info file
       infofile.write(infofilePath);
+
+      // delete the infofile handle
+      infofile.delete();
+
+      // return the values
       return values;
     } catch (error) {
       throw new Error(error);
@@ -479,7 +605,13 @@ function setString({ infofilePath, keyValues }) {
 
   // write the info file
   try {
+    // write the info file
     infofile.write(infofilePath);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the value
     return { key: keyValues.key, value: thisValue };
   } catch (error) {
     throw new Error(error);
@@ -512,7 +644,13 @@ function setLong({ infofilePath, keyValues }) {
       values.push({ key: thiskeyValuePair.key, value: thisvalue });
     });
     try {
+      // write the info file
       infofile.write(infofilePath);
+
+      // delete the infofile handle
+      infofile.delete();
+
+      // return the values
       return values;
     } catch (error) {
       throw new Error(error);
@@ -524,7 +662,13 @@ function setLong({ infofilePath, keyValues }) {
 
   // write the info file
   try {
+    // write the info file
     infofile.write(infofilePath);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the value
     return { key: keyValues.key, value: thisValue };
   } catch (error) {
     throw new Error(error);
@@ -557,7 +701,13 @@ function setDouble({ infofilePath, keyValues }) {
       values.push({ key: thiskeyValuePair.key, value: thisvalue });
     });
     try {
+      // write the info file
       infofile.write(infofilePath);
+
+      // delete the infofile handle
+      infofile.delete();
+
+      // return the values
       return values;
     } catch (error) {
       throw new Error(error);
@@ -569,7 +719,13 @@ function setDouble({ infofilePath, keyValues }) {
 
   // write the info file
   try {
+    // write the info file
     infofile.write(infofilePath);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the value
     return { key: keyValues.key, value: thisValue };
   } catch (error) {
     throw new Error(error);
@@ -602,7 +758,13 @@ function setText({ infofilePath, keyValues }) {
       values.push({ key: thiskeyValuePair.key, value: thisvalue });
     });
     try {
+      // write the info file
       infofile.write(infofilePath);
+
+      // delete the infofile handle
+      infofile.delete();
+
+      // return the values
       return values;
     } catch (error) {
       throw new Error(error);
@@ -614,7 +776,13 @@ function setText({ infofilePath, keyValues }) {
 
   // write the info file
   try {
+    // write the info file
     infofile.write(infofilePath);
+
+    // delete the infofile handle
+    infofile.delete();
+
+    // return the value
     return { key: keyValues.key, value: thisValue };
   } catch (error) {
     throw new Error(error);
@@ -629,6 +797,7 @@ module.exports = {
   getDouble,
   getText,
   getKeyValues,
+  deleteKey,
   setString,
   setLong,
   setDouble,
