@@ -9,6 +9,9 @@
     "jest": "^28.1.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:windows": "docker-compose -f ./docker/windows/docker-compose-test-windows.yml -p infofile-node-addon-test up --build --abort-on-container-exit",
+    "test:linux": "docker-compose -f ./docker/linux/docker-compose-test-linux.yml -p infofile-node-addon-test up --build --abort-on-container-exit"
   }
 }
