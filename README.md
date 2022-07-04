@@ -21,7 +21,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 ### Getting values from an infofile:
 
 <details>
-<summary>getDouble</summary>
+<summary></b><code>getDouble</code></b></summary>
 Returns a double value from an infofile for a given key or an array of keys.
 
 ### Getting a single double value from an infofile:
@@ -60,7 +60,7 @@ console.log(wheelCarrierValues)
 </details>
 
 <details>
-<summary>getKeyValues</summary>
+<summary></b><code>getKeyValues</code></b></summary>
 A universal function for getting values from an infofile. All numerical values are returned as doubles. All other values are returned as strings.
 
 ### Getting a single value from an infofile:
@@ -98,7 +98,7 @@ console.log(values)
 </details>
 
 <details>
-<summary>getLong</summary>
+<summary></b><code>getLong</code></b></summary>
 Returns a long value from an infofile for a given key or an array of keys.
 
 ### Getting a single long value from an infofile:
@@ -136,7 +136,7 @@ console.log(longValues)
 </details>
 
 <details>
-<summary>getString</summary>
+<summary></b><code>getString</code></b></summary>
 Returns a string value from an infofile for a given key or an array of keys.
 
 ### Getting a single string value from an infofile:
@@ -174,7 +174,7 @@ console.log(stringValues)
 </details>
 
 <details>
-<summary>getText</summary>
+<summary></b><code>getText</code></b></summary>
 Returns a text value from an infofile for a given key or an array of keys. This is an array of strings are are split by newlines in the infofile.
 
 ### Getting a single text value from an infofile:
@@ -214,7 +214,7 @@ console.log(textValues)
 ### Setting values to a infofile:
 
 <details>
-<summary>setDouble</summary>
+<summary></b><code>setDouble</code></b></summary>
 Sets a double value to an infofile for a given key.
 
 ### Setting a single double value to an infofile:
@@ -252,7 +252,7 @@ console.log(status)
 </details>
 
 <details>
-<summary>setKeys</summary>
+<summary></b><code>setKeys</code></b></summary>
 A universal function to set values to an infofile.
 
 ### Setting a single value to an infofile:
@@ -290,7 +290,7 @@ console.log(status)
 </details>
 
 <details>
-<summary>setLong</summary>
+<summary></b><code>setLong</code></b></summary>
 Sets a long value to an infofile for a given key.
 
 ### Setting a single long value to an infofile:
@@ -328,7 +328,7 @@ console.log(status)
 </details>
 
 <details>
-<summary>setString</summary>
+<summary></b><code>setString</code></b></summary>
 Sets a string value to an infofile for a given key.
 
 ### Setting a single string value to an infofile:
@@ -366,7 +366,7 @@ console.log(status)
 </details>
 
 <details>
-<summary>setText</summary>
+<summary></b><code>setText</code></b></summary>
 Sets a text value to an infofile for a given key. This is an array of strings are are split by newlines in the infofile for each item in the string array.
 
 ### Setting a single text value to an infofile:
@@ -406,7 +406,7 @@ console.log(status)
 ### Other functions
 
 <details>
-<summary>listKeys</summary>
+<summary></b><code>listKeys</code></b></summary>
 Lists the keys in an infofile, for a given prefix, if no prefix is provided all keys are returned
 
 ### Listing all keys in an infofile:
@@ -444,7 +444,7 @@ console.log(keys)
 </details>
 
 <details>
-<summary>keyKinds</summary>
+<summary></b><code>keyKinds</code></b></summary>
 Lists the keyKinds, returns String_Key, Text_Key or No_Key
 
 ### Get the keyKinds for a single key:
@@ -482,7 +482,7 @@ console.log(keyKinds)
 </details>
 
 <details>
-<summary>deleteKey</summary>
+<summary></b><code>deleteKey</code></b></summary>
 Deletes a key from an infofile
 
 ### Delete a single key from an infofile:
