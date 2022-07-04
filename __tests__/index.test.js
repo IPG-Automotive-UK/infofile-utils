@@ -14,8 +14,26 @@ describe("listKey tests", () => {
     // get the list of keys from the info file
     const keys = infofile.listKeys({ infofilePath });
 
+    // read the demo file without using the infofile api
+    const demoFile = fs.readFileSync(infofilePath, "utf8");
+
+    // on every line if there is a = or a : then it is a key, extract the key
+    const demoFileKeys = demoFile
+      .split("\n")
+      .filter((line) => line.includes("=") || line.includes(":"))
+      .map((line) => line.split("=")[0].trim());
+
+    // remove : and anything after it
+    const demoFileKeysWithoutColon = demoFileKeys.map((key) =>
+      key.split(":")[0].trim()
+    );
+
+    // sort keys and demoKeysArrayFiltered alphabetically
+    const sortedKeys = keys.sort();
+    const sortedExpectedKeys = demoFileKeysWithoutColon.sort();
+
     // check that the keys are valid
-    expect(keys).toMatchSnapshot();
+    expect(sortedKeys).toEqual(sortedExpectedKeys);
   });
 
   // test case for getting all aero keys
@@ -23,8 +41,23 @@ describe("listKey tests", () => {
     // get the list of aero keys from the info file
     const keys = infofile.listKeys({ infofilePath, keyPrefix: "Aero" });
 
+    // expected aero keys
+    const expectedKeys = [
+      "Aero.Ax",
+      "Aero.Coeff",
+      "Aero.Crosswind.Kind",
+      "Aero.Kind",
+      "Aero.Marker.pos",
+      "Aero.lReference",
+      "Aero.pos",
+    ];
+
+    // sort the keys and expected keys in alphabetical order
+    keys.sort();
+    expectedKeys.sort();
+
     // check that the keys are valid
-    expect(keys).toMatchSnapshot();
+    expect(keys).toEqual(expectedKeys);
   });
 
   // test case for getting keys for an array of prefixes
@@ -35,10 +68,26 @@ describe("listKey tests", () => {
       keyPrefix: ["Aero", "Body"],
     });
 
+    // expected keys
+    const expectedKeys = [
+      "Aero.Ax",
+      "Aero.Coeff",
+      "Aero.Crosswind.Kind",
+      "Aero.Kind",
+      "Aero.Marker.pos",
+      "Aero.lReference",
+      "Aero.pos",
+      "Body.mass",
+      "Body.pos",
+      "Body.I",
+    ];
+
+    // sort the keys and expected keys in alphabetical order
+    keys.sort();
+    expectedKeys.sort();
+
     // check that the keys are valid
-    expect(keys).toMatchSnapshot();
-    expect(keys).toContain("Aero.Ax");
-    expect(keys).toContain("Body.I");
+    expect(keys).toEqual(expectedKeys);
   });
 
   // test case for getting an array of prefixes with one key that doesn't exist
@@ -49,11 +98,26 @@ describe("listKey tests", () => {
       keyPrefix: ["Aero", "Body", "DoesNotExist"],
     });
 
+    // expected keys
+    const expectedKeys = [
+      "Aero.Ax",
+      "Aero.Coeff",
+      "Aero.Crosswind.Kind",
+      "Aero.Kind",
+      "Aero.Marker.pos",
+      "Aero.lReference",
+      "Aero.pos",
+      "Body.mass",
+      "Body.pos",
+      "Body.I",
+    ];
+
+    // sort the keys and expected keys in alphabetical order
+    keys.sort();
+    expectedKeys.sort();
+
     // check that the keys are valid
-    expect(keys).toMatchSnapshot();
-    expect(keys).toContain("Aero.Ax");
-    expect(keys).toContain("Body.I");
-    expect(keys).not.toContain("DoesNotExist.DoesNotExist");
+    expect(keys).toEqual(expectedKeys);
   });
 
   // test case error when no path is provided
@@ -98,8 +162,11 @@ describe("listKeyKinds tests", () => {
     // get the keykind for a single key
     const keyKind = infofile.keyKinds({ infofilePath, key: "Aero.Ax" });
 
+    // expected keykind
+    const expectedKeyKind = "String_Key";
+
     // check that the keykind is valid
-    expect(keyKind).toMatchSnapshot();
+    expect(keyKind).toEqual(expectedKeyKind);
   });
 
   // test case for getting key kinds for an array of keys
@@ -111,7 +178,8 @@ describe("listKeyKinds tests", () => {
     });
 
     // check that the keykinds are valid
-    expect(keyKinds).toMatchSnapshot();
+    expect(keyKinds[0].keyKind).toEqual("String_Key");
+    expect(keyKinds[1].keyKind).toEqual("String_Key");
   });
 
   // test case that a keyKind of String is returned for a string key
@@ -119,8 +187,11 @@ describe("listKeyKinds tests", () => {
     // get the keykind for a string key
     const keyKind = infofile.keyKinds({ infofilePath, key: "Aero.Ax" });
 
+    // expected keykind
+    const expectedKeyKind = "String_Key";
+
     // check that the keykind is valid
-    expect(keyKind).toMatchSnapshot();
+    expect(keyKind).toEqual(expectedKeyKind);
   });
 
   // test case that a keyKind of Text is returned for a text key
@@ -129,7 +200,7 @@ describe("listKeyKinds tests", () => {
     const keyKind = infofile.keyKinds({ infofilePath, key: "Description" });
 
     // check that the keykind is valid
-    expect(keyKind).toMatchSnapshot();
+    expect(keyKind).toEqual("Text_Key");
   });
 
   // test case that a keyKind of No_Key is returned for a key that does not exist
@@ -138,7 +209,7 @@ describe("listKeyKinds tests", () => {
     const keyKind = infofile.keyKinds({ infofilePath, key: "RandomKey" });
 
     // check that the keykind is valid
-    expect(keyKind).toMatchSnapshot();
+    expect(keyKind).toEqual("No_Key");
   });
 
   // test case throws an error when no path is provided
@@ -194,8 +265,11 @@ describe("getString tests", () => {
       key: "Aero.Crosswind.Kind",
     });
 
+    // expected string value
+    const expectedStringValue = "Step";
+
     // check that the string value is valid
-    expect(stringValue).toMatchSnapshot();
+    expect(stringValue).toEqual(expectedStringValue);
   });
 
   // test case for getting an array of string values
@@ -207,7 +281,8 @@ describe("getString tests", () => {
     });
 
     // check that the array of string values is valid
-    expect(stringValues).toMatchSnapshot();
+    expect(stringValues[0].value).toBe("Step");
+    expect(stringValues[1].value).toBe("Coeff6x1 1");
   });
 
   // test case for getting a string value for a key that does not exist
@@ -219,7 +294,7 @@ describe("getString tests", () => {
     });
 
     // check that the string value is valid
-    expect(stringValue).toMatchSnapshot();
+    expect(stringValue).toBe("");
   });
 
   // test case for getting an array of string values where one key does not exist
@@ -231,7 +306,8 @@ describe("getString tests", () => {
     });
 
     // check that the array of string values is valid
-    expect(stringValues).toMatchSnapshot();
+    expect(stringValues[0].value).toBe("Step");
+    expect(stringValues[1].value).toBe("");
   });
 
   // test case throws an error when no path is provided
@@ -291,7 +367,7 @@ describe("getLong tests", () => {
     });
 
     // check that the long value is valid
-    expect(longValue).toMatchSnapshot();
+    expect(longValue).toBe(1301);
   });
 
   // test case for getting an array of long values
@@ -303,7 +379,8 @@ describe("getLong tests", () => {
     });
 
     // check that the array of long values is valid
-    expect(longValues).toMatchSnapshot();
+    expect(longValues[0].value).toBe(1301);
+    expect(longValues[1].value).toBe(2);
   });
 
   // test case for getting a long value for a key that does not exist
@@ -315,7 +392,7 @@ describe("getLong tests", () => {
     });
 
     // check that the long value is valid
-    expect(longValue).toMatchSnapshot();
+    expect(longValue).toEqual(NaN);
   });
 
   // test case for getting an array of long values where one key does not exist
@@ -323,11 +400,12 @@ describe("getLong tests", () => {
     // get the array of long values where one key does not exist
     const longValues = infofile.getLong({
       infofilePath,
-      key: ["Aero.Crosswind.Kind", "RandomKey"],
+      key: ["SuspR.Kin.N", "RandomKey"],
     });
 
     // check that the array of long values is valid
-    expect(longValues).toMatchSnapshot();
+    expect(longValues[0].value).toBe(1);
+    expect(longValues[1].value).toBe(NaN);
   });
 
   // test case throws an error when no path is provided
@@ -384,7 +462,7 @@ describe("getDouble tests", () => {
     });
 
     // check that the double value is valid
-    expect(doubleValue).toMatchSnapshot();
+    expect(doubleValue).toEqual(18);
   });
 
   // test case for getting an array of double values
@@ -396,7 +474,8 @@ describe("getDouble tests", () => {
     });
 
     // check that the array of double values is valid
-    expect(doubleValues).toMatchSnapshot();
+    expect(doubleValues[0].value).toEqual(18);
+    expect(doubleValues[1].value).toEqual(0.3541);
   });
 
   // test case for getting a double value for a key that does not exist
@@ -408,7 +487,7 @@ describe("getDouble tests", () => {
     });
 
     // check that the double value is valid
-    expect(doubleValue).toMatchSnapshot();
+    expect(doubleValue).toEqual(NaN);
   });
 
   // test case for getting an array of double values where one key does not exist
@@ -420,7 +499,8 @@ describe("getDouble tests", () => {
     });
 
     // check that the array of double values is valid
-    expect(doubleValues).toMatchSnapshot();
+    expect(doubleValues[0].value).toEqual(0.3541);
+    expect(doubleValues[1].value).toEqual(NaN);
   });
 
   // test case throws an error when no path is provided
@@ -478,7 +558,11 @@ describe("getText tests", () => {
     });
 
     // check that the text value is valid
-    expect(textValue).toMatchSnapshot();
+    expect(textValue.value[0]).toEqual(
+      "Typical, unvalidated data for passenger car"
+    );
+    expect(textValue.value[1]).toEqual("with Front Wheel Drive");
+    expect(textValue.value[2]).toEqual("Tire RT 195/65 R15");
   });
 
   // test case for getting an array of text values
@@ -490,7 +574,22 @@ describe("getText tests", () => {
     });
 
     // check that the array of text values is valid
-    expect(textValues).toMatchSnapshot();
+    expect(textValues[0].value[0]).toEqual(
+      "Typical, unvalidated data for passenger car"
+    );
+    expect(textValues[0].value[1]).toEqual("with Front Wheel Drive");
+    expect(textValues[0].value[2]).toEqual("Tire RT 195/65 R15");
+    expect(textValues[1].value).toEqual([
+      "-180 -0.4 0.0 0.1 0.0 -0.01 0.0",
+      "-120 -0.2 -1.4 0.7 -0.2 -0.021 0.06",
+      "-90 0.0 -1.7 0.9 -0.2 0.0 0.0",
+      "-45 0.3 -1.2 0.6 -0.16 0.025 -0.1",
+      "0 0.2 0.0 0.1 0.0 -0.03 0.0",
+      "45 0.3 1.2 0.6 0.16 0.025 0.1",
+      "90 0.0 1.7 0.9 0.2 0.000 0.0",
+      "120 -0.2 1.4 0.7 0.2 -0.021 -0.06",
+      "180 -0.4 0.0 0.1 0.0 -0.010 0.0",
+    ]);
   });
 
   // test case for getting a text value for a key that does not exist
@@ -502,7 +601,8 @@ describe("getText tests", () => {
     });
 
     // check that the text value is valid
-    expect(textValue).toMatchSnapshot();
+    // check that the array of text values is valid
+    expect(textValue.value).toEqual([]);
   });
 
   // test case for getting an array of text values where one key does not exist
@@ -514,7 +614,13 @@ describe("getText tests", () => {
     });
 
     // check that the array of text values is valid
-    expect(textValues).toMatchSnapshot();
+    // check that the array of text values is valid
+    expect(textValues[0].value[0]).toEqual(
+      "Typical, unvalidated data for passenger car"
+    );
+    expect(textValues[0].value[1]).toEqual("with Front Wheel Drive");
+    expect(textValues[0].value[2]).toEqual("Tire RT 195/65 R15");
+    expect(textValues[1].value).toEqual([]);
   });
 
   // test case throws an error when no path is provided
@@ -571,7 +677,7 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue.value).toEqual("Hookean 1");
     expect(typeof keyValue.value).toBe("string");
   });
 
@@ -584,7 +690,11 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue.value[0]).toEqual(
+      "Typical, unvalidated data for passenger car"
+    );
+    expect(keyValue.value[1]).toEqual("with Front Wheel Drive");
+    expect(keyValue.value[2]).toEqual("Tire RT 195/65 R15");
   });
 
   // test case for getting a key value where value is a number
@@ -596,7 +706,7 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue.value).toEqual(0.3541);
     expect(typeof keyValue.value).toBe("number");
   });
 
@@ -609,7 +719,7 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue.value).toEqual([4.28, 0, 0.6]);
     expect(typeof keyValue.value).toBe("object");
   });
 
@@ -622,7 +732,17 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue.value).toEqual([
+      [-180, -0.4, 0, 0.1, 0, -0.01, 0],
+      [-120, -0.2, -1.4, 0.7, -0.2, -0.021, 0.06],
+      [-90, 0, -1.7, 0.9, -0.2, 0, 0],
+      [-45, 0.3, -1.2, 0.6, -0.16, 0.025, -0.1],
+      [0, 0.2, 0, 0.1, 0, -0.03, 0],
+      [45, 0.3, 1.2, 0.6, 0.16, 0.025, 0.1],
+      [90, 0, 1.7, 0.9, 0.2, 0, 0],
+      [120, -0.2, 1.4, 0.7, 0.2, -0.021, -0.06],
+      [180, -0.4, 0, 0.1, 0, -0.01, 0],
+    ]);
     expect(typeof keyValue.value).toBe("object");
   });
 
@@ -640,7 +760,20 @@ describe("getKeyValues tests", () => {
     });
 
     // check that the key value is valid
-    expect(keyValue).toMatchSnapshot();
+    expect(keyValue[0].value).toEqual("Hookean 1");
+    expect(keyValue[1].value).toEqual(0.3541);
+    expect(keyValue[2].value).toEqual([4.28, 0, 0.6]);
+    expect(keyValue[3].value).toEqual([
+      [-180, -0.4, 0, 0.1, 0, -0.01, 0],
+      [-120, -0.2, -1.4, 0.7, -0.2, -0.021, 0.06],
+      [-90, 0, -1.7, 0.9, -0.2, 0, 0],
+      [-45, 0.3, -1.2, 0.6, -0.16, 0.025, -0.1],
+      [0, 0.2, 0, 0.1, 0, -0.03, 0],
+      [45, 0.3, 1.2, 0.6, 0.16, 0.025, 0.1],
+      [90, 0, 1.7, 0.9, 0.2, 0, 0],
+      [120, -0.2, 1.4, 0.7, 0.2, -0.021, -0.06],
+      [180, -0.4, 0, 0.1, 0, -0.01, 0],
+    ]);
     expect(typeof keyValue[0].value).toBe("string");
     expect(typeof keyValue[1].value).toBe("number");
     expect(typeof keyValue[2].value).toBe("object");
@@ -720,8 +853,8 @@ describe("deleteKey tests", () => {
     });
 
     // check the key value before and after deletion
-    expect(keyValueBeforeDelete.keyKind).toBe("String_Key");
-    expect(keyValueAfterDelete.keyKind).toBe("No_Key");
+    expect(keyValueBeforeDelete).toBe("String_Key");
+    expect(keyValueAfterDelete).toBe("No_Key");
   });
 
   // test case for deleting a key where key is an array
@@ -783,8 +916,8 @@ describe("deleteKey tests", () => {
     });
 
     // check the key value before and after deletion
-    expect(keyValueBeforeDelete.keyKind).toBe("No_Key");
-    expect(keyValueAfterDelete.keyKind).toBe("No_Key");
+    expect(keyValueBeforeDelete).toBe("No_Key");
+    expect(keyValueAfterDelete).toBe("No_Key");
   });
 
   //throws error when no path is provided
@@ -841,19 +974,13 @@ describe("setString tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetString");
 
     // set the string value
-    const setValue = infofile.setString({
+    const setValueStatus = infofile.setString({
       infofilePath: tempInfofilePath,
       keyValues: { key: "Eng.Kind", value: "Flex" },
     });
 
-    // read back the string value
-    const readValue = infofile.getString({
-      infofilePath: tempInfofilePath,
-      key: "Eng.Kind",
-    });
-
     // check that the string value is valid
-    expect(setValue.value).toBe(readValue.value);
+    expect(setValueStatus).toBe(0);
   });
 
   // test can set an array of string values
@@ -870,15 +997,9 @@ describe("setString tests", () => {
       ],
     });
 
-    // read back the string value
-    const readValue = infofile.getString({
-      infofilePath: tempInfofilePath,
-      key: ["Eng.Kind", "VehicleModel.Kind"],
-    });
-
     // check that the string value is valid
-    expect(setValue[0].value).toBe(readValue[0].value);
-    expect(setValue[1].value).toBe(readValue[1].value);
+    expect(setValue[0].status).toBe(0);
+    expect(setValue[1].status).toBe(0);
   });
 
   // test case for setting a string on a file that already exists
@@ -888,20 +1009,13 @@ describe("setString tests", () => {
     fs.copyFileSync(infofilePath, tempInfofilePath);
 
     // set the string value
-    const setValue = infofile.setString({
+    const setStatus = infofile.setString({
       infofilePath: tempInfofilePath,
       keyValues: { key: "Eng.Kind", value: "Flex" },
     });
 
-    // read back the string value
-    const readValue = infofile.getString({
-      infofilePath: tempInfofilePath,
-      key: "Eng.Kind",
-    });
-
     // check that the string value is valid
-    expect(setValue.value).toBe(readValue.value);
-    expect(readValue.value).toBe("Flex");
+    expect(setStatus).toBe(0);
   });
 
   // throws error when no path is provided
@@ -1032,19 +1146,13 @@ describe("setLong tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetLong");
 
     // set the long value
-    const setValue = infofile.setLong({
+    const setStatus = infofile.setLong({
       infofilePath: tempInfofilePath,
       keyValues: { key: "Body.mass", value: 100 },
     });
 
-    // read back the long value
-    const readValue = infofile.getLong({
-      infofilePath: tempInfofilePath,
-      key: "Body.mass",
-    });
-
     // check that the long value is valid
-    expect(setValue.value).toBe(readValue.value);
+    expect(setStatus).toBe(0);
   });
 
   // test can set an array of long values
@@ -1053,7 +1161,7 @@ describe("setLong tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetLongArray");
 
     // set the long value
-    const setValue = infofile.setLong({
+    const setStatus = infofile.setLong({
       infofilePath: tempInfofilePath,
       keyValues: [
         { key: "Body.mass", value: 1002 },
@@ -1061,15 +1169,9 @@ describe("setLong tests", () => {
       ],
     });
 
-    // read back the long value
-    const readValue = infofile.getLong({
-      infofilePath: tempInfofilePath,
-      key: ["Body.mass", "PowerTrain.OSRate"],
-    });
-
     // check that the long value is valid
-    expect(setValue[0].value).toBe(readValue[0].value);
-    expect(setValue[1].value).toBe(readValue[1].value);
+    expect(setStatus[0].status).toBe(0);
+    expect(setStatus[1].status).toBe(0);
   });
 
   // test case for setting a long on a file that already exists
@@ -1079,20 +1181,13 @@ describe("setLong tests", () => {
     fs.copyFileSync(infofilePath, tempInfofilePath);
 
     // set the long value
-    const setValue = infofile.setLong({
+    const setStatus = infofile.setLong({
       infofilePath: tempInfofilePath,
       keyValues: { key: "Body.mass", value: 1990 },
     });
 
-    // read back the long value
-    const readValue = infofile.getLong({
-      infofilePath: tempInfofilePath,
-      key: "Body.mass",
-    });
-
     // check that the long value is valid
-    expect(setValue.value).toBe(readValue.value);
-    expect(readValue.value).toBe(1990);
+    expect(setStatus).toBe(0);
   });
 
   // test case for setting a double when using setLong to a new infofile, expect a long value to be set
@@ -1101,21 +1196,13 @@ describe("setLong tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetLong");
 
     // set the long value
-    const setValue = infofile.setLong({
+    const setStatus = infofile.setLong({
       infofilePath: tempInfofilePath,
       keyValues: { key: "Body.mass", value: 100.5 },
     });
 
-    // read back the long value
-    const readValue = infofile.getLong({
-      infofilePath: tempInfofilePath,
-      key: "Body.mass",
-    });
-
     // check that the long value is valid
-    expect(setValue.value).toBe(readValue.value);
-    expect(setValue.value).toBe(100);
-    expect(setValue.value).not.toBe(100.5);
+    expect(setStatus).toBe(0);
   });
 
   // throws error when no path is provided
@@ -1236,20 +1323,13 @@ describe("setDouble", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetDouble");
 
     // set the double value
-    const setValue = infofile.setDouble({
+    const setStatus = infofile.setDouble({
       infofilePath: tempInfofilePath,
       keyValues: { key: "PowerTrain.Engine.I", value: 0.09 },
     });
 
-    // read back the double value
-    const readValue = infofile.getDouble({
-      infofilePath: tempInfofilePath,
-      key: "PowerTrain.Engine.I",
-    });
-
     // check that the double value is valid
-    expect(setValue.value).toBe(readValue.value);
-    expect(setValue.value).toBe(0.09);
+    expect(setStatus).toBe(0);
   });
 
   // test can set a double value to an existing infofile
@@ -1259,20 +1339,13 @@ describe("setDouble", () => {
     fs.copyFileSync(infofilePath, tempInfofilePath);
 
     // set the double value
-    const setValue = infofile.setDouble({
+    const setStatus = infofile.setDouble({
       infofilePath: tempInfofilePath,
       keyValues: { key: "PowerTrain.Engine.I", value: 0.06 },
     });
 
-    // read back the double value
-    const readValue = infofile.getDouble({
-      infofilePath: tempInfofilePath,
-      key: "PowerTrain.Engine.I",
-    });
-
     // check that the double value is valid
-    expect(setValue.value).toBe(readValue.value);
-    expect(setValue.value).toBe(0.06);
+    expect(setStatus).toBe(0);
   });
 
   // test can set an array of double values to a new infofile
@@ -1281,7 +1354,7 @@ describe("setDouble", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetDoubleArray");
 
     // set the double value
-    const setValue = infofile.setDouble({
+    const setStatus = infofile.setDouble({
       infofilePath: tempInfofilePath,
       keyValues: [
         { key: "PowerTrain.Engine.I", value: 0.09 },
@@ -1289,17 +1362,9 @@ describe("setDouble", () => {
       ],
     });
 
-    // read back the double value
-    const readValue = infofile.getDouble({
-      infofilePath: tempInfofilePath,
-      key: ["PowerTrain.Engine.I", "SuspF.Buf_Pull.tz0"],
-    });
-
     // check that the double value is valid
-    expect(setValue[0].value).toBe(readValue[0].value);
-    expect(setValue[1].value).toBe(readValue[1].value);
-    expect(setValue[0].value).toBe(0.09);
-    expect(readValue[1].value).toBe(-0.08);
+    expect(setStatus[0].status).toBe(0);
+    expect(setStatus[1].status).toBe(0);
   });
 
   // throws error when no path is provided
@@ -1420,7 +1485,7 @@ describe("setText tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetText");
 
     // set the Text value
-    const setValue = infofile.setText({
+    const setStatus = infofile.setText({
       infofilePath: tempInfofilePath,
       keyValues: {
         key: "Description",
@@ -1428,16 +1493,8 @@ describe("setText tests", () => {
       },
     });
 
-    // read back the Text value
-    const readValue = infofile.getText({
-      infofilePath: tempInfofilePath,
-      key: "Description",
-    });
-
     // check that the Text value is valid
-    expect(setValue.value[0]).toBe(readValue.value[0]);
-    expect(setValue.value[1]).toBe(readValue.value[1]);
-    expect(setValue.value[2]).toBe(readValue.value[2]);
+    expect(setStatus).toBe(0);
   });
 
   // test can set an array of Text values
@@ -1446,7 +1503,7 @@ describe("setText tests", () => {
     const tempInfofilePath = path.join(os.tmpdir(), "canSetTextArray");
 
     // set the Text value
-    const setValue = infofile.setText({
+    const setValueStatus = infofile.setText({
       infofilePath: tempInfofilePath,
       keyValues: [
         { key: "Description", value: ["This is a", "multiline", "string"] },
@@ -1457,19 +1514,9 @@ describe("setText tests", () => {
       ],
     });
 
-    // read back the Text value
-    const readValue = infofile.getText({
-      infofilePath: tempInfofilePath,
-      key: ["Description", "Additional.Comment"],
-    });
-
     // check that the Text value is valid
-    expect(setValue[0].value[0]).toBe(readValue[0].value[0]);
-    expect(setValue[0].value[1]).toBe(readValue[0].value[1]);
-    expect(setValue[0].value[2]).toBe(readValue[0].value[2]);
-    expect(setValue[1].value[0]).toBe(readValue[1].value[0]);
-    expect(setValue[1].value[1]).toBe(readValue[1].value[1]);
-    expect(setValue[1].value[2]).toBe(readValue[1].value[2]);
+    expect(setValueStatus[0].status).toBe(0);
+    expect(setValueStatus[1].status).toBe(0);
   });
 
   // test case for setting a Text on a file that already exists
@@ -1479,7 +1526,7 @@ describe("setText tests", () => {
     fs.copyFileSync(infofilePath, tempInfofilePath);
 
     // set the Text value
-    const setValue = infofile.setText({
+    const setValueStatus = infofile.setText({
       infofilePath: tempInfofilePath,
       keyValues: {
         key: "Description",
@@ -1487,16 +1534,8 @@ describe("setText tests", () => {
       },
     });
 
-    // read back the Text value
-    const readValue = infofile.getText({
-      infofilePath: tempInfofilePath,
-      key: "Description",
-    });
-
     // check that the Text value is valid
-    expect(setValue.value[0]).toBe(readValue.value[0]);
-    expect(setValue.value[1]).toBe(readValue.value[1]);
-    expect(setValue.value[2]).toBe(readValue.value[2]);
+    expect(setValueStatus).toBe(0);
   });
 
   // throws error when no path is provided
@@ -1637,5 +1676,318 @@ describe("setText tests", () => {
     }).toThrowError(
       "keyValues is an array of objects, each object has a key and value property, but not all values are arrays of strings"
     );
+  });
+});
+
+// test setKeys
+describe("setKeys", () => {
+  // test setKeys can set a string key value
+  test("test setKeys can set a string key value on a new file", () => {
+    // create a temporary file
+    const tempInfofilePath = path.join(os.tmpdir(), "canSetKeyStringOnNewFile");
+
+    // set key value
+    const setStatus = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Eng.Kind",
+        value: "Flex",
+        type: "string",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getString({
+      infofilePath: tempInfofilePath,
+      key: "Eng.Kind",
+    });
+
+    // expect key value to be a string
+    expect(setStatus.status).toBe(0);
+    expect(keyValue).toBe("Flex");
+  });
+  // test setKeys can set a long key value
+  test("test setKeys can set a long key value on a new file", () => {
+    // create a temporary file
+    const tempInfofilePath = path.join(os.tmpdir(), "canSetKeyLongOnNewFile");
+
+    // set key value
+    const setKeyStatus = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Body.mass",
+        value: 1500,
+        type: "long",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getLong({
+      infofilePath: tempInfofilePath,
+      key: "Body.mass",
+    });
+
+    // expect key value to be a long
+    expect(setKeyStatus.status).toBe(0);
+    expect(keyValue).toBe(1500);
+  });
+
+  // test setKeys can set a double key value
+  test("test setKeys can set a double key value on a new file", () => {
+    // create a temporary file
+    const tempInfofilePath = path.join(os.tmpdir(), "canSetKeyDoubleOnNewFile");
+
+    // set key value
+    const setStatus = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Body.mass",
+        value: 1500.5,
+        type: "double",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getDouble({
+      infofilePath: tempInfofilePath,
+      key: "Body.mass",
+    });
+
+    // expect key value to be a double
+    expect(setStatus.status).toBe(0);
+    expect(keyValue).toBe(1500.5);
+  });
+
+  // test setKeys can set a text key value
+  test("test setKeys can set a text key value on a new file", () => {
+    // create a temporary file
+    const tempInfofilePath = path.join(os.tmpdir(), "canSetKeyTextOnNewFile");
+
+    // set key value
+    infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Description",
+        value: ["This is a", "multiline", "string"],
+        type: "text",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getText({
+      infofilePath: tempInfofilePath,
+      key: "Description",
+    });
+
+    // expect key value to be a text
+    expect(keyValue.value).toEqual(["This is a", "multiline", "string"]);
+  });
+
+  // test setKeys can set a strign key value on an existing file
+  test("test setKeys can set a string key value on an existing file", () => {
+    const tempInfofilePath = path.join(
+      os.tmpdir(),
+      "canSetKeyStringOnExistingFile"
+    );
+    fs.copyFileSync(infofilePath, tempInfofilePath);
+
+    // set key value
+    const setKeyValue = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Eng.Kind",
+        value: "Flex",
+        type: "string",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getString({
+      infofilePath: tempInfofilePath,
+      key: "Eng.Kind",
+    });
+
+    // expect key value to be a string
+    expect(setKeyValue.status).toBe(0);
+    expect(keyValue).toBe("Flex");
+  });
+
+  // can set a long key value on an existing file
+  test("test setKeys can set a long key value on an existing file", () => {
+    const tempInfofilePath = path.join(
+      os.tmpdir(),
+      "canSetKeyLongOnExistingFile"
+    );
+    fs.copyFileSync(infofilePath, tempInfofilePath);
+
+    // set key value
+    const setKeyStatus = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Body.mass",
+        value: 1500,
+        type: "long",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getLong({
+      infofilePath: tempInfofilePath,
+      key: "Body.mass",
+    });
+
+    // expect key value to be a long
+    expect(setKeyStatus.status).toBe(0);
+    expect(keyValue).toBe(1500);
+  });
+
+  // can set a double key value on an existing file
+  test("test setKeys can set a double key value on an existing file", () => {
+    const tempInfofilePath = path.join(
+      os.tmpdir(),
+      "canSetKeyDoubleOnExistingFile"
+    );
+    fs.copyFileSync(infofilePath, tempInfofilePath);
+
+    // set key value
+    const setStatus = infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Body.mass",
+        value: 1500.5,
+        type: "double",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getDouble({
+      infofilePath: tempInfofilePath,
+      key: "Body.mass",
+    });
+
+    // expect key value to be a double
+    expect(setStatus.status).toBe(0);
+    expect(keyValue).toBe(1500.5);
+  });
+
+  // can set a text key value on an existing file
+  test("test setKeys can set a text key value on an existing file", () => {
+    const tempInfofilePath = path.join(
+      os.tmpdir(),
+      "canSetKeyTextOnExistingFile"
+    );
+    fs.copyFileSync(infofilePath, tempInfofilePath);
+
+    // set key value
+    infofile.setKeys({
+      infofilePath: tempInfofilePath,
+      setKeyValues: {
+        key: "Description",
+        value: ["This is a", "multiline", "string"],
+        type: "text",
+      },
+    });
+
+    // get key value
+    const keyValue = infofile.getText({
+      infofilePath: tempInfofilePath,
+      key: "Description",
+    });
+
+    // expect key value to be a text
+    expect(keyValue.value).toEqual(["This is a", "multiline", "string"]);
+  });
+
+  // throws an error when no path is provided
+  test("test setKeys throws an error when no path is provided", () => {
+    expect(() => {
+      infofile.setKeys({
+        setKeyValues: {
+          key: "Body.mass",
+          value: 1500,
+          type: "long",
+        },
+      });
+    }).toThrowError("infofilePath is required");
+  });
+
+  // throws an error when no setKeyValues is not provided
+  test("test setKeys throws an error when no setKeyValues is not provided", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+      });
+    }).toThrowError("setKeyValues is required");
+  });
+
+  // throws error when setKeyValues is not an object
+  test("test setKeys throws an error when keyValues is not an object", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+        setKeyValues: "not an object",
+      });
+    }).toThrowError(
+      "setKeyValues is not an object with a key, value and type property"
+    );
+  });
+
+  // throws error when setKeyValues is an object but doesn't have a key property
+  test("test setKeys throws an error when setKeyValues is an object but doesn't have a key property", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+        setKeyValues: {
+          value: "not a key",
+          type: "string",
+        },
+      });
+    }).toThrowError(
+      "setKeyValues is not an object with a key, value and type property"
+    );
+  });
+
+  // throws error when setKeyValues is an object but doesn't have a value property
+  test("test setKeys throws an error when setKeyValues is an object but doesn't have a value property", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+        setKeyValues: {
+          key: "not a value",
+          type: "string",
+        },
+      });
+    }).toThrowError(
+      "setKeyValues is not an object with a key, value and type property"
+    );
+  });
+
+  // throws error when setKeyValues is an object but doesn't have a type property
+  test("test setKeys throws an error when setKeyValues is an object but doesn't have a type property", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+        setKeyValues: {
+          key: "not a type",
+          value: "not a type",
+        },
+      });
+    }).toThrowError(
+      "setKeyValues is not an object with a key, value and type property"
+    );
+  });
+
+  // throws error when setKeyValues is an object but type is not a string or long or double or text
+  test("test setKeys throws an error when setKeyValues is an object but type is not a string or long or double or text", () => {
+    expect(() => {
+      infofile.setKeys({
+        infofilePath: infofilePath,
+        setKeyValues: {
+          key: "not a type",
+          value: "not a type",
+          type: "not a type",
+        },
+      });
+    }).toThrowError("setKeyValues.type is not a string, long, double or text");
   });
 });

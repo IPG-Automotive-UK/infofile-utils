@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  infofile-addon-test:
+    container_name: infofile-reader-writer-test
+    restart: "no"
+    build:
+      context: ..\..
+      dockerfile: .\docker\linux\Dockerfile-test-linux

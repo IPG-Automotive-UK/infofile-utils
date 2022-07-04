@@ -1,0 +1,25 @@
+name: Test Linux
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - name: Install IPG libraries
+        run: sudo apt-get install -y libusb-0.1-4
+      - run: npm install
+      - run: npm run test
+        env:
+          CI: true

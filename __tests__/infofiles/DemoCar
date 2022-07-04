@@ -9,7 +9,7 @@ RefPointInputSystem = 0.0 0.0 0.0
 Description:
 	Typical, unvalidated data for passenger car
 	with Front Wheel Drive
-	Tire: RT 195/65 R15
+	Tire RT 195/65 R15
 
 Eng.Kind = Rigid
 Eng.Joint.pos = 0.0 0.0 0.0

@@ -1,0 +1,11 @@
+# build on top of base nodejs and python image
+FROM ipgautomotive/nodejs-python:latest as base
+
+# copy source code and install dependencies
+WORKDIR /infofile
+COPY . .
+RUN npm install
+
+
+# run tests
+CMD [ "npm", "run", "test"]
