@@ -3,6 +3,11 @@ const { readInfoFile, validateStringArray } = require("./utils");
 
 // function to get the value of keys that is a double
 function getDouble({ file, keys }) {
+  // check that the file has been provided
+  if (!file) {
+    throw new Error("file is required");
+  }
+
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");

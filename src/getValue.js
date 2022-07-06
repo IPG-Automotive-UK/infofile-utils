@@ -58,6 +58,11 @@ function getKeyValue({ fileHandle, keys }) {
 
 // function to get keys values for any keys data type, numbers are returned as doubles
 function getValue({ file, keys }) {
+  // check that the file has been provided
+  if (!file) {
+    throw new Error("file is required");
+  }
+
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
