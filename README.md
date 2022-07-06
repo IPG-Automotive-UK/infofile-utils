@@ -22,7 +22,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 
 <details>
 <summary></b><code>getDouble</code></b></summary>
-Returns a double value from an infofile for a given keys or an array of keys.
+Returns a double value from an infofile for a given key or an array of keys. The value will be returned as a number.
 
 ### Getting a single double value from an infofile:
 
@@ -32,7 +32,6 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
-
 
 // get the double value for the keys "WheelCarrier.fl.mass"
 const wheelCarrierValue = infofile.getDouble({file, keys:"WheelCarrier.fl.mass"});
@@ -99,7 +98,7 @@ console.log(values)
 
 <details>
 <summary></b><code>getLong</code></b></summary>
-Returns a long value from an infofile for a given keys or an array of keys.
+Returns a long value from an infofile for a given key or an array of keys. The value will be returned as a number.
 
 ### Getting a single long value from an infofile:
 
