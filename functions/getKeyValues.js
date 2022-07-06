@@ -1,14 +1,14 @@
 const { readInfoFile, validateStringArray } = require("../utils");
 
-// helper function to get key value
-function getKeyValue({ infofileHandle, key }) {
-  // determine the key kind
-  const keyKind = infofileHandle.keyKind(key);
+// helper function to get keys value
+function getKeyValue({ fileHandle, keys }) {
+  // determine the keys kind
+  const keyKind = fileHandle.keyKind(keys);
 
-  // depending on the key kind, get the value of the key
+  // depending on the keys kind, get the value of the keys
   switch (keyKind) {
     case "String_Key":
-      const string = infofileHandle.getString(key);
+      const string = fileHandle.getString(keys);
 
       // determine if this is a number and return either a single number or an array of numbers
       let stringValue = string;
@@ -27,9 +27,9 @@ function getKeyValue({ infofileHandle, key }) {
         }
       }
 
-      return { key: key, value: stringValue };
+      return { keys: keys, value: stringValue };
     case "Text_Key":
-      const text = infofileHandle.getText(key);
+      const text = fileHandle.getText(keys);
 
       // if text only contains numbers convert to number
       let textValue = text;
@@ -48,48 +48,48 @@ function getKeyValue({ infofileHandle, key }) {
           });
         });
       }
-      return { key: key, value: textValue };
+      return { keys: keys, value: textValue };
     case "No_Key":
-      return { key: key, value: null };
+      return { keys: keys, value: null };
     default:
-      return { key: key, value: null };
+      return { keys: keys, value: null };
   }
 }
 
-// function to get key values for any key data type, numbers are returned as doubles
-function getKeyValues({ infofilePath, key }) {
-  // check that key has been provided
-  if (!key) {
-    throw new Error("key is required");
+// function to get keys values for any keys data type, numbers are returned as doubles
+function getKeyValues({ file, keys }) {
+  // check that keys has been provided
+  if (!keys) {
+    throw new Error("keys is required");
   }
 
   // read the info file
-  const infofile = readInfoFile({ infofilePath });
+  const infofile = readInfoFile(file);
 
-  // check that key is a valid string or an array of strings
-  keyValid = validateStringArray(key);
+  // check that keys is a valid string or an array of strings
+  keyValid = validateStringArray(keys);
   if (!keyValid) {
-    throw new Error("key must be a string or an array of strings");
+    throw new Error("keys must be a string or an array of strings");
   }
 
   try {
-    // define the key values to return
+    // define the keys values to return
     let keyValue;
 
-    // if the key is an array of keys, get the key kinds for all keys
-    // otherwise just return the value for the specified key
-    if (Array.isArray(key)) {
-      const keyValues = [];
-      key.forEach((key) => {
-        const keyValue = getKeyValue({ infofileHandle: infofile, key: key });
-        keyValues.push(keyValue);
+    // if keys is an array of keys, get the keys kinds for all keys
+    // otherwise just return the value for the specified keys
+    if (Array.isArray(keys)) {
+      const values = [];
+      keys.forEach((keys) => {
+        const keyValue = getKeyValue({ fileHandle: infofile, keys: keys });
+        values.push(keyValue);
       });
 
       // set keyValue equal to the keyValuesArray
-      keyValue = keyValues;
+      keyValue = values;
     } else {
-      // get the value of the specified key
-      keyValue = getKeyValue({ infofileHandle: infofile, key: key });
+      // get the value of the specified keys
+      keyValue = getKeyValue({ fileHandle: infofile, keys: keys });
     }
 
     // delete the infofile handle
@@ -109,5 +109,5 @@ function getKeyValues({ infofilePath, key }) {
   }
 }
 
-// export get key values function
+// export get keys values function
 module.exports = { getKeyValues };

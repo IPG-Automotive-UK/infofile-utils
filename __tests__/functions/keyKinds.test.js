@@ -3,14 +3,14 @@ const path = require("path");
 
 // get the path to the test info file
 const relativePath = "../infofiles/DemoCar";
-const infofilePath = path.resolve(__dirname, relativePath);
+const file = path.resolve(__dirname, relativePath);
 
-// test suit for key kinds
+// test suit for keys kinds
 describe("keyKinds tests", () => {
-  // test case for getting key kinds for a single key
-  test("can get keykind for a single key", () => {
-    // get the keykind for a single key
-    const keyKind = infofile.keyKinds({ infofilePath, key: "Aero.Ax" });
+  // test case for getting keys kinds for a single keys
+  test("can get keykind for a single keys", () => {
+    // get the keykind for a single keys
+    const keyKind = infofile.keyKinds({ file, keys: "Aero.Ax" });
 
     // expected keykind
     const expectedKeyKind = "String_Key";
@@ -19,12 +19,12 @@ describe("keyKinds tests", () => {
     expect(keyKind).toEqual(expectedKeyKind);
   });
 
-  // test case for getting key kinds for an array of keys
-  test("can get key kinds for an array of keys", () => {
+  // test case for getting keys kinds for an array of keys
+  test("can get keys kinds for an array of keys", () => {
     // get the keykind for an array of keys
     const keyKinds = infofile.keyKinds({
-      infofilePath,
-      key: ["Aero.Ax", "Body.I"],
+      file,
+      keys: ["Aero.Ax", "Body.I"],
     });
 
     // check that the keykinds are valid
@@ -32,10 +32,10 @@ describe("keyKinds tests", () => {
     expect(keyKinds[1].keyKind).toEqual("String_Key");
   });
 
-  // test case that a keyKind of String is returned for a string key
-  test("can get keykind for a string key", () => {
-    // get the keykind for a string key
-    const keyKind = infofile.keyKinds({ infofilePath, key: "Aero.Ax" });
+  // test case that a keyKind of String is returned for a string keys
+  test("can get keykind for a string keys", () => {
+    // get the keykind for a string keys
+    const keyKind = infofile.keyKinds({ file, keys: "Aero.Ax" });
 
     // expected keykind
     const expectedKeyKind = "String_Key";
@@ -44,19 +44,19 @@ describe("keyKinds tests", () => {
     expect(keyKind).toEqual(expectedKeyKind);
   });
 
-  // test case that a keyKind of Text is returned for a text key
-  test("can get keykind for a text key", () => {
-    // get the keykind for a text key
-    const keyKind = infofile.keyKinds({ infofilePath, key: "Description" });
+  // test case that a keyKind of Text is returned for a text keys
+  test("can get keykind for a text keys", () => {
+    // get the keykind for a text keys
+    const keyKind = infofile.keyKinds({ file, keys: "Description" });
 
     // check that the keykind is valid
     expect(keyKind).toEqual("Text_Key");
   });
 
-  // test case that a keyKind of No_Key is returned for a key that does not exist
-  test("can get keykind for a key that does not exist", () => {
-    // get the keykind for a key that does not exist
-    const keyKind = infofile.keyKinds({ infofilePath, key: "RandomKey" });
+  // test case that a keyKind of No_Key is returned for a keys that does not exist
+  test("can get keykind for a keys that does not exist", () => {
+    // get the keykind for a keys that does not exist
+    const keyKind = infofile.keyKinds({ file, keys: "RandomKey" });
 
     // check that the keykind is valid
     expect(keyKind).toEqual("No_Key");
@@ -66,39 +66,39 @@ describe("keyKinds tests", () => {
   test("throws error when no path is provided", () => {
     // expect error when no path is provided
     expect(() => {
-      infofile.keyKinds({ key: "Aero.Ax" });
-    }).toThrowError("infofilePath is required");
+      infofile.keyKinds({ keys: "Aero.Ax" });
+    }).toThrowError("file is required");
   });
 
   // test case throws an error when path is relative
   test("throws error when path can't be found", () => {
     // expect error when path cant be found
     expect(() => {
-      infofile.keyKinds({ infofilePath: "./SomeFakeFile.car", key: "Aero.Ax" });
+      infofile.keyKinds({ file: "./SomeFakeFile.car", keys: "Aero.Ax" });
     }).toThrowError("File read error");
   });
 
-  // test case throws an error when key is not provided
-  test("throws error when key is not provided", () => {
-    // expect error when key is not provided
+  // test case throws an error when keys is not provided
+  test("throws error when keys is not provided", () => {
+    // expect error when keys is not provided
     expect(() => {
-      infofile.keyKinds({ infofilePath });
-    }).toThrowError("key is required");
+      infofile.keyKinds({ file });
+    }).toThrowError("keys is required");
   });
 
-  // test case throws an error when key is not a string
-  test("throws error when key is not a string", () => {
-    // expect error when key is not a string
+  // test case throws an error when keys is not a string
+  test("throws error when keys is not a string", () => {
+    // expect error when keys is not a string
     expect(() => {
-      infofile.keyKinds({ infofilePath, key: 1 });
-    }).toThrowError("key must be a string or an array of strings");
+      infofile.keyKinds({ file, keys: 1 });
+    }).toThrowError("keys must be a string or an array of strings");
   });
 
-  // test case throws an error when key is not an array of strings
-  test("throws error when key is not an array of strings", () => {
-    // expect error when key is not an array of strings
+  // test case throws an error when keys is not an array of strings
+  test("throws error when keys is not an array of strings", () => {
+    // expect error when keys is not an array of strings
     expect(() => {
-      infofile.keyKinds({ infofilePath, key: [1, 2, "this"] });
-    }).toThrowError("key must be a string or an array of strings");
+      infofile.keyKinds({ file, keys: [1, 2, "this"] });
+    }).toThrowError("keys must be a string or an array of strings");
   });
 });

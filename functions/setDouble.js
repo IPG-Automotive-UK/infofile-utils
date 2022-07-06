@@ -1,36 +1,36 @@
 const fs = require("fs");
-const { infofile, validateInfofilePathAndKeyValues } = require("../utils");
+const { infofile, validateFileAndKeyValues } = require("../utils");
 
-// function to set the value of key that is a double
-function setDouble({ infofilePath, keyValues }) {
-  // check that infofilePath and keyValues exist and are valid
-  validateInfofilePathAndKeyValues({
-    infofilePath,
-    keyValues,
-    keyValueType: "number",
+// function to set the value of keys that is a double
+function setDouble({ file, values }) {
+  // check that file and values exist and are valid
+  validateFileAndKeyValues({
+    file: file,
+    values: values,
+    type: "number",
   });
 
   // check if info file exists if so read the existing info file otherwise create a new info file
   infofile.new();
-  if (fs.existsSync(infofilePath)) {
-    infofile.read(infofilePath);
+  if (fs.existsSync(file)) {
+    infofile.read(file);
   }
 
   try {
     // define the status to return
     let status;
 
-    // if the keyValues are an array, set the values for all keys
-    // otherwise set the value of the specified key
-    if (Array.isArray(keyValues)) {
+    // if the values are an array, set the values for all keys
+    // otherwise set the value of the specified keys
+    if (Array.isArray(values)) {
       const multipleStatus = [];
-      keyValues.forEach((thiskeyValuePair) => {
+      values.forEach((thiskeyValuePair) => {
         const thisSetStatus = infofile.setDouble(
-          thiskeyValuePair.key,
+          thiskeyValuePair.keys,
           thiskeyValuePair.value
         );
         multipleStatus.push({
-          key: thiskeyValuePair.key,
+          keys: thiskeyValuePair.keys,
           status: thisSetStatus,
         });
       });
@@ -38,12 +38,12 @@ function setDouble({ infofilePath, keyValues }) {
       // set status equal to the multipleStatusArray
       status = multipleStatus;
     } else {
-      // set the value of the specified key
-      status = infofile.setDouble(keyValues.key, keyValues.value);
+      // set the value of the specified keys
+      status = infofile.setDouble(values.keys, values.value);
     }
 
     // write the info file
-    infofile.write(infofilePath);
+    infofile.write(file);
 
     // delete the infofile handle
     infofile.delete();

@@ -22,7 +22,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 
 <details>
 <summary></b><code>getDouble</code></b></summary>
-Returns a double value from an infofile for a given key or an array of keys.
+Returns a double value from an infofile for a given keys or an array of keys.
 
 ### Getting a single double value from an infofile:
 
@@ -31,11 +31,11 @@ Returns a double value from an infofile for a given key or an array of keys.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 
-// get the double value for the key "WheelCarrier.fl.mass"
-const wheelCarrierValue = infofile.getDouble({infofilePath, key:"WheelCarrier.fl.mass"});
+// get the double value for the keys "WheelCarrier.fl.mass"
+const wheelCarrierValue = infofile.getDouble({file, keys:"WheelCarrier.fl.mass"});
 
 // console.log the value, returns a double e.g. "0.5"
 console.log(wheelCarrierValue)
@@ -48,12 +48,12 @@ console.log(wheelCarrierValue)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the double values for the keys "WheelCarrier.fl.mass" and "WheelCarrier.fr.mass"
-const wheelCarrierValues = infofile.getDouble({infofilePath, key:["WheelCarrier.fl.mass", "WheelCarrier.fr.mass"]});
+const wheelCarrierValues = infofile.getDouble({file, keys:["WheelCarrier.fl.mass", "WheelCarrier.fr.mass"]});
 
-// console.log the values, returns an array of objects with the keys "key" and "value" e.g. [{key: "WheelCarrier.fl.mass", value: 0.5}, {key: "WheelCarrier.fr.mass", value: 0.5}]
+// console.log the values, returns an array of objects with the keys "keys" and "value" e.g. [{keys: "WheelCarrier.fl.mass", value: 0.5}, {keys: "WheelCarrier.fr.mass", value: 0.5}]
 console.log(wheelCarrierValues)
 ```
 
@@ -70,12 +70,12 @@ A universal function for getting values from an infofile. All numerical values a
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// get the value for the key "WheelCarrier.fl.mass"
-const wheelCarrierValue = infofile.getKeyValues({infofilePath, key:"WheelCarrier.fl.mass"});
+// get the value for the keys "WheelCarrier.fl.mass"
+const wheelCarrierValue = infofile.getKeyValues({file, keys:"WheelCarrier.fl.mass"});
 
-// console.log the value (returns an object like this {key: "WheelCarrier.fl.mass", value: 0.0})
+// console.log the value (returns an object like this {keys: "WheelCarrier.fl.mass", value: 0.0})
 console.log(wheelCarrierValue)
 ```
 
@@ -86,12 +86,12 @@ console.log(wheelCarrierValue)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the values for the keys "WheelCarrier.fl.mass" and "SuspF.Spring.Kind"
-const values = infofile.getKeyValues({infofilePath, key:["WheelCarrier.fl.mass", "SuspF.Spring.Kind"]});
+const values = infofile.getKeyValues({file, keys:["WheelCarrier.fl.mass", "SuspF.Spring.Kind"]});
 
-// console.log the values (returns an array of objects like this [{key: "WheelCarrier.fl.mass", value: 0.0}, {key: "SuspF.Spring.Kind", value: "Hookean 1"}])
+// console.log the values (returns an array of objects like this [{keys: "WheelCarrier.fl.mass", value: 0.0}, {keys: "SuspF.Spring.Kind", value: "Hookean 1"}])
 console.log(values)
 ```
 
@@ -99,7 +99,7 @@ console.log(values)
 
 <details>
 <summary></b><code>getLong</code></b></summary>
-Returns a long value from an infofile for a given key or an array of keys.
+Returns a long value from an infofile for a given keys or an array of keys.
 
 ### Getting a single long value from an infofile:
 
@@ -108,10 +108,10 @@ Returns a long value from an infofile for a given key or an array of keys.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// get the long value for the key "Body.mass"
-const bodyMassValue = infofile.getLong({infofilePath, key:"Body.mass"});
+// get the long value for the keys "Body.mass"
+const bodyMassValue = infofile.getLong({file, keys:"Body.mass"});
 
 // console.log the value, returns a long e.g. 1801
 console.log(bodyMassValue)
@@ -124,12 +124,12 @@ console.log(bodyMassValue)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the long values for the keys "Body.mass" and "nAxle"
-const longValues = infofile.getLong({infofilePath, key:["Body.mass", "nAxle"]});
+const longValues = infofile.getLong({file, keys:["Body.mass", "nAxle"]});
 
-// console.log the values, returns an array of objects with the keys "key" and "value" e.g. [{key: "Body.mass", value: 1801}, {key: "nAxle", value: 2}]
+// console.log the values, returns an array of objects with the keys "keys" and "value" e.g. [{keys: "Body.mass", value: 1801}, {keys: "nAxle", value: 2}]
 console.log(longValues)
 ```
 
@@ -137,7 +137,7 @@ console.log(longValues)
 
 <details>
 <summary></b><code>getString</code></b></summary>
-Returns a string value from an infofile for a given key or an array of keys.
+Returns a string value from an infofile for a given keys or an array of keys.
 
 ### Getting a single string value from an infofile:
 
@@ -146,10 +146,10 @@ Returns a string value from an infofile for a given key or an array of keys.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// get the string value for the key "Aero.Crosswind.Kind"
-const aeroCrosswindKind = infofile.getString({infofilePath, key:"Aero.Crosswind.Kind"});
+// get the string value for the keys "Aero.Crosswind.Kind"
+const aeroCrosswindKind = infofile.getString({file, keys:"Aero.Crosswind.Kind"});
 
 // console.log the value, returns a string e.g. "Step"
 console.log(aeroCrosswindKind)
@@ -162,12 +162,12 @@ console.log(aeroCrosswindKind)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the string values for the keys "Body.mass" and "Aero.Kind"
-const stringValues = infofile.getString({infofilePath, key:["Aero.Crosswind.Kind", "Aero.Kind"]});
+const stringValues = infofile.getString({file, keys:["Aero.Crosswind.Kind", "Aero.Kind"]});
 
-// console.log the values, returns an array of objects with the keys "key" and "value" e.g. [{key: "Aero.Crosswind.Kind", value: "Step"}, {key: "Aero.Kind", value: "Coeff6x1 1"}]
+// console.log the values, returns an array of objects with the keys "keys" and "value" e.g. [{keys: "Aero.Crosswind.Kind", value: "Step"}, {keys: "Aero.Kind", value: "Coeff6x1 1"}]
 console.log(stringValues)
 ```
 
@@ -175,7 +175,7 @@ console.log(stringValues)
 
 <details>
 <summary></b><code>getText</code></b></summary>
-Returns a text value from an infofile for a given key or an array of keys. This is an array of strings are are split by newlines in the infofile.
+Returns a text value from an infofile for a given keys or an array of keys. This is an array of strings are are split by newlines in the infofile.
 
 ### Getting a single text value from an infofile:
 
@@ -184,10 +184,10 @@ Returns a text value from an infofile for a given key or an array of keys. This 
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// get the text value for the key "Description"
-const description = infofile.getText({infofilePath, key:"Description"});
+// get the text value for the keys "Description"
+const description = infofile.getText({file, keys:"Description"});
 
 // console.log the value, returns an array of strings e.g. ["This is a description", "of the infofile"]
 console.log(description)
@@ -200,12 +200,12 @@ console.log(description)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the text values for the keys "Description" and "Aero.Coeff"
-const textValues = infofile.getText({infofilePath, key:["Description", "Aero.Coeff"]});
+const textValues = infofile.getText({file, keys:["Description", "Aero.Coeff"]});
 
-// console.log the values, returns an array of objects with the keys "key" and "value" e.g. [{key: "Description", value: ["-180 -0.4 0.0 0.1 0.0 -0.01 0.0","-120 -0.2 -1.4 0.7 -0.2 -0.021 0.06","-90 0.0 -1.7 0.9 -0.2 0.0 0.0","-60 0.0 -1.7 0.9 -0.2 0.0 0.0","-30 0.0 -1.7 0.9 -0.2 0.0 0.0","0.0 0.0 -1.7 0.9 -0.2 0.0 0.0","30 0.0 -1.7 0.9 -0.2 0.0 0.0","60 0.0 -1.7 0.9 -0.2 0.0 0.0","90 0.0 -1.7 0.9 -0.2 0.0 0.0","120 0.0 -1.7 0.9 -0.2 0.0 0.0","180 0.0 -1.7 0.9 -0.2 0.0 0.0"]}]
+// console.log the values, returns an array of objects with the keys "keys" and "value" e.g. [{keys: "Description", value: ["-180 -0.4 0.0 0.1 0.0 -0.01 0.0","-120 -0.2 -1.4 0.7 -0.2 -0.021 0.06","-90 0.0 -1.7 0.9 -0.2 0.0 0.0","-60 0.0 -1.7 0.9 -0.2 0.0 0.0","-30 0.0 -1.7 0.9 -0.2 0.0 0.0","0.0 0.0 -1.7 0.9 -0.2 0.0 0.0","30 0.0 -1.7 0.9 -0.2 0.0 0.0","60 0.0 -1.7 0.9 -0.2 0.0 0.0","90 0.0 -1.7 0.9 -0.2 0.0 0.0","120 0.0 -1.7 0.9 -0.2 0.0 0.0","180 0.0 -1.7 0.9 -0.2 0.0 0.0"]}]
 console.log(textValues)
 ```
 
@@ -215,7 +215,7 @@ console.log(textValues)
 
 <details>
 <summary></b><code>setDouble</code></b></summary>
-Sets a double value to an infofile for a given key.
+Sets a double value to an infofile for a given keys.
 
 ### Setting a single double value to an infofile:
 
@@ -224,10 +224,10 @@ Sets a double value to an infofile for a given key.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// set the double value for the key "SuspF.Spring.l0" to 0.351
-status = infofile.setDouble({infofilePath, keyValues:{key: "SuspF.Spring.l0", value: 0.351}});
+// set the double value for the keys "SuspF.Spring.l0" to 0.351
+status = infofile.setDouble({file, values:{keys: "SuspF.Spring.l0", value: 0.351}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -240,12 +240,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // set the double values for the keys "SuspF.Spring.l0" and "Body.mass" to 0.351 and 1830.15
-status = infofile.setDouble({infofilePath, keyValues:[{key: SuspF.Spring.l0", value: 0.351}, {key: "Body.mass", value:  1830.15}]});
+status = infofile.setDouble({file, values:[{keys: SuspF.Spring.l0", value: 0.351}, {keys: "Body.mass", value:  1830.15}]});
 
-// console.log the status, array of objects with the keys "key" and "status" e.g. [{key: "SuspF.Spring.l0", status: 0}, {key: "Body.mass", status: 0}] where status is 0 if successful, -1 if not
+// console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "SuspF.Spring.l0", status: 0}, {keys: "Body.mass", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 ```
 
@@ -262,10 +262,10 @@ A universal function to set values to an infofile.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// set the value for the key "SuspF.Spring.l0" to 0.351
-status = infofile.setKeys({infofilePath, setKeyValues:{key: "SuspF.Spring.l0", value: 0.351, type: "double"}});
+// set the value for the keys "SuspF.Spring.l0" to 0.351
+status = infofile.setKeys({file, values:{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -278,12 +278,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // set the values for the keys "SuspF.Spring.l0" and "Aero.Crosswind.Kind" to 0.351 and "Step"
-status = infofile.setKeys({infofilePath, setKeyValues:[{key: "SuspF.Spring.l0", value: 0.351, type: "double"}, {key: "Aero.Crosswind.Kind", value:  "Step", type: "string"}]});
+status = infofile.setKeys({file, values:[{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}, {keys: "Aero.Crosswind.Kind", value:  "Step", type: "string"}]});
 
-// console.log the status, array of objects with the keys "key" and "status" e.g. [{key: "SuspF.Spring.l0", status: 0}, {key: "Aero.Crosswind.Kind", status: 0}] where status is 0 if successful, -1 if not
+// console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "SuspF.Spring.l0", status: 0}, {keys: "Aero.Crosswind.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 ```
 
@@ -291,7 +291,7 @@ console.log(status)
 
 <details>
 <summary></b><code>setLong</code></b></summary>
-Sets a long value to an infofile for a given key.
+Sets a long value to an infofile for a given keys.
 
 ### Setting a single long value to an infofile:
 
@@ -300,10 +300,10 @@ Sets a long value to an infofile for a given key.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// set the long value for the key "Body.mass" to 1801
-status = infofile.setLong({infofilePath, keyValues:{key: "Body.mass", value: 1801}});
+// set the long value for the keys "Body.mass" to 1801
+status = infofile.setLong({file, values:{keys: "Body.mass", value: 1801}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -316,12 +316,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // set the long values for the keys "Body.mass" and "nAxle" to 1801 and 2
-status = infofile.setLong({infofilePath, keyValues:[{key: "Body.mass", value: 1801}, {key: "nAxle", value: 2}]});
+status = infofile.setLong({file, values:[{keys: "Body.mass", value: 1801}, {keys: "nAxle", value: 2}]});
 
-// console.log the status, array of objects with the keys "key" and "status" e.g. [{key: "Body.mass", status: 0}, {key: "nAxle", status: 0}] where status is 0 if successful, -1 if not
+// console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Body.mass", status: 0}, {keys: "nAxle", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 ```
 
@@ -329,7 +329,7 @@ console.log(status)
 
 <details>
 <summary></b><code>setString</code></b></summary>
-Sets a string value to an infofile for a given key.
+Sets a string value to an infofile for a given keys.
 
 ### Setting a single string value to an infofile:
 
@@ -338,10 +338,10 @@ Sets a string value to an infofile for a given key.
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// set the string value for the key "Aero.Crosswind.Kind" to "Step"
-status = infofile.setString({infofilePath, keyValues:{key: "Aero.Crosswind.Kind", value: "Step"}});
+// set the string value for the keys "Aero.Crosswind.Kind" to "Step"
+status = infofile.setString({file, values:{keys: "Aero.Crosswind.Kind", value: "Step"}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -354,12 +354,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // set the string values for the keys "Aero.Crosswind.Kind" and "Eng.Kind" to "Step" and "Flex"
-status = infofile.setString({infofilePath, keyValues:[{key: "Aero.Crosswind.Kind", value: "Step"}, {key: "Eng.Kind", value: "Flex"}]});
+status = infofile.setString({file, values:[{keys: "Aero.Crosswind.Kind", value: "Step"}, {keys: "Eng.Kind", value: "Flex"}]});
 
-// console.log the status, array of objects with the keys "key" and "status" e.g. [{key: "Aero.Crosswind.Kind", status: 0}, {key: "Eng.Kind", status: 0}] where status is 0 if successful, -1 if not
+// console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Aero.Crosswind.Kind", status: 0}, {keys: "Eng.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 ```
 
@@ -367,7 +367,7 @@ console.log(status)
 
 <details>
 <summary></b><code>setText</code></b></summary>
-Sets a text value to an infofile for a given key. This is an array of strings are are split by newlines in the infofile for each item in the string array.
+Sets a text value to an infofile for a given keys. This is an array of strings are are split by newlines in the infofile for each item in the string array.
 
 ### Setting a single text value to an infofile:
 
@@ -376,10 +376,10 @@ Sets a text value to an infofile for a given key. This is an array of strings ar
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// set the text value for the key "Description" to ["This is a description", "This is a description on a second line"]
-status = infofile.setText({infofilePath, keyValues:{key: "Description", value: ["This is a description", "This is a description on a second line"]}});
+// set the text value for the keys "Description" to ["This is a description", "This is a description on a second line"]
+status = infofile.setText({file, values:{keys: "Description", value: ["This is a description", "This is a description on a second line"]}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -392,12 +392,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // set the text values for the keys "Description" and "Eng.Description" to ["This is a description", "This is a description on a second line"] and ["This is a description", "This is a description on a second line"]
-status = infofile.setText({infofilePath, keyValues:[{key: "Description", value: ["This is a description", "This is a description on a second line"]}, {key: "Eng.Description", value: ["This is a description", "This is a description on a second line"]}]});
+status = infofile.setText({file, values:[{keys: "Description", value: ["This is a description", "This is a description on a second line"]}, {keys: "Eng.Description", value: ["This is a description", "This is a description on a second line"]}]});
 
-// console.log the status, array of objects with the keys "key" and "status" e.g. [{key: "Description", status: 0}, {key: "Eng.Description", status: 0}] where status is 0 if successful, -1 if not
+// console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Description", status: 0}, {keys: "Eng.Description", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 ```
 
@@ -416,10 +416,10 @@ Lists the keys in an infofile, for a given prefix, if no prefix is provided all 
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // list all keys in the infofile
-keys = infofile.listKeys({infofilePath});
+keys = infofile.listKeys({file});
 
 // console.log the keys, returns an array of keys e.g. ["Body.mass", "nAxle"]
 console.log(keys)
@@ -432,10 +432,10 @@ console.log(keys)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // list all keys in the infofile for the prefix "Aero"
-keys = infofile.listKeys({ infofilePath, keyPrefix: "Aero" });
+keys = infofile.listKeys({ file, prefix: "Aero" });
 
 // console.log the keys, returns an array of keys e.g. ["Aero.Crosswind.Kind", "Aero.Crosswind.Speed"]
 console.log(keys)
@@ -447,19 +447,19 @@ console.log(keys)
 <summary></b><code>keyKinds</code></b></summary>
 Lists the keyKinds, returns String_Key, Text_Key or No_Key
 
-### Get the keyKinds for a single key:
+### Get the keyKinds for a single keys:
 
 ```
 // import the library
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// get the keyKinds for the key "Body.mass"
-keyKind = infofile.keyKinds({infofilePath, key: "Body.mass"});
+// get the keyKinds for the keys "Body.mass"
+keyKind = infofile.keyKinds({file, keys: "Body.mass"});
 
-// console.log the keyKind, returns String_Key if key is a single line string, Text_Key if key is a text array and No_Key if key is not found
+// console.log the keyKind, returns String_Key if keys is a single line string, Text_Key if keys is a text array and No_Key if keys is not found
 console.log(keyKind)
 ```
 
@@ -470,10 +470,10 @@ console.log(keyKind)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // get the keyKinds for the keys "Body.mass" and "nAxle"
-keyKinds = infofile.keyKinds({infofilePath, keys: ["Body.mass", "nAxle"]});
+keyKinds = infofile.keyKinds({file, keys: ["Body.mass", "nAxle"]});
 
 // console.log the keyKinds, returns an array of keyKinds e.g. ["String_Key", "No_Key"]
 console.log(keyKinds)
@@ -483,19 +483,19 @@ console.log(keyKinds)
 
 <details>
 <summary></b><code>deleteKey</code></b></summary>
-Deletes a key from an infofile
+Deletes a keys from an infofile
 
-### Delete a single key from an infofile:
+### Delete a single keys from an infofile:
 
 ```
 // import the library
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
-// delete the key "Body.mass"
-status = infofile.deleteKey({infofilePath, key: "Body.mass"});
+// delete the keys "Body.mass"
+status = infofile.deleteKey({file, keys: "Body.mass"});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -508,12 +508,12 @@ console.log(status)
 const infofile = require("@ipguk/infofile-reader-and-writer");
 
 // get the absolute path to the infofile
-const infofilePath = C:\infofiles\infofile
+const file = C:\infofiles\infofile
 
 // delete the keys "Body.mass" and "nAxle"
-status = infofile.deleteKey({infofilePath, keys: ["Body.mass", "nAxle"]});
+status = infofile.deleteKey({file, keys: ["Body.mass", "nAxle"]});
 
-// console.log the status, returns an object with the keys "key" and "status" e.g. {key: "Body.mass", status: 0}, {key: "nAxle", status: 0} where status is 0 if successful, -1 if not
+// console.log the status, returns an object with the keys "keys" and "status" e.g. {keys: "Body.mass", status: 0}, {keys: "nAxle", status: 0} where status is 0 if successful, -1 if not
 console.log(status)
 ```
 

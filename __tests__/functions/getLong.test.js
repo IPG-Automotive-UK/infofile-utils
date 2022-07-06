@@ -3,7 +3,7 @@ const path = require("path");
 
 // get the path to the test info file
 const relativePath = "../infofiles/DemoCar";
-const infofilePath = path.resolve(__dirname, relativePath);
+const file = path.resolve(__dirname, relativePath);
 
 // get long tests
 describe("getLong tests", () => {
@@ -11,8 +11,8 @@ describe("getLong tests", () => {
   test("can get a long value", () => {
     // get the long value
     const longValue = infofile.getLong({
-      infofilePath,
-      key: "Body.mass",
+      file,
+      keys: "Body.mass",
     });
 
     // check that the long value is valid
@@ -23,8 +23,8 @@ describe("getLong tests", () => {
   test("can get an array of long values", () => {
     // get the array of long values
     const longValues = infofile.getLong({
-      infofilePath,
-      key: ["Body.mass", "nAxle"],
+      file,
+      keys: ["Body.mass", "nAxle"],
     });
 
     // check that the array of long values is valid
@@ -32,24 +32,24 @@ describe("getLong tests", () => {
     expect(longValues[1].value).toBe(2);
   });
 
-  // test case for getting a long value for a key that does not exist
-  test("can get a long value for a key that does not exist", () => {
-    // get the long value for a key that does not exist
+  // test case for getting a long value for a keys that does not exist
+  test("can get a long value for a keys that does not exist", () => {
+    // get the long value for a keys that does not exist
     const longValue = infofile.getLong({
-      infofilePath,
-      key: "RandomKey",
+      file,
+      keys: "RandomKey",
     });
 
     // check that the long value is valid
     expect(longValue).toEqual(NaN);
   });
 
-  // test case for getting an array of long values where one key does not exist
-  test("can get an array of long values where one key does not exist", () => {
-    // get the array of long values where one key does not exist
+  // test case for getting an array of long values where one keys does not exist
+  test("can get an array of long values where one keys does not exist", () => {
+    // get the array of long values where one keys does not exist
     const longValues = infofile.getLong({
-      infofilePath,
-      key: ["SuspR.Kin.N", "RandomKey"],
+      file,
+      keys: ["SuspR.Kin.N", "RandomKey"],
     });
 
     // check that the array of long values is valid
@@ -61,39 +61,39 @@ describe("getLong tests", () => {
   test("throws error when no path is provided", () => {
     // expect error when no path is provided
     expect(() => {
-      infofile.getLong({ key: "Aero.Ax" });
-    }).toThrowError("infofilePath is required");
+      infofile.getLong({ keys: "Aero.Ax" });
+    }).toThrowError("file is required");
   });
 
   // test case throws an error when path is relative
   test("throws error when path can't be found", () => {
     // expect error when path cant be found
     expect(() => {
-      infofile.getLong({ infofilePath: "./SomeFakeFile.car", key: "Aero.Ax" });
+      infofile.getLong({ file: "./SomeFakeFile.car", keys: "Aero.Ax" });
     }).toThrowError("File read error");
   });
 
-  // test case throws an error when key is not provided
-  test("throws error when key is not provided", () => {
-    // expect error when key is not provided
+  // test case throws an error when keys is not provided
+  test("throws error when keys is not provided", () => {
+    // expect error when keys is not provided
     expect(() => {
-      infofile.getLong({ infofilePath });
-    }).toThrowError("key is required");
+      infofile.getLong({ file });
+    }).toThrowError("keys is required");
   });
 
-  // test case throws an error when key is not a string
-  test("throws error when key is not a string", () => {
-    // expect error when key is not a string
+  // test case throws an error when keys is not a string
+  test("throws error when keys is not a string", () => {
+    // expect error when keys is not a string
     expect(() => {
-      infofile.getLong({ infofilePath, key: 1 });
-    }).toThrowError("key must be a string or an array of strings");
+      infofile.getLong({ file, keys: 1 });
+    }).toThrowError("keys must be a string or an array of strings");
   });
 
-  // test case throws an error when key is not an array of strings
-  test("throws error when key is not an array of strings", () => {
-    // expect error when key is not an array of strings
+  // test case throws an error when keys is not an array of strings
+  test("throws error when keys is not an array of strings", () => {
+    // expect error when keys is not an array of strings
     expect(() => {
-      infofile.getLong({ infofilePath, key: [1, 2, "this"] });
-    }).toThrowError("key must be a string or an array of strings");
+      infofile.getLong({ file, keys: [1, 2, "this"] });
+    }).toThrowError("keys must be a string or an array of strings");
   });
 });

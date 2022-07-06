@@ -1,7 +1,6 @@
 // helper function to check if value is valid by being either a string or an array of strings
 function validateStringArray(value) {
   // check that value is a string or an array of strings
-  // check that key is a valid string or an array of strings
   if (typeof value !== "string" && !Array.isArray(value)) {
     return false;
   }

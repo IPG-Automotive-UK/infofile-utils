@@ -1,45 +1,45 @@
 const { readInfoFile, validateStringArray } = require("../utils");
 
-// function to get the key kinds
-function keyKinds({ infofilePath, key }) {
-  // check that key has been provided
-  if (!key) {
-    throw new Error("key is required");
+// function to get the keys kinds
+function keyKinds({ file, keys }) {
+  // check that keys has been provided
+  if (!keys) {
+    throw new Error("keys is required");
   }
 
   // read the info file
-  const infofile = readInfoFile({ infofilePath });
+  const infofile = readInfoFile(file);
 
-  // check that key is a valid string or an array of strings
-  keyValid = validateStringArray(key);
+  // check that keys is a valid string or an array of strings
+  keyValid = validateStringArray(keys);
   if (!keyValid) {
-    throw new Error("key must be a string or an array of strings");
+    throw new Error("keys must be a string or an array of strings");
   }
 
   try {
     // define the keykind to return
     let keyKind;
 
-    // if the key is an array of keys, get the key kinds for all keys
-    // otherwise just return the value of the specific key
-    if (Array.isArray(key)) {
+    // if the keys is an array of keys, get the keys kinds for all keys
+    // otherwise just return the value of the specific keys
+    if (Array.isArray(keys)) {
       const keyKinds = [];
-      key.forEach((key) => {
-        const keyKind = infofile.keyKind(key);
-        keyKinds.push({ key: key, keyKind: keyKind });
+      keys.forEach((keys) => {
+        const keyKind = infofile.keyKind(keys);
+        keyKinds.push({ keys: keys, keyKind: keyKind });
       });
 
       // set keyKind equal to the keykindsArray
       keyKind = keyKinds;
     } else {
-      // get the key kinds for the specified key
-      keyKind = infofile.keyKind(key);
+      // get the keys kinds for the specified keys
+      keyKind = infofile.keyKind(keys);
     }
 
     // delete the infofile handle
     infofile.delete();
 
-    // return the key kinds
+    // return the keys kinds
     return keyKind;
   } catch {
     // get the error from the infofile handle

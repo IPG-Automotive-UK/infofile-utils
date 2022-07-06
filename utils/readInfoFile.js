@@ -2,17 +2,17 @@
 const { infofile } = require("./getAddon.js");
 
 // helper function to read info file
-function readInfoFile({ infofilePath }) {
-  // check that infofilePath is a valid path
-  if (!infofilePath || !infofilePath.length) {
-    throw new Error("infofilePath is required");
+function readInfoFile(file) {
+  // check that file is a valid path
+  if (!file || !file.length) {
+    throw new Error("file is required");
   }
 
   // create infofile handle
   infofile.new();
 
   // read info file
-  const nReadErrors = infofile.read(infofilePath);
+  const nReadErrors = infofile.read(file);
 
   // if there are any errors, throw an error
   if (nReadErrors < 0) {

@@ -4,27 +4,27 @@ const fs = require("fs");
 
 // get the path to the test info file
 const relativePath = "../infofiles/DemoCar";
-const infofilePath = path.resolve(__dirname, relativePath);
+const file = path.resolve(__dirname, relativePath);
 
 // test suite for list keys
 describe("listKey tests", () => {
   // test case for getting all keys
   test("can get all list keys from infofile", () => {
     // get the list of keys from the info file
-    const keys = infofile.listKeys({ infofilePath });
+    const keys = infofile.listKeys({ file });
 
     // read the demo file without using the infofile api
-    const demoFile = fs.readFileSync(infofilePath, "utf8");
+    const demoFile = fs.readFileSync(file, "utf8");
 
-    // on every line if there is a = or a : then it is a key, extract the key
+    // on every line if there is a = or a : then it is a keys, extract the keys
     const demoFileKeys = demoFile
       .split("\n")
       .filter((line) => line.includes("=") || line.includes(":"))
       .map((line) => line.split("=")[0].trim());
 
     // remove : and anything after it
-    const demoFileKeysWithoutColon = demoFileKeys.map((key) =>
-      key.split(":")[0].trim()
+    const demoFileKeysWithoutColon = demoFileKeys.map((keys) =>
+      keys.split(":")[0].trim()
     );
 
     // sort keys and demoKeysArrayFiltered alphabetically
@@ -38,7 +38,7 @@ describe("listKey tests", () => {
   // test case for getting all aero keys
   test("can get all aero keys from infofile", () => {
     // get the list of aero keys from the info file
-    const keys = infofile.listKeys({ infofilePath, keyPrefix: "Aero" });
+    const keys = infofile.listKeys({ file, prefix: "Aero" });
 
     // expected aero keys
     const expectedKeys = [
@@ -63,8 +63,8 @@ describe("listKey tests", () => {
   test("can get keys for an array of prefixes", () => {
     // get the list of keys from the info file
     const keys = infofile.listKeys({
-      infofilePath,
-      keyPrefix: ["Aero", "Body"],
+      file,
+      prefix: ["Aero", "Body"],
     });
 
     // expected keys
@@ -89,12 +89,12 @@ describe("listKey tests", () => {
     expect(keys).toEqual(expectedKeys);
   });
 
-  // test case for getting an array of prefixes with one key that doesn't exist
-  test("can get an array of prefixes with one key that doesn't exist", () => {
+  // test case for getting an array of prefixes with one keys that doesn't exist
+  test("can get an array of prefixes with one keys that doesn't exist", () => {
     // get the list of keys from the info file
     const keys = infofile.listKeys({
-      infofilePath,
-      keyPrefix: ["Aero", "Body", "DoesNotExist"],
+      file,
+      prefix: ["Aero", "Body", "DoesNotExist"],
     });
 
     // expected keys
@@ -124,30 +124,30 @@ describe("listKey tests", () => {
     // expect error when no path is provided
     expect(() => {
       infofile.listKeys({});
-    }).toThrowError("infofilePath is required");
+    }).toThrowError("file is required");
   });
 
   // test case error when path is relative
   test("throws error when path can't be found", () => {
     // expect error when path can't be found
     expect(() => {
-      infofile.listKeys({ infofilePath: "./SomeFakeFile.car" });
+      infofile.listKeys({ file: "./SomeFakeFile.car" });
     }).toThrowError("File read error");
   });
 
-  // test case error when keyPrefix is not a string
-  test("throws error when key is not a string", () => {
-    // expect error when key is not a string
+  // test case error when prefix is not a string
+  test("throws error when keys is not a string", () => {
+    // expect error when keys is not a string
     expect(() => {
-      infofile.listKeys({ infofilePath, keyPrefix: 1 });
-    }).toThrowError("keyPrefix must be a string or an array of strings");
+      infofile.listKeys({ file, prefix: 1 });
+    }).toThrowError("prefix must be a string or an array of strings");
   });
 
-  // test case error when keyPrefix is not an array of strings
-  test("throws error when key is not an array of strings", () => {
-    // expect error when keyPrefix is not an array of strings
+  // test case error when prefix is not an array of strings
+  test("throws error when keys is not an array of strings", () => {
+    // expect error when prefix is not an array of strings
     expect(() => {
-      infofile.listKeys({ infofilePath, keyPrefix: [1, 2, "this"] });
-    }).toThrowError("keyPrefix must be a string or an array of strings");
+      infofile.listKeys({ file, prefix: [1, 2, "this"] });
+    }).toThrowError("prefix must be a string or an array of strings");
   });
 });

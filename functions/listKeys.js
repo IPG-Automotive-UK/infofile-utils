@@ -1,26 +1,26 @@
 const { readInfoFile, validateStringArray } = require("../utils");
 
 // function to get the info file keys
-function listKeys({ infofilePath, keyPrefix = "" }) {
-  // check that infofilePath has been provided
-  if (!infofilePath || !infofilePath.length) {
-    throw new Error("infofilePath is required");
+function listKeys({ file, prefix = "" }) {
+  // check that file has been provided
+  if (!file || !file.length) {
+    throw new Error("file is required");
   }
 
   // read the info file
-  const infofile = readInfoFile({ infofilePath });
+  const infofile = readInfoFile(file);
 
-  // check that keyPrefix is a valid string or an array of strings
-  keyPrefixValid = validateStringArray(keyPrefix);
+  // check that prefix is a valid string or an array of strings
+  keyPrefixValid = validateStringArray(prefix);
   if (!keyPrefixValid) {
-    throw new Error("keyPrefix must be a string or an array of strings");
+    throw new Error("prefix must be a string or an array of strings");
   }
 
   try {
-    // if key prefix is an array of prefixes, get the keys for all prefixes
-    if (Array.isArray(keyPrefix)) {
+    // if keys prefix is an array of prefixes, get the keys for all prefixes
+    if (Array.isArray(prefix)) {
       const keys = [];
-      keyPrefix.forEach((prefix) => {
+      prefix.forEach((prefix) => {
         const prefixKeys = infofile.listKeys(prefix);
         keys.push(...prefixKeys);
       });
@@ -33,7 +33,7 @@ function listKeys({ infofilePath, keyPrefix = "" }) {
     }
 
     // get the keys for the specified prefix
-    const listKeys = infofile.listKeys(keyPrefix);
+    const listKeys = infofile.listKeys(prefix);
 
     // delete the infofile handle
     infofile.delete();
