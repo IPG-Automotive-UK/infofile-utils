@@ -12,5 +12,5 @@ module.exports = {
   ...require("./functions/setLong"),
   ...require("./functions/setDouble"),
   ...require("./functions/setText"),
-  ...require("./functions/setKeys"),
+  ...require("./functions/setValue"),
 };

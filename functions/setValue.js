@@ -36,7 +36,7 @@ function setKey({ infofileHandle, values }) {
 }
 
 // function to set the keys values for any keys data type
-function setKeys({ file, values }) {
+function setValue({ file, values }) {
   // check that file and values exist and are valid
   validateFileAndSetKeyValues({ file, values });
 
@@ -93,4 +93,4 @@ function setKeys({ file, values }) {
 }
 
 // export the set keys function
-module.exports = { setKeys };
+module.exports = { setValue };

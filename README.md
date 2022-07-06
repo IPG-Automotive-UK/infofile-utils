@@ -252,7 +252,7 @@ console.log(status)
 </details>
 
 <details>
-<summary></b><code>setKeys</code></b></summary>
+<summary></b><code>setValue</code></b></summary>
 A universal function to set values to an infofile.
 
 ### Setting a single value to an infofile:
@@ -265,7 +265,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // set the value for the keys "SuspF.Spring.l0" to 0.351
-status = infofile.setKeys({file, values:{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}});
+status = infofile.setValue({file, values:{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -281,7 +281,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // set the values for the keys "SuspF.Spring.l0" and "Aero.Crosswind.Kind" to 0.351 and "Step"
-status = infofile.setKeys({file, values:[{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}, {keys: "Aero.Crosswind.Kind", value:  "Step", type: "string"}]});
+status = infofile.setValue({file, values:[{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}, {keys: "Aero.Crosswind.Kind", value:  "Step", type: "string"}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "SuspF.Spring.l0", status: 0}, {keys: "Aero.Crosswind.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
