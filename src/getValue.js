@@ -74,10 +74,10 @@ function getValue({ file, keys }) {
     throw new Error("keys must be a string or an array of strings");
   }
 
-  try {
-    // read the info file
-    const infofile = readInfoFile(file);
+  // read the info file
+  const infofile = readInfoFile(file);
 
+  try {
     // define the keys values to return
     let keyValue;
 

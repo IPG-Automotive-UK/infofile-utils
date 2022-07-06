@@ -13,10 +13,10 @@ function getKey({ file, prefix = "" }) {
     throw new Error("prefix must be a string or an array of strings");
   }
 
-  try {
-    // read the info file
-    const infofile = readInfoFile(file);
+  // read the info file
+  const infofile = readInfoFile(file);
 
+  try {
     // if keys prefix is an array of prefixes, get the keys for all prefixes
     if (Array.isArray(prefix)) {
       const keys = [];
