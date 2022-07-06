@@ -22,9 +22,6 @@ function deleteKey({ file, keys }) {
   const infofile = readInfoFile(file);
 
   try {
-    // define the status to return
-    let status;
-
     // if the keys is an array of keys, get delete all the keys
     // otherwise, delete the specified keys
     if (Array.isArray(keys)) {
