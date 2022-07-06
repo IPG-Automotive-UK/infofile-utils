@@ -1,7 +1,7 @@
-const { readInfoFile, validateStringArray } = require("../utils");
+const { readInfoFile, validateStringArray } = require("./utils");
 
-// function to get the value of a keys that is a string
-function getString({ file, keys }) {
+// function to get the value of keys that is text
+function getText({ file, keys }) {
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
@@ -25,7 +25,7 @@ function getString({ file, keys }) {
     if (Array.isArray(keys)) {
       const values = [];
       keys.forEach((keys) => {
-        const value = infofile.getString(keys);
+        const value = infofile.getText(keys);
         values.push({ keys: keys, value: value });
       });
 
@@ -33,7 +33,7 @@ function getString({ file, keys }) {
       value = values;
     } else {
       // get the value of the specified keys
-      value = infofile.getString(keys);
+      value = { keys: keys, value: infofile.getText(keys) };
     }
 
     // delete the infofile handle
@@ -53,5 +53,5 @@ function getString({ file, keys }) {
   }
 }
 
-// export the getString function
-module.exports = { getString };
+// export getText function
+module.exports = { getText };

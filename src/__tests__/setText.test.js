@@ -1,10 +1,10 @@
-const infofile = require("../../index.js");
+const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
 
 // get the path to the test info file
-const relativePath = "../infofiles/DemoCar";
+const relativePath = "./infofiles/DemoCar";
 const file = path.resolve(__dirname, relativePath);
 
 // setText tests

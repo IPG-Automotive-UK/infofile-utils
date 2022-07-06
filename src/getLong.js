@@ -1,7 +1,7 @@
-const { readInfoFile, validateStringArray } = require("../utils");
+const { readInfoFile, validateStringArray } = require("./utils");
 
-// function to get the value of keys that is text
-function getText({ file, keys }) {
+// function to get the value of keys that is a long integer
+function getLong({ file, keys }) {
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
@@ -25,7 +25,7 @@ function getText({ file, keys }) {
     if (Array.isArray(keys)) {
       const values = [];
       keys.forEach((keys) => {
-        const value = infofile.getText(keys);
+        const value = infofile.getLong(keys);
         values.push({ keys: keys, value: value });
       });
 
@@ -33,7 +33,7 @@ function getText({ file, keys }) {
       value = values;
     } else {
       // get the value of the specified keys
-      value = { keys: keys, value: infofile.getText(keys) };
+      value = infofile.getLong(keys);
     }
 
     // delete the infofile handle
@@ -53,5 +53,5 @@ function getText({ file, keys }) {
   }
 }
 
-// export getText function
-module.exports = { getText };
+// export the getLong function
+module.exports = { getLong };

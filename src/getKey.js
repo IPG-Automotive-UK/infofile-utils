@@ -1,4 +1,4 @@
-const { readInfoFile, validateStringArray } = require("../utils");
+const { readInfoFile, validateStringArray } = require("./utils");
 
 // function to get the info file keys
 function getKey({ file, prefix = "" }) {

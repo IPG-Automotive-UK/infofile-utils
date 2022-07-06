@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { infofile, validateFileAndSetKeyValues } = require("../utils");
+const { infofile, validateFileAndSetKeyValues } = require("./utils");
 
 // helper function to set keys
 function setKey({ infofileHandle, values }) {

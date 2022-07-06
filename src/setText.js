@@ -1,17 +1,13 @@
 const fs = require("fs");
-const {
-  infofile,
+const { infofile, validateFileAndKeyValues } = require("./utils");
 
-  validateFileAndKeyValues,
-} = require("../utils");
-
-// function to set the value of keys that is long
-function setLong({ file, values }) {
+// function to set the value of keys that is text
+function setText({ file, values }) {
   // check that file and values exist and are valid
   validateFileAndKeyValues({
     file: file,
     values: values,
-    type: "number",
+    type: "text",
   });
 
   // check if info file exists if so read the existing info file otherwise create a new info file
@@ -29,7 +25,7 @@ function setLong({ file, values }) {
     if (Array.isArray(values)) {
       const multipleStatus = [];
       values.forEach((thiskeyValuePair) => {
-        const thisSetStatus = infofile.setLong(
+        const thisSetStatus = infofile.setText(
           thiskeyValuePair.keys,
           thiskeyValuePair.value
         );
@@ -43,7 +39,7 @@ function setLong({ file, values }) {
       status = multipleStatus;
     } else {
       // set the value of the specified keys
-      status = infofile.setLong(values.keys, values.value);
+      status = infofile.setText(values.keys, values.value);
     }
 
     // write the info file
@@ -52,7 +48,7 @@ function setLong({ file, values }) {
     // delete the infofile handle
     infofile.delete();
 
-    // return the status
+    // return the value
     return status;
   } catch {
     // get the error from the infofile handle
@@ -66,5 +62,5 @@ function setLong({ file, values }) {
   }
 }
 
-// export setLong function
-module.exports = { setLong };
+// export setText function
+module.exports = { setText };

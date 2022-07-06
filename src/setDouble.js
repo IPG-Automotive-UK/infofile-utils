@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { infofile, validateFileAndKeyValues } = require("../utils");
+const { infofile, validateFileAndKeyValues } = require("./utils");
 
 // function to set the value of keys that is a double
 function setDouble({ file, values }) {

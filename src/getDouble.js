@@ -1,7 +1,8 @@
-const { readInfoFile, validateStringArray } = require("../utils");
+const fs = require("fs");
+const { readInfoFile, validateStringArray } = require("./utils");
 
-// function to get the keys kinds
-function getKeyKind({ file, keys }) {
+// function to get the value of keys that is a double
+function getDouble({ file, keys }) {
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
@@ -17,30 +18,30 @@ function getKeyKind({ file, keys }) {
   }
 
   try {
-    // define the keykind to return
-    let keyKind;
+    // define the value to return
+    let value;
 
     // if the keys is an array of keys, get the keys kinds for all keys
     // otherwise just return the value of the specific keys
     if (Array.isArray(keys)) {
-      const getKeyKind = [];
+      const values = [];
       keys.forEach((keys) => {
-        const keyKind = infofile.keyKind(keys);
-        getKeyKind.push({ keys: keys, keyKind: keyKind });
+        const value = infofile.getDouble(keys);
+        values.push({ keys: keys, value: value });
       });
 
-      // set keyKind equal to the keykindsArray
-      keyKind = getKeyKind;
+      // set value equal to the valuesArray
+      value = values;
     } else {
-      // get the keys kinds for the specified keys
-      keyKind = infofile.keyKind(keys);
+      // get the value of the specified keys
+      value = infofile.getDouble(keys);
     }
 
     // delete the infofile handle
     infofile.delete();
 
-    // return the keys kinds
-    return keyKind;
+    // return the value
+    return value;
   } catch {
     // get the error from the infofile handle
     const error = infofile.getError();
@@ -53,5 +54,5 @@ function getKeyKind({ file, keys }) {
   }
 }
 
-// export the getKeyKind function
-module.exports = { getKeyKind };
+// export the getDouble function
+module.exports = { getDouble };

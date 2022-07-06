@@ -1,4 +1,4 @@
-const { readInfoFile, validateStringArray } = require("../utils");
+const { readInfoFile, validateStringArray } = require("./utils");
 
 // function to delete a keys
 function deleteKey({ file, keys }) {

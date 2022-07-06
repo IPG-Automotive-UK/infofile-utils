@@ -1,4 +1,4 @@
-const { infofile } = require("../utils");
+const { infofile } = require("./utils");
 
 // get error
 function getError() {
