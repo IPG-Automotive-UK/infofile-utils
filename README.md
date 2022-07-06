@@ -444,10 +444,10 @@ console.log(keys)
 </details>
 
 <details>
-<summary></b><code>keyKinds</code></b></summary>
-Lists the keyKinds, returns String_Key, Text_Key or No_Key
+<summary></b><code>getKeyKind</code></b></summary>
+Lists the getKeyKind, returns String_Key, Text_Key or No_Key
 
-### Get the keyKinds for a single keys:
+### Get the getKeyKind for a single keys:
 
 ```
 // import the library
@@ -456,14 +456,14 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
 
-// get the keyKinds for the keys "Body.mass"
-keyKind = infofile.keyKinds({file, keys: "Body.mass"});
+// get the getKeyKind for the keys "Body.mass"
+keyKind = infofile.getKeyKind({file, keys: "Body.mass"});
 
 // console.log the keyKind, returns String_Key if keys is a single line string, Text_Key if keys is a text array and No_Key if keys is not found
 console.log(keyKind)
 ```
 
-### Get the keyKinds for a list of keys:
+### Get the getKeyKind for a list of keys:
 
 ```
 // import the library
@@ -472,11 +472,11 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
 
-// get the keyKinds for the keys "Body.mass" and "nAxle"
-keyKinds = infofile.keyKinds({file, keys: ["Body.mass", "nAxle"]});
+// get the getKeyKind for the keys "Body.mass" and "nAxle"
+getKeyKind = infofile.getKeyKind({file, keys: ["Body.mass", "nAxle"]});
 
-// console.log the keyKinds, returns an array of keyKinds e.g. ["String_Key", "No_Key"]
-console.log(keyKinds)
+// console.log the getKeyKind, returns an array of getKeyKind e.g. ["String_Key", "No_Key"]
+console.log(getKeyKind)
 ```
 
 </details>

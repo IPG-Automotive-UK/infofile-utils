@@ -16,7 +16,7 @@ describe("deleteKey tests", () => {
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted
-    const keyValueBeforeDelete = infofile.keyKinds({
+    const keyValueBeforeDelete = infofile.getKeyKind({
       file: tempfile,
       keys: "Eng.Joint.pos",
     });
@@ -28,7 +28,7 @@ describe("deleteKey tests", () => {
     });
 
     // check that the keys was deleted
-    const keyValueAfterDelete = infofile.keyKinds({
+    const keyValueAfterDelete = infofile.getKeyKind({
       file: tempfile,
       keys: "Eng.Joint.pos",
     });
@@ -45,7 +45,7 @@ describe("deleteKey tests", () => {
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted
-    const keyValueBeforeDelete = infofile.keyKinds({
+    const keyValueBeforeDelete = infofile.getKeyKind({
       file: tempfile,
       keys: ["Eng.Joint.pos", "Eng.Orientation"],
     });
@@ -57,7 +57,7 @@ describe("deleteKey tests", () => {
     });
 
     // check that the keys was deleted
-    const keyValueAfterDelete = infofile.keyKinds({
+    const keyValueAfterDelete = infofile.getKeyKind({
       file: tempfile,
       keys: ["Eng.Joint.pos", "Eng.Orientation"],
     });
@@ -76,7 +76,7 @@ describe("deleteKey tests", () => {
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted
-    const keyValueBeforeDelete = infofile.keyKinds({
+    const keyValueBeforeDelete = infofile.getKeyKind({
       file: tempfile,
       keys: "SomeKeyThatDoesntExist",
     });
@@ -88,7 +88,7 @@ describe("deleteKey tests", () => {
     });
 
     // check that the keys was deleted
-    const keyValueAfterDelete = infofile.keyKinds({
+    const keyValueAfterDelete = infofile.getKeyKind({
       file: tempfile,
       keys: "SomeKeyThatDoesntExist",
     });

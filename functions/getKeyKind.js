@@ -1,7 +1,7 @@
 const { readInfoFile, validateStringArray } = require("../utils");
 
 // function to get the keys kinds
-function keyKinds({ file, keys }) {
+function getKeyKind({ file, keys }) {
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
@@ -23,14 +23,14 @@ function keyKinds({ file, keys }) {
     // if the keys is an array of keys, get the keys kinds for all keys
     // otherwise just return the value of the specific keys
     if (Array.isArray(keys)) {
-      const keyKinds = [];
+      const getKeyKind = [];
       keys.forEach((keys) => {
         const keyKind = infofile.keyKind(keys);
-        keyKinds.push({ keys: keys, keyKind: keyKind });
+        getKeyKind.push({ keys: keys, keyKind: keyKind });
       });
 
       // set keyKind equal to the keykindsArray
-      keyKind = keyKinds;
+      keyKind = getKeyKind;
     } else {
       // get the keys kinds for the specified keys
       keyKind = infofile.keyKind(keys);
@@ -53,5 +53,5 @@ function keyKinds({ file, keys }) {
   }
 }
 
-// export the keyKinds function
-module.exports = { keyKinds };
+// export the getKeyKind function
+module.exports = { getKeyKind };

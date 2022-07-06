@@ -1,6 +1,6 @@
 module.exports = {
   ...require("./functions/listKeys"),
-  ...require("./functions/keyKinds"),
+  ...require("./functions/getKeyKind"),
   ...require("./functions/getString"),
   ...require("./functions/getLong"),
   ...require("./functions/getDouble"),
