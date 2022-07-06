@@ -57,7 +57,7 @@ function getKeyValue({ fileHandle, keys }) {
 }
 
 // function to get keys values for any keys data type, numbers are returned as doubles
-function getKeyValues({ file, keys }) {
+function getValue({ file, keys }) {
   // check that keys has been provided
   if (!keys) {
     throw new Error("keys is required");
@@ -110,4 +110,4 @@ function getKeyValues({ file, keys }) {
 }
 
 // export get keys values function
-module.exports = { getKeyValues };
+module.exports = { getValue };

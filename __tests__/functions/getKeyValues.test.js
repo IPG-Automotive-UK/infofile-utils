@@ -5,12 +5,12 @@ const path = require("path");
 const relativePath = "../infofiles/DemoCar";
 const file = path.resolve(__dirname, relativePath);
 
-// getKeyValues tests
-describe("getKeyValues tests", () => {
+// getValue tests
+describe("getValue tests", () => {
   // test case for getting a keys value when value is a string
   test("can get a keys where keyValue is a string", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: "SuspF.Spring.Kind",
     });
@@ -23,7 +23,7 @@ describe("getKeyValues tests", () => {
   // test case for getting a keys value when value is a multiline string
   test("can get a keys where keyValue is a multiline string", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: "Description",
     });
@@ -39,7 +39,7 @@ describe("getKeyValues tests", () => {
   // test case for getting a keys value where value is a number
   test("can get a keys where keys the keys value is a number", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: "SuspF.Spring.l0",
     });
@@ -52,7 +52,7 @@ describe("getKeyValues tests", () => {
   // test case for getting a keys value where value is a vector
   test("can get a keys where the keys value is a vector", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: "Aero.Marker.pos",
     });
@@ -65,7 +65,7 @@ describe("getKeyValues tests", () => {
   // test case for getting a keys value where value is a matrix
   test("can get a keys where the keys value is a matrix", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: "Aero.Coeff",
     });
@@ -88,7 +88,7 @@ describe("getKeyValues tests", () => {
   // test case for getting a keys value where keys are an array with differnt keyValue types
   test("can get a keys where keys are an array with differnt keyValue types", () => {
     // get the keys value
-    const keyValue = infofile.getKeyValues({
+    const keyValue = infofile.getValue({
       file: file,
       keys: [
         "SuspF.Spring.Kind",
@@ -123,7 +123,7 @@ describe("getKeyValues tests", () => {
   test("throws error when no path is provided", () => {
     // expect error when no path is provided
     expect(() => {
-      infofile.getKeyValues({ keys: "Aero.Ax" });
+      infofile.getValue({ keys: "Aero.Ax" });
     }).toThrowError("file is required");
   });
 
@@ -131,7 +131,7 @@ describe("getKeyValues tests", () => {
   test("throws error when path can't be found", () => {
     // expect error when path cant be found
     expect(() => {
-      infofile.getKeyValues({
+      infofile.getValue({
         file: "./SomeFakeFile.car",
         keys: "Aero.Ax",
       });
@@ -142,7 +142,7 @@ describe("getKeyValues tests", () => {
   test("throws error when keys is not provided", () => {
     // expect error when keys is not provided
     expect(() => {
-      infofile.getKeyValues({ file: file });
+      infofile.getValue({ file: file });
     }).toThrowError("keys is required");
   });
 
@@ -150,7 +150,7 @@ describe("getKeyValues tests", () => {
   test("throws error when keys is not a string", () => {
     // expect error when keys is not a string
     expect(() => {
-      infofile.getKeyValues({ file: file, keys: 1 });
+      infofile.getValue({ file: file, keys: 1 });
     }).toThrowError("keys must be a string or an array of strings");
   });
 
@@ -158,7 +158,7 @@ describe("getKeyValues tests", () => {
   test("throws error when keys is not an array of strings", () => {
     // expect error when keys is not an array of strings
     expect(() => {
-      infofile.getKeyValues({ file: file, keys: [1, 2, "this"] });
+      infofile.getValue({ file: file, keys: [1, 2, "this"] });
     }).toThrowError("keys must be a string or an array of strings");
   });
 });

@@ -6,7 +6,7 @@ module.exports = {
   ...require("./functions/getDouble"),
   ...require("./functions/getError"),
   ...require("./functions/getText"),
-  ...require("./functions/getKeyValues"),
+  ...require("./functions/getValue"),
   ...require("./functions/deleteKey"),
   ...require("./functions/setString"),
   ...require("./functions/setLong"),

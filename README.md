@@ -60,7 +60,7 @@ console.log(wheelCarrierValues)
 </details>
 
 <details>
-<summary></b><code>getKeyValues</code></b></summary>
+<summary></b><code>getValue</code></b></summary>
 A universal function for getting values from an infofile. All numerical values are returned as doubles. All other values are returned as strings.
 
 ### Getting a single value from an infofile:
@@ -73,7 +73,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // get the value for the keys "WheelCarrier.fl.mass"
-const wheelCarrierValue = infofile.getKeyValues({file, keys:"WheelCarrier.fl.mass"});
+const wheelCarrierValue = infofile.getValue({file, keys:"WheelCarrier.fl.mass"});
 
 // console.log the value (returns an object like this {keys: "WheelCarrier.fl.mass", value: 0.0})
 console.log(wheelCarrierValue)
@@ -89,7 +89,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // get the values for the keys "WheelCarrier.fl.mass" and "SuspF.Spring.Kind"
-const values = infofile.getKeyValues({file, keys:["WheelCarrier.fl.mass", "SuspF.Spring.Kind"]});
+const values = infofile.getValue({file, keys:["WheelCarrier.fl.mass", "SuspF.Spring.Kind"]});
 
 // console.log the values (returns an array of objects like this [{keys: "WheelCarrier.fl.mass", value: 0.0}, {keys: "SuspF.Spring.Kind", value: "Hookean 1"}])
 console.log(values)
