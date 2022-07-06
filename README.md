@@ -22,7 +22,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 
 <details>
 <summary></b><code>getDouble</code></b></summary>
-Returns a double value from an infofile for a given key or an array of keys.
+Returns a double value from an infofile for a given key or an array of keys. The value will be returned as a number.
 
 ### Getting a single double value from an infofile:
 
