@@ -1,10 +1,10 @@
 const fs = require("fs");
-const { infofile, validateFileAndKeyValues } = require("./utils");
+const { infofile, validateFileAndGetValues } = require("./utils");
 
 // function to set the value of keys that is a string
 function setString({ file, values }) {
   // check that file and values exist and are valid
-  validateFileAndKeyValues({
+  validateFileAndGetValues({
     file: file,
     values: values,
     type: "string",

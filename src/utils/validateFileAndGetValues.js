@@ -1,5 +1,5 @@
 // helper function to check that file and values and type is provided to function
-function validateFileAndKeyValues({ file, values, type }) {
+function validateFileAndGetValues({ file, values, type }) {
   // check that file has been provided
   if (!file || !file.length) {
     throw new Error("file is required");
@@ -86,4 +86,4 @@ function validateFileAndKeyValues({ file, values, type }) {
 }
 
 // export
-module.exports = { validateFileAndKeyValues };
+module.exports = { validateFileAndGetValues };

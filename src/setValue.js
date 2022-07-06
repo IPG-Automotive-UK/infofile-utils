@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { infofile, validateFileAndSetKeyValues } = require("./utils");
+const { infofile, validateFileAndSetValues } = require("./utils");
 
 // helper function to set keys
 function setKey({ infofileHandle, values }) {
@@ -38,7 +38,7 @@ function setKey({ infofileHandle, values }) {
 // function to set the keys values for any keys data type
 function setValue({ file, values }) {
   // check that file and values exist and are valid
-  validateFileAndSetKeyValues({ file, values });
+  validateFileAndSetValues({ file, values });
 
   // check if info file exists if so read the existing info file otherwise create a new info file
   infofile.new();

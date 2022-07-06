@@ -1,7 +1,7 @@
 module.exports = {
   ...require("./getAddon"),
-  ...require("./validateFileAndKeyValues"),
+  ...require("./validateFileAndGetValues"),
   ...require("./validateStringArray"),
   ...require("./readInfoFile"),
-  ...require("./validateFileAndSetKeyValues"),
+  ...require("./validateFileAndSetValues"),
 };
