@@ -64,7 +64,7 @@ console.log(wheelCarrierValues)
 </details>
 
 <details>
-<summary></b><code>getKeyValues</code></b></summary>
+<summary></b><code>getValue</code></b></summary>
 A universal function for getting values from an infofile. All numerical key values are returned as numbers. All other key values are returned as strings.
 
 ### Getting a single value from an infofile:
