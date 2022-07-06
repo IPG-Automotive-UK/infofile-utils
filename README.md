@@ -16,6 +16,11 @@ Importing the library:
 const infofile = require("@ipguk/infofile-reader-and-writer");
 ```
 
+## Supported OS's
+
+- Windows
+- Linux
+
 ## Usage
 
 ### Getting values from an infofile:
