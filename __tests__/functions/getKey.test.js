@@ -7,7 +7,7 @@ const relativePath = "../infofiles/DemoCar";
 const file = path.resolve(__dirname, relativePath);
 
 // test suite for list keys
-describe("listKey tests", () => {
+describe("getKey tests", () => {
   // test case for getting all keys
   test("can get all list keys from infofile", () => {
     // get the list of keys from the info file
