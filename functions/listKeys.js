@@ -1,7 +1,7 @@
 const { readInfoFile, validateStringArray } = require("../utils");
 
 // function to get the info file keys
-function listKeys({ file, prefix = "" }) {
+function getKey({ file, prefix = "" }) {
   // check that file has been provided
   if (!file || !file.length) {
     throw new Error("file is required");
@@ -21,7 +21,7 @@ function listKeys({ file, prefix = "" }) {
     if (Array.isArray(prefix)) {
       const keys = [];
       prefix.forEach((prefix) => {
-        const prefixKeys = infofile.listKeys(prefix);
+        const prefixKeys = infofile.getKey(prefix);
         keys.push(...prefixKeys);
       });
 
@@ -33,13 +33,13 @@ function listKeys({ file, prefix = "" }) {
     }
 
     // get the keys for the specified prefix
-    const listKeys = infofile.listKeys(prefix);
+    const getKey = infofile.getKey(prefix);
 
     // delete the infofile handle
     infofile.delete();
 
     // return the keys
-    return listKeys;
+    return getKey;
   } catch {
     // get the error from the infofile handle
     const error = infofile.getError();
@@ -52,5 +52,5 @@ function listKeys({ file, prefix = "" }) {
   }
 }
 
-// export the listKeys function
-module.exports = { listKeys };
+// export the getKey function
+module.exports = { getKey };

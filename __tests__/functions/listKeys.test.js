@@ -11,7 +11,7 @@ describe("listKey tests", () => {
   // test case for getting all keys
   test("can get all list keys from infofile", () => {
     // get the list of keys from the info file
-    const keys = infofile.listKeys({ file });
+    const keys = infofile.getKey({ file });
 
     // read the demo file without using the infofile api
     const demoFile = fs.readFileSync(file, "utf8");
@@ -38,7 +38,7 @@ describe("listKey tests", () => {
   // test case for getting all aero keys
   test("can get all aero keys from infofile", () => {
     // get the list of aero keys from the info file
-    const keys = infofile.listKeys({ file, prefix: "Aero" });
+    const keys = infofile.getKey({ file, prefix: "Aero" });
 
     // expected aero keys
     const expectedKeys = [
@@ -62,7 +62,7 @@ describe("listKey tests", () => {
   // test case for getting keys for an array of prefixes
   test("can get keys for an array of prefixes", () => {
     // get the list of keys from the info file
-    const keys = infofile.listKeys({
+    const keys = infofile.getKey({
       file,
       prefix: ["Aero", "Body"],
     });
@@ -92,7 +92,7 @@ describe("listKey tests", () => {
   // test case for getting an array of prefixes with one keys that doesn't exist
   test("can get an array of prefixes with one keys that doesn't exist", () => {
     // get the list of keys from the info file
-    const keys = infofile.listKeys({
+    const keys = infofile.getKey({
       file,
       prefix: ["Aero", "Body", "DoesNotExist"],
     });
@@ -123,7 +123,7 @@ describe("listKey tests", () => {
   test("throws error when no path is provided", () => {
     // expect error when no path is provided
     expect(() => {
-      infofile.listKeys({});
+      infofile.getKey({});
     }).toThrowError("file is required");
   });
 
@@ -131,7 +131,7 @@ describe("listKey tests", () => {
   test("throws error when path can't be found", () => {
     // expect error when path can't be found
     expect(() => {
-      infofile.listKeys({ file: "./SomeFakeFile.car" });
+      infofile.getKey({ file: "./SomeFakeFile.car" });
     }).toThrowError("File read error");
   });
 
@@ -139,7 +139,7 @@ describe("listKey tests", () => {
   test("throws error when keys is not a string", () => {
     // expect error when keys is not a string
     expect(() => {
-      infofile.listKeys({ file, prefix: 1 });
+      infofile.getKey({ file, prefix: 1 });
     }).toThrowError("prefix must be a string or an array of strings");
   });
 
@@ -147,7 +147,7 @@ describe("listKey tests", () => {
   test("throws error when keys is not an array of strings", () => {
     // expect error when prefix is not an array of strings
     expect(() => {
-      infofile.listKeys({ file, prefix: [1, 2, "this"] });
+      infofile.getKey({ file, prefix: [1, 2, "this"] });
     }).toThrowError("prefix must be a string or an array of strings");
   });
 });

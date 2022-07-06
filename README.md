@@ -406,7 +406,7 @@ console.log(status)
 ### Other functions
 
 <details>
-<summary></b><code>listKeys</code></b></summary>
+<summary></b><code>getKey</code></b></summary>
 Lists the keys in an infofile, for a given prefix, if no prefix is provided all keys are returned
 
 ### Listing all keys in an infofile:
@@ -419,7 +419,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // list all keys in the infofile
-keys = infofile.listKeys({file});
+keys = infofile.getKey({file});
 
 // console.log the keys, returns an array of keys e.g. ["Body.mass", "nAxle"]
 console.log(keys)
@@ -435,7 +435,7 @@ const infofile = require("@ipguk/infofile-reader-and-writer");
 const file = C:\infofiles\infofile
 
 // list all keys in the infofile for the prefix "Aero"
-keys = infofile.listKeys({ file, prefix: "Aero" });
+keys = infofile.getKey({ file, prefix: "Aero" });
 
 // console.log the keys, returns an array of keys e.g. ["Aero.Crosswind.Kind", "Aero.Crosswind.Speed"]
 console.log(keys)
