@@ -487,7 +487,7 @@ console.log(getKeyKind)
 
 <details>
 <summary></b><code>deleteKey</code></b></summary>
-Deletes a keys from an infofile
+Deletes a key from an infofile
 
 ### Delete a single keys from an infofile:
 
