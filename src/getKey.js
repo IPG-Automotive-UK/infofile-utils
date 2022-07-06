@@ -7,9 +7,6 @@ function getKey({ file, prefix = "" }) {
     throw new Error("file is required");
   }
 
-  // read the info file
-  const infofile = readInfoFile(file);
-
   // check that prefix is a valid string or an array of strings
   keyPrefixValid = validateStringArray(prefix);
   if (!keyPrefixValid) {
@@ -17,6 +14,9 @@ function getKey({ file, prefix = "" }) {
   }
 
   try {
+    // read the info file
+    const infofile = readInfoFile(file);
+
     // if keys prefix is an array of prefixes, get the keys for all prefixes
     if (Array.isArray(prefix)) {
       const keys = [];

@@ -68,9 +68,6 @@ function getValue({ file, keys }) {
     throw new Error("keys is required");
   }
 
-  // read the info file
-  const infofile = readInfoFile(file);
-
   // check that keys is a valid string or an array of strings
   keyValid = validateStringArray(keys);
   if (!keyValid) {
@@ -78,6 +75,9 @@ function getValue({ file, keys }) {
   }
 
   try {
+    // read the info file
+    const infofile = readInfoFile(file);
+
     // define the keys values to return
     let keyValue;
 

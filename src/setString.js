@@ -10,13 +10,13 @@ function setString({ file, values }) {
     type: "string",
   });
 
-  // check if info file exists if so read the existing info file otherwise create a new info file
-  infofile.new();
-  if (fs.existsSync(file)) {
-    infofile.read(file);
-  }
-
   try {
+    // check if info file exists if so read the existing info file otherwise create a new info file
+    infofile.new();
+    if (fs.existsSync(file)) {
+      infofile.read(file);
+    }
+
     // define the status to return
     let status;
 

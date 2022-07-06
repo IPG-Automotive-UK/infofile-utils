@@ -13,9 +13,6 @@ function getDouble({ file, keys }) {
     throw new Error("keys is required");
   }
 
-  // read the info file
-  const infofile = readInfoFile(file);
-
   // check that keys is a valid string or an array of strings
   keyValid = validateStringArray(keys);
   if (!keyValid) {
@@ -23,6 +20,9 @@ function getDouble({ file, keys }) {
   }
 
   try {
+    // read the info file
+    const infofile = readInfoFile(file);
+
     // define the value to return
     let value;
 

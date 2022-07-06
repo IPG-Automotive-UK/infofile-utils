@@ -12,9 +12,6 @@ function getKeyKind({ file, keys }) {
     throw new Error("keys is required");
   }
 
-  // read the info file
-  const infofile = readInfoFile(file);
-
   // check that keys is a valid string or an array of strings
   keyValid = validateStringArray(keys);
   if (!keyValid) {
@@ -22,6 +19,9 @@ function getKeyKind({ file, keys }) {
   }
 
   try {
+    // read the info file
+    const infofile = readInfoFile(file);
+
     // define the keykind to return
     let keyKind;
 
