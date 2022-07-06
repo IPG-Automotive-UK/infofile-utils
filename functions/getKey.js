@@ -21,7 +21,7 @@ function getKey({ file, prefix = "" }) {
     if (Array.isArray(prefix)) {
       const keys = [];
       prefix.forEach((prefix) => {
-        const prefixKeys = infofile.getKey(prefix);
+        const prefixKeys = infofile.listKeys(prefix);
         keys.push(...prefixKeys);
       });
 
@@ -33,7 +33,7 @@ function getKey({ file, prefix = "" }) {
     }
 
     // get the keys for the specified prefix
-    const getKey = infofile.getKey(prefix);
+    const getKey = infofile.listKeys(prefix);
 
     // delete the infofile handle
     infofile.delete();
