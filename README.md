@@ -1,4 +1,4 @@
-# IPG Automotive Infofile Reader and Writer
+# IPG Automotive Infofile Utilities
 
 JavaScript library for reading and writing IPG Automotive infofiles.
 
@@ -7,13 +7,13 @@ JavaScript library for reading and writing IPG Automotive infofiles.
 Installation:
 
 ```
-npm install --save @ipguk/infofile-reader-and-writer
+npm install --save @ipguk/infofile-utils
 ```
 
 Importing the library:
 
 ```
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 ```
 
 ## Supported OS's
@@ -33,7 +33,7 @@ Returns a double value from an infofile for a given key or an array of keys. The
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -49,7 +49,7 @@ console.log(wheelCarrierValue)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -71,7 +71,7 @@ A universal function for getting values from an infofile. All numerical key valu
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -87,7 +87,7 @@ console.log(wheelCarrierValue)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -109,7 +109,7 @@ Returns a long value from an infofile for a given key or an array of keys. The v
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -125,7 +125,7 @@ console.log(bodyMassValue)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -147,7 +147,7 @@ Returns a string value from an infofile for a given keys or an array of keys.
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -163,7 +163,7 @@ console.log(aeroCrosswindKind)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -185,7 +185,7 @@ Returns a text value from an infofile for a given keys or an array of keys. This
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -201,7 +201,7 @@ console.log(description)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -225,7 +225,7 @@ Sets a double value to an infofile for a given keys.
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -241,7 +241,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -263,7 +263,7 @@ A universal function to set values to an infofile.
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -279,7 +279,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -301,7 +301,7 @@ Sets a long value to an infofile for a given keys.
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -317,7 +317,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -339,7 +339,7 @@ Sets a string value to an infofile for a given keys.
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -355,7 +355,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -377,7 +377,7 @@ Sets a text value to an infofile for a given keys. This is an array of strings a
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -393,7 +393,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -417,7 +417,7 @@ Lists the keys in an infofile, for a given prefix, if no prefix is provided all 
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -433,7 +433,7 @@ console.log(keys)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -455,7 +455,7 @@ Lists the getKeyKind, returns String_Key, Text_Key or No_Key
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -471,7 +471,7 @@ console.log(keyKind)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -493,7 +493,7 @@ Deletes a keys from an infofile
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
@@ -509,7 +509,7 @@ console.log(status)
 
 ```
 // import the library
-const infofile = require("@ipguk/infofile-reader-and-writer");
+const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
 const file = C:\infofiles\infofile
