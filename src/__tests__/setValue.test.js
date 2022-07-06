@@ -306,4 +306,43 @@ describe("setValue", () => {
       });
     }).toThrowError("values.type is not a string, long, double or text");
   });
+
+  // test writing to two separate files
+  test("can write to two separate files", () => {
+    // create two temp files
+    const tempfile1 = path.join(os.tmpdir(), "tempfile1");
+    const tempfile2 = path.join(os.tmpdir(), "tempfile2");
+
+    // set key value
+    const setStatus1 = infofile.setDouble({
+      file: tempfile1,
+      values: {
+        keys: "Test.Key",
+        value: 1,
+      },
+    });
+    const setStatus2 = infofile.setDouble({
+      file: tempfile2,
+      values: {
+        keys: "Test.Key",
+        value: 2,
+      },
+    });
+
+    // get keys value
+    const keyValue2 = infofile.getDouble({
+      file: tempfile2,
+      keys: "Test.Key",
+    });
+    const keyValue1 = infofile.getDouble({
+      file: tempfile1,
+      keys: "Test.Key",
+    });
+
+    // expect keys value to be a double
+    expect(setStatus1).toBe(0);
+    expect(keyValue1).toBe(1);
+    expect(setStatus2).toBe(0);
+    expect(keyValue2).toBe(2);
+  });
 });
