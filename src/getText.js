@@ -29,16 +29,16 @@ function getText({ file, keys }) {
     // otherwise just return the value of the specific keys
     if (Array.isArray(keys)) {
       const values = [];
-      keys.forEach((keys) => {
-        const value = infofile.getText(keys);
-        values.push({ keys: keys, value: value });
+      keys.forEach((key) => {
+        const value = infofile.getText(key);
+        values.push({ key: key, value: value });
       });
 
       // set value equal to the valuesArray
       value = values;
     } else {
       // get the value of the specified keys
-      value = { keys: keys, value: infofile.getText(keys) };
+      value = { key: keys, value: infofile.getText(keys) };
     }
 
     // delete the infofile handle

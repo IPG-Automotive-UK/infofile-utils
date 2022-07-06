@@ -29,9 +29,9 @@ function getKeyKind({ file, keys }) {
     // otherwise just return the value of the specific keys
     if (Array.isArray(keys)) {
       const getKeyKind = [];
-      keys.forEach((keys) => {
-        const keyKind = infofile.keyKind(keys);
-        getKeyKind.push({ keys: keys, keyKind: keyKind });
+      keys.forEach((key) => {
+        const keyKind = infofile.keyKind(key);
+        getKeyKind.push({ key: key, keyKind: keyKind });
       });
 
       // set keyKind equal to the keykindsArray

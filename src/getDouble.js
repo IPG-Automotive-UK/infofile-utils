@@ -30,9 +30,9 @@ function getDouble({ file, keys }) {
     // otherwise just return the value of the specific keys
     if (Array.isArray(keys)) {
       const values = [];
-      keys.forEach((keys) => {
-        const value = infofile.getDouble(keys);
-        values.push({ keys: keys, value: value });
+      keys.forEach((key) => {
+        const value = infofile.getDouble(key);
+        values.push({ key: key, value: value });
       });
 
       // set value equal to the valuesArray

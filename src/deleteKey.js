@@ -22,16 +22,16 @@ function deleteKey({ file, keys }) {
   }
 
   try {
-    // define the value to return
-    let value;
+    // define the status to return
+    let status;
 
     // if the keys is an array of keys, get delete all the keys
     // otherwise, delete the specified keys
     if (Array.isArray(keys)) {
       const values = [];
-      keys.forEach((keys) => {
-        const value = infofile.deleteKey(keys);
-        values.push({ keys: keys, value: value });
+      keys.forEach((key) => {
+        const value = infofile.deleteKey(key);
+        values.push({ keys: key, status: value });
       });
 
       // write the info file
@@ -41,7 +41,7 @@ function deleteKey({ file, keys }) {
       value = values;
     } else {
       // delete the specified keys
-      value = { keys: keys, value: infofile.deleteKey(keys) };
+      value = { key: keys, status: infofile.deleteKey(keys) };
     }
 
     // write the info file
