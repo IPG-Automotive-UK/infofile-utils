@@ -99,7 +99,7 @@ console.log(values)
 
 <details>
 <summary></b><code>getLong</code></b></summary>
-Returns a long value from an infofile for a given key or an array of keys.
+Returns a long value from an infofile for a given key or an array of keys. The value will be returned as a number.
 
 ### Getting a single long value from an infofile:
 
