@@ -33,6 +33,9 @@ describe("setValue", () => {
     // expect keys value to be a string
     expect(setStatus.status).toBe(0);
     expect(keyValue).toBe("Flex");
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
   // test setValue can set a long keys value
   test("test setValue can set a long keys value on a new file", () => {
@@ -58,6 +61,9 @@ describe("setValue", () => {
     // expect keys value to be a long
     expect(setKeyStatus.status).toBe(0);
     expect(keyValue).toBe(1500);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test setValue can set a double keys value
@@ -84,6 +90,9 @@ describe("setValue", () => {
     // expect keys value to be a double
     expect(setStatus.status).toBe(0);
     expect(keyValue).toBe(1500.5);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test setValue can set a text keys value
@@ -109,6 +118,9 @@ describe("setValue", () => {
 
     // expect keys value to be a text
     expect(keyValue.value).toEqual(["This is a", "multiline", "string"]);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test setValue can set a strign keys value on an existing file
@@ -135,6 +147,9 @@ describe("setValue", () => {
     // expect keys value to be a string
     expect(setKeyValue.status).toBe(0);
     expect(keyValue).toBe("Flex");
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // can set a long keys value on an existing file
@@ -161,6 +176,9 @@ describe("setValue", () => {
     // expect keys value to be a long
     expect(setKeyStatus.status).toBe(0);
     expect(keyValue).toBe(1500);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // can set a double keys value on an existing file
@@ -187,6 +205,9 @@ describe("setValue", () => {
     // expect keys value to be a double
     expect(setStatus.status).toBe(0);
     expect(keyValue).toBe(1500.5);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // can set a text keys value on an existing file
@@ -212,6 +233,9 @@ describe("setValue", () => {
 
     // expect keys value to be a text
     expect(keyValue.value).toEqual(["This is a", "multiline", "string"]);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // throws an error when no path is provided
@@ -344,5 +368,9 @@ describe("setValue", () => {
     expect(keyValue1).toBe(1);
     expect(setStatus2).toBe(0);
     expect(keyValue2).toBe(2);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile1);
+    fs.unlinkSync(tempfile2);
   });
 });

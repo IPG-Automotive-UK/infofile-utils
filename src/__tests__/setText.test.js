@@ -25,6 +25,9 @@ describe("setText tests", () => {
 
     // check that the Text value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test can set an array of Text values
@@ -47,6 +50,9 @@ describe("setText tests", () => {
     // check that the Text value is valid
     expect(setValueStatus[0].status).toBe(0);
     expect(setValueStatus[1].status).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test case for setting a Text on a file that already exists
@@ -66,6 +72,9 @@ describe("setText tests", () => {
 
     // check that the Text value is valid
     expect(setValueStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // throws error when no path is provided

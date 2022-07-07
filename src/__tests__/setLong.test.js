@@ -22,6 +22,9 @@ describe("setLong tests", () => {
 
     // check that the long value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test can set an array of long values
@@ -41,6 +44,9 @@ describe("setLong tests", () => {
     // check that the long value is valid
     expect(setStatus[0].status).toBe(0);
     expect(setStatus[1].status).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test case for setting a long on a file that already exists
@@ -57,6 +63,9 @@ describe("setLong tests", () => {
 
     // check that the long value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test case for setting a double when using setLong to a new infofile, expect a long value to be set
@@ -72,6 +81,9 @@ describe("setLong tests", () => {
 
     // check that the long value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // throws error when no path is provided

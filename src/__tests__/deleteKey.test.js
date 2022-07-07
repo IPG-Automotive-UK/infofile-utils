@@ -36,6 +36,11 @@ describe("deleteKey tests", () => {
     // check the keys value before and after deletion
     expect(keyValueBeforeDelete).toBe("String_Key");
     expect(keyValueAfterDelete).toBe("No_Key");
+
+    console.log(tempfile);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test case for deleting a keys where keys is an array
@@ -67,6 +72,9 @@ describe("deleteKey tests", () => {
     expect(keyValueAfterDelete[0].keyKind).toBe("No_Key");
     expect(keyValueBeforeDelete[1].keyKind).toBe("String_Key");
     expect(keyValueAfterDelete[1].keyKind).toBe("No_Key");
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // can delete a keys that doesn't exist
@@ -96,6 +104,9 @@ describe("deleteKey tests", () => {
     // check the keys value before and after deletion
     expect(keyValueBeforeDelete).toBe("No_Key");
     expect(keyValueAfterDelete).toBe("No_Key");
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   //throws error when no path is provided

@@ -22,6 +22,9 @@ describe("setDouble", () => {
 
     // check that the double value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test can set a double value to an existing infofile
@@ -38,6 +41,9 @@ describe("setDouble", () => {
 
     // check that the double value is valid
     expect(setStatus).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // test can set an array of double values to a new infofile
@@ -57,6 +63,9 @@ describe("setDouble", () => {
     // check that the double value is valid
     expect(setStatus[0].status).toBe(0);
     expect(setStatus[1].status).toBe(0);
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
   });
 
   // throws error when no path is provided
