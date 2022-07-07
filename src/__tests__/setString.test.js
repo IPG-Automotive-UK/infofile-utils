@@ -2,6 +2,7 @@ const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const uuid = require("uuid");
 
 // get the path to the test info file
 const relativePath = "./infofiles/DemoCar";
@@ -12,7 +13,7 @@ describe("setString tests", () => {
   // test case for setting a string value
   test("can set a string value to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetString");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the string value
     const setValueStatus = infofile.setString({
@@ -30,7 +31,7 @@ describe("setString tests", () => {
   // test can set an array of string values
   test("can set an array of string values to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetStringArray");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the string value
     const setValue = infofile.setString({
@@ -52,7 +53,7 @@ describe("setString tests", () => {
   // test case for setting a string on a file that already exists
   test("can set a string value to an existing infofile", () => {
     // copy the infofile to a temporary location
-    const tempfile = path.join(os.tmpdir(), "canSetStringOnExisting");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set the string value

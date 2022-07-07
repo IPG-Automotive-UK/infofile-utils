@@ -2,6 +2,7 @@ const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const uuid = require("uuid");
 
 // get the path to the test info file
 const relativePath = "./infofiles/DemoCar";
@@ -12,7 +13,7 @@ describe("deleteKey tests", () => {
   // test case for deleting a keys
   test("can delete a keys", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canDeleteKey");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted
@@ -37,8 +38,6 @@ describe("deleteKey tests", () => {
     expect(keyValueBeforeDelete).toBe("String_Key");
     expect(keyValueAfterDelete).toBe("No_Key");
 
-    console.log(tempfile);
-
     // delete the temporary infofile
     fs.unlinkSync(tempfile);
   });
@@ -46,7 +45,7 @@ describe("deleteKey tests", () => {
   // test case for deleting a keys where keys is an array
   test("can delete a keys where keys is an array", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canDeleteKeyArray");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted
@@ -80,7 +79,7 @@ describe("deleteKey tests", () => {
   // can delete a keys that doesn't exist
   test("can delete a keys that doesn't exist", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canDeleteKeyThatDoesntExist");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // check that the keys was deleted

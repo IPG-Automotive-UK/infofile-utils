@@ -2,6 +2,7 @@ const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const uuid = require("uuid");
 
 // get the path to the test info file
 const relativePath = "./infofiles/DemoCar";
@@ -12,7 +13,7 @@ describe("setValue", () => {
   // test setValue can set a string keys value
   test("test setValue can set a string keys value on a new file", () => {
     // create a temporary file
-    const tempfile = path.join(os.tmpdir(), "canSetKeyStringOnNewFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set keys value
     const setStatus = infofile.setValue({
@@ -40,7 +41,7 @@ describe("setValue", () => {
   // test setValue can set a long keys value
   test("test setValue can set a long keys value on a new file", () => {
     // create a temporary file
-    const tempfile = path.join(os.tmpdir(), "canSetKeyLongOnNewFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set keys value
     const setKeyStatus = infofile.setValue({
@@ -69,7 +70,7 @@ describe("setValue", () => {
   // test setValue can set a double keys value
   test("test setValue can set a double keys value on a new file", () => {
     // create a temporary file
-    const tempfile = path.join(os.tmpdir(), "canSetKeyDoubleOnNewFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set keys value
     const setStatus = infofile.setValue({
@@ -98,7 +99,7 @@ describe("setValue", () => {
   // test setValue can set a text keys value
   test("test setValue can set a text keys value on a new file", () => {
     // create a temporary file
-    const tempfile = path.join(os.tmpdir(), "canSetKeyTextOnNewFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set keys value
     infofile.setValue({
@@ -125,7 +126,7 @@ describe("setValue", () => {
 
   // test setValue can set a strign keys value on an existing file
   test("test setValue can set a string keys value on an existing file", () => {
-    const tempfile = path.join(os.tmpdir(), "canSetKeyStringOnExistingFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set keys value
@@ -154,7 +155,7 @@ describe("setValue", () => {
 
   // can set a long keys value on an existing file
   test("test setValue can set a long keys value on an existing file", () => {
-    const tempfile = path.join(os.tmpdir(), "canSetKeyLongOnExistingFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set keys value
@@ -183,7 +184,7 @@ describe("setValue", () => {
 
   // can set a double keys value on an existing file
   test("test setValue can set a double keys value on an existing file", () => {
-    const tempfile = path.join(os.tmpdir(), "canSetKeyDoubleOnExistingFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set keys value
@@ -212,7 +213,7 @@ describe("setValue", () => {
 
   // can set a text keys value on an existing file
   test("test setValue can set a text keys value on an existing file", () => {
-    const tempfile = path.join(os.tmpdir(), "canSetKeyTextOnExistingFile");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set keys value
@@ -334,8 +335,8 @@ describe("setValue", () => {
   // test writing to two separate files
   test("can write to two separate files", () => {
     // create two temp files
-    const tempfile1 = path.join(os.tmpdir(), "tempfile1");
-    const tempfile2 = path.join(os.tmpdir(), "tempfile2");
+    const tempfile1 = path.join(os.tmpdir(), uuid.v4());
+    const tempfile2 = path.join(os.tmpdir(), uuid.v4());
 
     // set key value
     const setStatus1 = infofile.setDouble({

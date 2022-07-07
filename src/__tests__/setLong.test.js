@@ -2,6 +2,7 @@ const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const uuid = require("uuid");
 
 // get the path to the test info file
 const relativePath = "./infofiles/DemoCar";
@@ -12,7 +13,7 @@ describe("setLong tests", () => {
   // test case for setting a long value
   test("can set a long value to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetLong");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the long value
     const setStatus = infofile.setLong({
@@ -30,7 +31,7 @@ describe("setLong tests", () => {
   // test can set an array of long values
   test("can set an array of long values to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetLongArray");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the long value
     const setStatus = infofile.setLong({
@@ -52,7 +53,7 @@ describe("setLong tests", () => {
   // test case for setting a long on a file that already exists
   test("can set a long value to an existing infofile", () => {
     // copy the infofile to a temporary location
-    const tempfile = path.join(os.tmpdir(), "canSetLongOnExisting");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set the long value
@@ -71,7 +72,7 @@ describe("setLong tests", () => {
   // test case for setting a double when using setLong to a new infofile, expect a long value to be set
   test("honours setLong even when trying to set double", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetLong");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the long value
     const setStatus = infofile.setLong({

@@ -2,6 +2,7 @@ const infofile = require("../index");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+const uuid = require("uuid");
 
 // get the path to the test info file
 const relativePath = "./infofiles/DemoCar";
@@ -12,7 +13,7 @@ describe("setDouble", () => {
   // test can set a double value to a new infofile
   test("can set a double value to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetDouble");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the double value
     const setStatus = infofile.setDouble({
@@ -30,7 +31,7 @@ describe("setDouble", () => {
   // test can set a double value to an existing infofile
   test("can set a double value to an existing infofile", () => {
     // copy the infofile to a temporary location
-    const tempfile = path.join(os.tmpdir(), "canSetDoubleOnExisting");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
     fs.copyFileSync(file, tempfile);
 
     // set the double value
@@ -49,7 +50,7 @@ describe("setDouble", () => {
   // test can set an array of double values to a new infofile
   test("can set an array of double values to a new infofile", () => {
     // create a temporary infofile
-    const tempfile = path.join(os.tmpdir(), "canSetDoubleArray");
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
 
     // set the double value
     const setStatus = infofile.setDouble({
