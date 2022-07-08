@@ -3,32 +3,128 @@ const { infofile, validateFileAndSetValues } = require("./utils");
 
 // helper function to set keys
 function setKey({ infofileHandle, values }) {
-  // get the type and values
-  const type = values.type;
+  // get the keys value and key
+  const thisKey = values.keys;
+  const thisValue = values.value;
+
+  // initialise type and keykind
+  let type = "string";
+  let keyKind = "string";
+
+  // check if values is a number
+  if (!isNaN(Number(thisValue))) {
+    type = "number";
+    keyKind = "string";
+  }
+
+  // check if values is an array of arrays
+  let isArrayOfArrays = false;
+  if (Array.isArray(thisValue[0])) {
+    keyKind = "text";
+    isArrayOfArrays = true;
+  }
+
+  // if values is an arrays of arrays set the type to number otherwise throw error as arrays
+  // of arrays for strings are not supported
+  if (isArrayOfArrays) {
+    // check that values is an array of arrays with numbers
+    if (
+      thisValue.every((value) => value.every((value) => !isNaN(Number(value))))
+    ) {
+      type = "number";
+    } else {
+      // throw error
+      throw new Error(
+        `The value of the key ${thisKey} is an array of arrays but the values are not all numbers, only numbers are supported`
+      );
+    }
+  }
+
+  // check if values is an array of numbers or an array of strings when values is not an array of arrays
+  let isArrayOfNumbers = false;
+  if (
+    !isArrayOfArrays &&
+    Array.isArray(thisValue) &&
+    thisValue.every((value) => !isNaN(Number(value)))
+  ) {
+    type = "number";
+    keyKind = "string";
+    isArrayOfNumbers = true;
+  }
+
+  // check if values is an array of strings when values is not an array of arrays
+  if (
+    !isArrayOfArrays &&
+    Array.isArray(thisValue) &&
+    thisValue.every((value) => isNaN(Number(value)))
+  ) {
+    type = "string";
+    keyKind = "text";
+  }
 
   // depending on the type set the keys
   try {
-    switch (type) {
+    switch (keyKind) {
       case "string":
-        const setStringStatus = infofileHandle.setString(
-          values.keys,
-          values.value
-        );
-        return { keys: values.keys, status: setStringStatus };
-      case "long":
-        const setLongStatus = infofileHandle.setLong(values.keys, values.value);
-        return { keys: values.keys, status: setLongStatus };
-      case "double":
-        const setDoubleStatus = infofileHandle.setDouble(
-          values.keys,
-          values.value
-        );
-        return { keys: values.keys, status: setDoubleStatus };
+        switch (type) {
+          case "string":
+            const setStringStringStatus = infofileHandle.setString(
+              thisKey,
+              thisValue
+            );
+            return { keys: thisKey, status: setStringStringStatus };
+          case "number":
+            // if isArrayOfNumbers convert the values to strings
+            let setStringNumberStatus = -1;
+            if (isArrayOfNumbers) {
+              // convert numerical array to string array
+              let stringValues = thisValue.toString();
+
+              // replace commas with spaces
+              stringValues = stringValues.replace(/,/g, " ");
+
+              // set the numerical array as a string
+              setStringNumberStatus = infofileHandle.setString(
+                thisKey,
+                stringValues
+              );
+            } else {
+              setStringNumberStatus = infofileHandle.setDouble(
+                thisKey,
+                thisValue
+              );
+            }
+            return { keys: thisKey, status: setStringNumberStatus };
+          default:
+            throw new Error("Unable to set key, this needs to be more useful");
+        }
       case "text":
-        const setTextStatus = infofileHandle.setText(values.keys, values.value);
-        return { keys: values.keys, status: setTextStatus };
+        switch (type) {
+          case "string":
+            const setTextStringStatus = infofileHandle.setText(
+              thisKey,
+              thisValue
+            );
+            return { keys: thisKey, status: setTextStringStatus };
+          case "number":
+            // convert values to strings
+            let stringValues = thisValue.map((value) => value.toString());
+
+            // replace commas with spaces
+            stringValues = stringValues.map((value) =>
+              value.replace(/,/g, " ")
+            );
+
+            const setTextNumberStatus = infofileHandle.setText(
+              thisKey,
+              stringValues
+            );
+            return { keys: thisKey, status: setTextNumberStatus };
+          default:
+            throw new Error("Unable to set key, this needs to be more useful");
+        }
       default:
-        throw new Error(`${type} is not a valid type`);
+        throw new Error("Unable to set key, this needs to be more useful");
     }
   } catch (error) {
     throw new Error(error);
