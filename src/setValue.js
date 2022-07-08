@@ -96,7 +96,9 @@ function setKey({ infofileHandle, values }) {
             }
             return { keys: thisKey, status: setStringNumberStatus };
           default:
-            throw new Error("Unable to set key, this needs to be more useful");
+            throw new Error(
+              "Unable to set key, value has to be either a string, number or array of numbers"
+            );
         }
       case "text":
         switch (type) {
@@ -121,10 +123,14 @@ function setKey({ infofileHandle, values }) {
             );
             return { keys: thisKey, status: setTextNumberStatus };
           default:
-            throw new Error("Unable to set key, this needs to be more useful");
+            throw new Error(
+              "Unable to set key, value has to be either an array of strings or an array of number arrays"
+            );
         }
       default:
-        throw new Error("Unable to set key, this needs to be more useful");
+        throw new Error(
+          "Unable to set value, value has to be either a string, number or array of strings, an array of numbers or an array of number arrays"
+        );
     }
   } catch (error) {
     throw new Error(error);
