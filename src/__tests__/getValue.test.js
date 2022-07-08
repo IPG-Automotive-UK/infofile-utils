@@ -161,4 +161,28 @@ describe("getValue tests", () => {
       infofile.getValue({ file: file, keys: [1, 2, "this"] });
     }).toThrowError("keys must be a string or an array of strings");
   });
+
+  // can get exponetial values
+  test("can get exponential values", () => {
+    // get the keys value
+    const keyValue = infofile.getValue({
+      file: file,
+      keys: "Flex.JointFr1Fr1B.k.x",
+    });
+
+    // check that the keys value is valid
+    expect(keyValue.value).toEqual(500000);
+  });
+
+  // can get a vector of exponetial values
+  test("can get a vector of exponential values", () => {
+    // get the keys value
+    const keyValue = infofile.getValue({
+      file: file,
+      keys: ["Body.I"],
+    });
+
+    // check that the keys value is valid
+    expect(keyValue[0].value).toEqual([470, 1500, 1600, -0, -0, -0]);
+  });
 });

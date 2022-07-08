@@ -10,14 +10,17 @@ function getKeyValue({ fileHandle, keys }) {
     case "String_Key":
       const string = fileHandle.getString(keys);
 
+      // split string by whitespace
+      const splitString = string.split(/\s/);
+
+      // check if every element in the split string is a number
+      const isNumber = splitString.every((element) => !isNaN(element));
+
       // determine if this is a number and return either a single number or an array of numbers
       let stringValue = string;
-      if (!string.match(/[a-zA-Z]/)) {
-        // for every whitespace character, split the string into an array of strings
-        stringValue = string.split(/\s/);
-
+      if (isNumber) {
         // convert each string to a number
-        stringValue = stringValue.map((string) => {
+        stringValue = splitString.map((string) => {
           return Number(string);
         });
 
@@ -34,15 +37,20 @@ function getKeyValue({ fileHandle, keys }) {
       // if text only contains numbers convert to number
       let textValue = text;
 
-      // check every array in textValue to see if it contains any text
-      if (textValue.every((string) => !string.match(/[a-zA-Z]/))) {
-        // for each array in text value, split the string into an array of strings
-        textValue = textValue.map((textArray) => {
-          return textArray.split(/\s/);
-        });
+      // for every element in text value split by whitespace
+      const splitText = textValue.map((text) => {
+        return text.split(/\s/);
+      });
 
+      // check if every element in the split string is a number
+      const isNumberText = splitText.every((element) => {
+        return element.every((element) => !isNaN(element));
+      });
+
+      // check every array in textValue to see if it contains any text
+      if (isNumberText) {
         // convert each string to a number
-        textValue = textValue.map((textArray) => {
+        textValue = splitText.map((textArray) => {
           return textArray.map((text) => {
             return Number(text);
           });
