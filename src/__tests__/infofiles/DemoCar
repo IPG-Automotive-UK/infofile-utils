@@ -24,16 +24,16 @@ Jack.rr.pos = 1.3 -0.772 0.29
 Virtual.PoA = 2.406 0.000 0.566
 
 WheelCarrier.fl.mass = 18.0
-WheelCarrier.fl.I = 0.2 0.2 0.2 -0.0 -0.0 -0.0
+WheelCarrier.fl.I = 0.2 0.2 0.2 0 0 0
 WheelCarrier.fl.pos = 3.40 0.789 0.29
 WheelCarrier.fr.mass = 18.0
-WheelCarrier.fr.I = 0.2 0.2 0.2 -0.0 -0.0 -0.0
+WheelCarrier.fr.I = 0.2 0.2 0.2 0 0 0
 WheelCarrier.fr.pos = 3.40 -0.789 0.29
 WheelCarrier.rl.mass = 13.0
-WheelCarrier.rl.I = 0.1 0.1 0.1 -0.0 -0.0 -0.0
+WheelCarrier.rl.I = 0.1 0.1 0.1 0 0 0
 WheelCarrier.rl.pos = 0.863 0.772 0.29
 WheelCarrier.rr.mass = 13.0
-WheelCarrier.rr.I = 0.1 0.1 0.1 -0.0 -0.0 -0.0
+WheelCarrier.rr.I = 0.1 0.1 0.1 0 0 0
 WheelCarrier.rr.pos = 0.863 -0.772 0.29
 Wheel.fl.mass = 25.0
 Wheel.fl.I = 0.4 1.2 0.4
@@ -119,7 +119,7 @@ nAxle = 2
 VehicleModel.Kind = RigidBody
 VehicleModel.Mode = BodyA
 Body.mass = 1301
-Body.I = 4.7e+002 1.5e+003 1.6e+003 -0.0 -0.0 -0.0
+Body.I = 4.7e+002 1.5e+003 1.6e+003 0 0 0
 Body.pos = 2.43 0 0.60
 Flex.JointFr1Fr1B.pos = 2.43 0 0.60
 Flex.JointFr1Fr1B.Kind = Coeff
@@ -695,3 +695,4 @@ Crypto.AllowAccess:
 	GenericPlugin
 
 Additional.Comment:
+not a type = not a type
