@@ -183,6 +183,6 @@ describe("getValue tests", () => {
     });
 
     // check that the keys value is valid
-    expect(keyValue[0].value).toEqual([470, 1500, 1600, -0, -0, -0]);
+    expect(keyValue[0].value).toEqual([470, 1500, 1600, 0, 0, 0]);
   });
 });
