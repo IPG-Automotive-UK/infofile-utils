@@ -269,7 +269,7 @@ const infofile = require("@ipguk/infofile-utils");
 const file = C:\infofiles\infofile
 
 // set the value for the keys "SuspF.Spring.l0" to 0.351
-status = infofile.setValue({file, values:{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}});
+status = infofile.setValue({file, values:{keys: "SuspF.Spring.l0", value: 0.351}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
@@ -285,7 +285,7 @@ const infofile = require("@ipguk/infofile-utils");
 const file = C:\infofiles\infofile
 
 // set the values for the keys "SuspF.Spring.l0" and "Aero.Crosswind.Kind" to 0.351 and "Step"
-status = infofile.setValue({file, values:[{keys: "SuspF.Spring.l0", value: 0.351, type: "double"}, {keys: "Aero.Crosswind.Kind", value:  "Step", type: "string"}]});
+status = infofile.setValue({file, values:[{keys: "SuspF.Spring.l0", value: 0.351}, {keys: "Aero.Crosswind.Kind", value:  "Step"}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "SuspF.Spring.l0", status: 0}, {keys: "Aero.Crosswind.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
