@@ -1,5 +1,5 @@
 {
-  "name": "@ipguk/infofile-reader-and-writer",
+  "name": "@ipguk/infofile-utils",
   "version": "1.0.0",
   "description": "File reader and writer for IPG Automotive infofiles",
   "main": "index.js",
