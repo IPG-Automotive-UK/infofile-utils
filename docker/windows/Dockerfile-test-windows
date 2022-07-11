@@ -1,0 +1,10 @@
+# build on top of windows image that has build tools and nodejs installed
+FROM stefanscherer/node-windows:12.18.3-build-tools
+
+# make a directory to store the addon code
+WORKDIR /infofile
+
+COPY . .
+
+# entry command to run build (npm install will build the addon)
+CMD "./docker/windows/test-windows.ps1"

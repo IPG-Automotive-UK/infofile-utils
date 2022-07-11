@@ -1,0 +1,18 @@
+{
+  "name": "@ipguk/infofile-reader-and-writer",
+  "version": "1.0.0",
+  "description": "File reader and writer for IPG Automotive infofiles",
+  "main": "index.js",
+  "author": "IPG Automotive UK",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^28.1.1",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:windows": "docker-compose -f ./docker/windows/docker-compose-test-windows.yml -p infofile-node-addon-test up --build --abort-on-container-exit",
+    "test:linux": "docker-compose -f ./docker/linux/docker-compose-test-linux.yml -p infofile-node-addon-test up --build --abort-on-container-exit"
+  }
+}
