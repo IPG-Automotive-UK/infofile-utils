@@ -486,4 +486,66 @@ describe("setValue", () => {
     fs.unlinkSync(tempfileExisting);
     fs.unlinkSync(tempfileNew);
   });
+
+  // test setValue can set an empty string keys value
+  test("test setValue can set an empty string keys value", () => {
+    // create a temporary file
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
+
+    // set keys value
+    const setStatus = infofile.setValue({
+      file: tempfile,
+      values: {
+        keys: "Eng.Kind",
+        value: "",
+      },
+    });
+
+    // get keys value
+    const keyValue = infofile.getString({
+      file: tempfile,
+      keys: "Eng.Kind",
+    });
+
+    // expect keys value to be a string
+    expect(setStatus.status).toBe(0);
+    expect(keyValue).toBe("");
+
+    // delete the temporary infofile
+    fs.unlinkSync(tempfile);
+  });
+
+  // test setValue can not set a null keys value
+  test("test setValue can not set a null value", () => {
+    // create a temporary file
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
+
+    // expect to throw an error when setting a null value
+    expect(() => {
+      infofile.setValue({
+        file: tempfile,
+        values: {
+          keys: "Eng.Kind",
+          value: null,
+        },
+      });
+    }).toThrowError("Value for key Eng.Kind cannot be set to null");
+  });
+
+  // test setValue not set a undefined keys value
+  test("test setValue can not set a undefined value", () => {
+    // create a temporary file
+    const tempfile = path.join(os.tmpdir(), uuid.v4());
+
+    // expect to throw an error when setting a null value
+    expect(() => {
+      infofile.setValue({
+        file: tempfile,
+        values: {
+          keys: "Eng.Kind",
+          value: undefined,
+        },
+      });
+    }).toThrowError("Value for key Eng.Kind cannot be set to undefined");
+  });
 });
