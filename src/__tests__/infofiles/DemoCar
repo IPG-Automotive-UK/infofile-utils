@@ -293,7 +293,7 @@ SuspR.Buf_Pull:
 	0.027 78083.0
 	0.030 108691.0
 SuspR.Stabi.Kind = Hookean 1
-SuspR.Stabi.Amplify = 1.0
+SuspR.Stabi.Amplify = $stabiAmplify=10.0
 SuspR.Stabi = 15000.0
 SuspR.Kin.N = 1
 SuspR.Com.N = 0
@@ -319,7 +319,7 @@ Susp.Comment:
 ## Steering ##############################################################
 Steering.Kind = GenAngle 1
 Steering.Comment:
-Steering.Rack2StWhl = 100.0
+Steering.Rack2StWhl = $rack2Whl=100
 
 
 ## Tires #################################################################

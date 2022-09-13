@@ -97,4 +97,15 @@ describe("getDouble tests", () => {
       infofile.getDouble({ file: file, keys: [1, 2, "this"] });
     }).toThrowError("keys must be a string or an array of strings");
   });
+  // test case for getting a double value when the value is a nValue
+  test("can get a double value", () => {
+    // get the double value
+    const doubleValue = infofile.getDouble({
+      file: file,
+      keys: "SuspR.Stabi.Amplify",
+    });
+
+    // check that the double value is valid
+    expect(doubleValue).toEqual(10);
+  });
 });
