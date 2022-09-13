@@ -185,4 +185,19 @@ describe("getValue tests", () => {
     // check that the keys value is valid
     expect(keyValue[0].value).toEqual([470, 1500, 1600, 0, 0, 0]);
   });
+
+  // test case for getting a value where the value is an nValue
+  test("getValue returns the parameter name and value for an nValue", () => {
+    // get the value
+    const keyValue = infofile.getValue({
+      file,
+      keys: "SuspR.Stabi.Amplify",
+    });
+
+    // expected value
+    const expectedStringValue = "$stabiAmplify=10.0";
+
+    // check that the string value is valid
+    expect(keyValue.value).toEqual(expectedStringValue);
+  });
 });

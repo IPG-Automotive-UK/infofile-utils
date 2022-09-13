@@ -102,4 +102,19 @@ describe("getString tests", () => {
       infofile.getString({ file, keys: [1, 2, "this"] });
     }).toThrowError("keys must be a string or an array of strings");
   });
+
+  // test case for getting a string where the value is an nValue
+  test("getString returns the parameter name and value for an nValue", () => {
+    // get the string value
+    const stringValue = infofile.getString({
+      file,
+      keys: "SuspR.Stabi.Amplify",
+    });
+
+    // expected string value
+    const expectedStringValue = "$stabiAmplify=10.0";
+
+    // check that the string value is valid
+    expect(stringValue).toEqual(expectedStringValue);
+  });
 });

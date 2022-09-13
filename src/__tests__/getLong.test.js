@@ -96,4 +96,16 @@ describe("getLong tests", () => {
       infofile.getLong({ file, keys: [1, 2, "this"] });
     }).toThrowError("keys must be a string or an array of strings");
   });
+
+  // test case for getting a long value when the value is a nValue
+  test("getLong returns only the value for a nValue parameter", () => {
+    // get the long value
+    const longValue = infofile.getLong({
+      file,
+      keys: "Steering.Rack2StWhl",
+    });
+
+    // check that the long value is valid
+    expect(longValue).toBe(100);
+  });
 });
