@@ -1,6 +1,6 @@
 {
   "name": "@ipguk/infofile-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "File reader and writer for IPG Automotive infofiles",
   "main": "src",
   "author": "IPG Automotive UK",
