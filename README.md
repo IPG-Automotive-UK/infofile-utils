@@ -21,6 +21,11 @@ const infofile = require("@ipguk/infofile-utils");
 - Windows
 - Linux
 
+## Requirements
+
+- A libusb libary is required to be installed on Linux systems. This is usually provided by the
+  https://packages.debian.org/stretch/libusb-0.1-4 package.
+
 ## Usage
 
 ### Getting values from an infofile:
