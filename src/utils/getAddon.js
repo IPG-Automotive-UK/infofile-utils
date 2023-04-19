@@ -10,7 +10,7 @@ switch (os.type()) {
     infofile = require("../addons/infofile/linux64/infofile-linux64.node");
     break;
   default:
-    throw new Error(
+    console.error(
       "Unsupported OS type: " +
         os.type() +
         ". Infofile only supports Windows and Linux."
