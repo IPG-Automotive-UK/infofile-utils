@@ -10,11 +10,18 @@ switch (os.type()) {
     infofile = require("../addons/infofile/linux64/infofile-linux64.node");
     break;
   default:
-    throw new Error(
+    // unsupported os type so return object that has basic functions stubbed out to return empty values and throw an appropriate error message
+    const errorMessage =
       "Unsupported OS type: " +
-        os.type() +
-        ". Infofile only supports Windows and Linux."
-    );
+      os.type() +
+      ". Infofile only supports Windows and Linux.";
+    infofile = {
+      delete: () => {},
+      getError: () => {
+        return errorMessage;
+      },
+    };
+    console.error(errorMessage);
 }
 
 // export the infofile addon
