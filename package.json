@@ -6,8 +6,8 @@
   "author": "IPG Automotive UK",
   "license": "MIT",
   "dependencies": {
-    "jest": "^29.6.4",
-    "uuid": "^9.0.0"
+    "jest": "^29.7.0",
+    "uuid": "^9.0.1"
   },
   "scripts": {
     "test": "jest",
