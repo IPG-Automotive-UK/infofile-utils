@@ -1,5 +1,11 @@
 // get text types
-type GetTextSingle = ({ file, key }: { file: string; key: string }) => string[];
+type GetTextSingle = ({
+  file,
+  keys,
+}: {
+  file: string;
+  keys: string;
+}) => string[];
 type GetTextMultiple = ({
   file,
   keys,

@@ -1,5 +1,11 @@
 // get string types
-type GetStringSingle = ({ file, key }: { file: string; key: string }) => string;
+type GetStringSingle = ({
+  file,
+  keys,
+}: {
+  file: string;
+  keys: string;
+}) => string;
 type GetStringMultiple = ({
   file,
   keys,

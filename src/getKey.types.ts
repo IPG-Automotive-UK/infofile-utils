@@ -1,4 +1,4 @@
-// / get key types
+// get key types
 export type GetKey = ({
   file,
   prefix,

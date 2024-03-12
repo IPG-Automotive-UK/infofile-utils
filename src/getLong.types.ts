@@ -1,5 +1,5 @@
 // get long types
-type GetLongSingle = ({ file, key }: { file: string; key: string }) => number;
+type GetLongSingle = ({ file, keys }: { file: string; keys: string }) => number;
 type GetLongMultiple = ({
   file,
   keys,
