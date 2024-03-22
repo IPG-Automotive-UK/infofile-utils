@@ -9,6 +9,8 @@ function isValidType(type) {
       return true;
     case "Model":
       return true;
+    case "Road":
+      return true;
     default:
       return false;
   }
@@ -81,6 +83,17 @@ function isValidInfoFile({ file, type }) {
             infofile.delete();
             return true;
           }
+        } else {
+          // delete the infofile handle
+          infofile.delete();
+          return false;
+        }
+      case "Road":
+        // regex pattern search for Roadfile
+        if (fileIdent.match(/^IPGRoad.+$/)) {
+          // delete the infofile handle
+          infofile.delete();
+          return true;
         } else {
           // delete the infofile handle
           infofile.delete();

@@ -21,6 +21,10 @@ const fileTestRun = path.resolve(__dirname, relativePathTestRunInfoFile);
 const relativePathModelInfoFile = "./infofiles/Trailer";
 const fileModel = path.resolve(__dirname, relativePathModelInfoFile);
 
+// get the path to the road info file
+const relativePathRoadInfoFile = "./infofiles/DEU_Hockenheim.rd5";
+const fileRoad = path.resolve(__dirname, relativePathRoadInfoFile);
+
 // get the path to the test temp file
 const relativePathTempFile = "./infofiles/tempFile";
 const tempFile = path.resolve(__dirname, relativePathTempFile);
@@ -85,6 +89,16 @@ describe("isValidInfoFile tests", () => {
         type: "Model",
       })
     ).toEqual(false);
+  });
+
+  // test case validates a valid road infofile successfully with the right function call
+  test("validates a valid road infofile successfully with the right function call", () => {
+    expect(
+      isValidInfoFile({
+        file: fileRoad,
+        type: "Road",
+      })
+    ).toEqual(true);
   });
 
   // test case returns false when the provided file is not a valid infofile
