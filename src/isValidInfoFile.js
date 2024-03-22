@@ -15,7 +15,7 @@ function isValidType(type) {
 }
 
 // a function to determine whether a file is an infofile or not
-function isInfoFile({ file, type }) {
+function isValidInfoFile({ file, type }) {
   // check that the file has been provided
   if (!file) {
     throw new Error("file is required");
@@ -104,4 +104,4 @@ function isInfoFile({ file, type }) {
 }
 
 // export is infofile function
-module.exports = { isInfoFile };
+module.exports = { isValidInfoFile };

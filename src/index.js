@@ -13,5 +13,5 @@ module.exports = {
   ...require("./setDouble"),
   ...require("./setText"),
   ...require("./setValue"),
-  ...require("./isInfoFile"),
+  ...require("./isValidInfoFile"),
 };

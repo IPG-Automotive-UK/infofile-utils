@@ -1,4 +1,4 @@
-const { isInfoFile } = require("../isInfoFile");
+const { isValidInfoFile } = require("../isValidInfoFile");
 const path = require("path");
 
 // get the path to the test car info file
@@ -26,11 +26,11 @@ const relativePathTempFile = "./infofiles/tempFile";
 const tempFile = path.resolve(__dirname, relativePathTempFile);
 
 // get double tests
-describe("isInfoFile tests", () => {
+describe("isValidInfoFile tests", () => {
   // test case validates a valid car infofile successfully with the right function call
   test("validates a valid car infofile successfully with the right function call", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileCar,
         type: "Vehicle",
       })
@@ -40,7 +40,7 @@ describe("isInfoFile tests", () => {
   // test case validates a valid motorcycle infofile successfully with the right function call
   test("validates a valid motorcycle infofile successfully with the right function call", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileMotorcycle,
         type: "Vehicle",
       })
@@ -50,7 +50,7 @@ describe("isInfoFile tests", () => {
   // test case validates a valid truck infofile successfully with the right function call
   test("validates a valid truck infofile successfully with the right function call", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileTruck,
         type: "Vehicle",
       })
@@ -60,7 +60,7 @@ describe("isInfoFile tests", () => {
   // test case validates a valid TestRun infofile successfully with the right function call
   test("validates a valid TestRun infofile successfully with the right function call", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileTestRun,
         type: "TestRun",
       })
@@ -70,7 +70,7 @@ describe("isInfoFile tests", () => {
   // test case validates a valid infofile of a model successfully with the right function call
   test("validates a valid infofile of a model successfully with the right function call", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileModel,
         type: "Model",
       })
@@ -80,7 +80,7 @@ describe("isInfoFile tests", () => {
   // test case validates a valid infofile of a model successfully with the right function call
   test("returns false when type is Model, but the infofile is of a vehicle or a test run", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: fileCar,
         type: "Model",
       })
@@ -90,7 +90,7 @@ describe("isInfoFile tests", () => {
   // test case returns false when the provided file is not a valid infofile
   test("returns false when the provided file is not a valid infofile", () => {
     expect(
-      isInfoFile({
+      isValidInfoFile({
         file: tempFile,
         type: "TestRun",
       })
@@ -100,7 +100,7 @@ describe("isInfoFile tests", () => {
   // test case throws error when file is missing in function call
   test("throws error when file is missing in function call", () => {
     expect(() => {
-      isInfoFile({
+      isValidInfoFile({
         type: "TestRun",
       });
     }).toThrowError("file is required");
@@ -109,7 +109,7 @@ describe("isInfoFile tests", () => {
   // test case throws error when type is missing in function call
   test("throws error when type is missing in function call", () => {
     expect(() => {
-      isInfoFile({
+      isValidInfoFile({
         file: fileTestRun,
       });
     }).toThrowError("type is required");
@@ -118,7 +118,7 @@ describe("isInfoFile tests", () => {
   // test case throws error when the type is invalid
   test("throws error when the type is invalid", () => {
     expect(() => {
-      isInfoFile({
+      isValidInfoFile({
         file: fileTestRun,
         type: "shouldThrowError",
       });
@@ -128,7 +128,7 @@ describe("isInfoFile tests", () => {
   // test case throws error when path can't be found
   test("throws error when path can't be found", () => {
     expect(() => {
-      isInfoFile({
+      isValidInfoFile({
         file: "./SomeFakeFile.car",
         type: "Vehicle",
       });
