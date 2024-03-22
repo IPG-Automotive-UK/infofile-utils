@@ -17,6 +17,14 @@ const fileTruck = path.resolve(__dirname, relativePathTruckInfoFile);
 const relativePathTestRunInfoFile = "./infofiles/BackAndForthTestRun";
 const fileTestRun = path.resolve(__dirname, relativePathTestRunInfoFile);
 
+// get the path to the test model info file
+const relativePathModelInfoFile = "./infofiles/Trailer";
+const fileModel = path.resolve(__dirname, relativePathModelInfoFile);
+
+// get the path to the test temp file
+const relativePathTempFile = "./infofiles/tempFile";
+const tempFile = path.resolve(__dirname, relativePathTempFile);
+
 // get double tests
 describe("isInfoFile tests", () => {
   // test case validates a valid car infofile successfully with the right function call
@@ -57,6 +65,36 @@ describe("isInfoFile tests", () => {
         type: "TestRun",
       })
     ).toEqual(true);
+  });
+
+  // test case validates a valid infofile of a model successfully with the right function call
+  test("validates a valid infofile of a model successfully with the right function call", () => {
+    expect(
+      isInfoFile({
+        file: fileModel,
+        type: "Model",
+      })
+    ).toEqual(true);
+  });
+
+  // test case validates a valid infofile of a model successfully with the right function call
+  test("returns false when type is Model, but the infofile is of a vehicle or a test run", () => {
+    expect(
+      isInfoFile({
+        file: fileCar,
+        type: "Model",
+      })
+    ).toEqual(false);
+  });
+
+  // test case returns false when the provided file is not a valid infofile
+  test("returns false when the provided file is not a valid infofile", () => {
+    expect(
+      isInfoFile({
+        file: tempFile,
+        type: "TestRun",
+      })
+    ).toEqual(false);
   });
 
   // test case throws error when file is missing in function call

@@ -64,6 +64,28 @@ function isInfoFile({ file, type }) {
           infofile.delete();
           return false;
         }
+      case "Model":
+        if (fileIdent.match(/^CarMaker-.+$/)) {
+          // if it is a valid infofile, but a vehicle or test run infofile, return false (expected a model)
+          if (
+            fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
+            fileIdent.match(/^CarMaker-Truck\s\d{2}$/) ||
+            fileIdent.match(/^CarMaker-Motorcycle\s\d{2}$/) ||
+            fileIdent.match(/^CarMaker-TestRun\s\d{2}$/)
+          ) {
+            // delete the infofile handle
+            infofile.delete();
+            return false;
+          } else {
+            // delete the infofile handle
+            infofile.delete();
+            return true;
+          }
+        } else {
+          // delete the infofile handle
+          infofile.delete();
+          return false;
+        }
       default:
         // delete the infofile handle
         infofile.delete();
