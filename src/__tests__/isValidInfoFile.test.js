@@ -31,55 +31,24 @@ const tempFile = path.resolve(__dirname, relativePathTempFile);
 
 // get double tests
 describe("isValidInfoFile tests", () => {
-  // test case validates a valid car infofile successfully with the right function call
-  test("validates a valid car infofile successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileCar,
-        type: "Vehicle",
-      })
-    ).toEqual(true);
-  });
-
-  // test case validates a valid motorcycle infofile successfully with the right function call
-  test("validates a valid motorcycle infofile successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileMotorcycle,
-        type: "Vehicle",
-      })
-    ).toEqual(true);
-  });
-
-  // test case validates a valid truck infofile successfully with the right function call
-  test("validates a valid truck infofile successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileTruck,
-        type: "Vehicle",
-      })
-    ).toEqual(true);
-  });
-
-  // test case validates a valid TestRun infofile successfully with the right function call
-  test("validates a valid TestRun infofile successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileTestRun,
-        type: "TestRun",
-      })
-    ).toEqual(true);
-  });
-
-  // test case validates a valid infofile of a model successfully with the right function call
-  test("validates a valid infofile of a model successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileModel,
-        type: "Model",
-      })
-    ).toEqual(true);
-  });
+  test.each([
+    { testFile: fileCar, testType: "Vehicle", text: "Car" },
+    { testFile: fileMotorcycle, testType: "Vehicle", text: "Motorcycle" },
+    { testFile: fileTruck, testType: "Vehicle", text: "Truck" },
+    { testFile: fileTestRun, testType: "TestRun", text: "TestRun" },
+    { testFile: fileModel, testType: "Model", text: "Model" },
+    { testFile: fileRoad, testType: "Road", text: "Road" },
+  ])(
+    "validates a valid $text infofile successfully with the right function call",
+    ({ testFile, testType, text }) => {
+      expect(
+        isValidInfoFile({
+          file: testFile,
+          type: testType,
+        })
+      ).toEqual(true);
+    }
+  );
 
   // test case validates a valid infofile of a model successfully with the right function call
   test("returns false when type is Model, but the infofile is of a vehicle or a test run", () => {
@@ -89,16 +58,6 @@ describe("isValidInfoFile tests", () => {
         type: "Model",
       })
     ).toEqual(false);
-  });
-
-  // test case validates a valid road infofile successfully with the right function call
-  test("validates a valid road infofile successfully with the right function call", () => {
-    expect(
-      isValidInfoFile({
-        file: fileRoad,
-        type: "Road",
-      })
-    ).toEqual(true);
   });
 
   // test case returns false when the provided file is not a valid infofile
