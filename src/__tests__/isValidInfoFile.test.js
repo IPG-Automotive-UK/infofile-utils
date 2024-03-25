@@ -79,13 +79,22 @@ describe("isValidInfoFile tests", () => {
     }).toThrowError("file is required");
   });
 
-  // test case throws error when type is missing in function call
-  test("throws error when type is missing in function call", () => {
-    expect(() => {
+  // returns true when infofile type is not provided, but the given file is not an infofile
+  test("returns true when infofile type is not provided, but the given file is not an infofile", () => {
+    expect(
       isValidInfoFile({
-        file: fileTestRun,
-      });
-    }).toThrowError("type is required");
+        file: fileCar,
+      })
+    ).toEqual(true);
+  });
+
+  // returns false when infofile type is not provided, and the given file is not an infofile
+  test("returns false when infofile type is not provided, and the given file is not an infofile", () => {
+    expect(
+      isValidInfoFile({
+        file: tempFile,
+      })
+    ).toEqual(false);
   });
 
   // test case throws error when the type is invalid

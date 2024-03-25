@@ -21,20 +21,23 @@ function isValidInfoFile({ file, type }) {
     throw new Error("file is required");
   }
 
-  // check that type has been provided
-  if (!type) {
-    throw new Error("type is required");
-  }
-
-  if (!isValidType(type)) {
+  if (type && !isValidType(type)) {
     throw new Error("type is invalid");
   }
 
   // read the info file
+  console.log(file);
   const infofile = readInfoFile(file);
 
   try {
     const fileIdent = infofile.getString("FileIdent");
+    console.log(fileIdent);
+
+    if (!type) {
+      return fileIdent.match(/^IPGRoad.+$/) || fileIdent.match(/^CarMaker-.+$/)
+        ? true
+        : false;
+    }
 
     // looks for the appropriate condition to validate the infofile based on the provided type
     switch (type) {
@@ -61,7 +64,7 @@ function isValidInfoFile({ file, type }) {
           return false;
         }
       case "Road":
-        // regex pattern search for Roadfile
+        //regex pattern search for Roadfile
         return fileIdent.match(/^IPGRoad.+$/) ? true : false;
       default:
         return false;
