@@ -1,22 +1,20 @@
 const { readInfoFile } = require("./utils");
 
-// helper function to determine the validity of the provided infofile type
+/**
+ * Helper function to determine the validity of the provided infofile type.
+ * @param type Type of infofile to check for e.g. Vehicle
+ * @returns tf Boolean indicating valid type or not.
+ */
 function isValidType(type) {
-  switch (type) {
-    case "Vehicle":
-      return true;
-    case "TestRun":
-      return true;
-    case "Model":
-      return true;
-    case "Road":
-      return true;
-    default:
-      return false;
-  }
+  return ["Vehicle", "TestRun", "Model", "Road"].includes(type);
 }
 
-// a function to determine whether a file is an infofile or not
+/**
+ * Determines whether a file is an infofile or not.
+ * @param file Filepath to infofile
+ * @param type Type of infofile to check for e.g. Vehicle
+ * @returns tf Boolean indicating valid infofile or not.
+ */
 function isValidInfoFile({ file, type }) {
   // check that the file has been provided
   if (!file) {
@@ -42,66 +40,30 @@ function isValidInfoFile({ file, type }) {
     switch (type) {
       // regex match for possible vehicle types in the FileIdent property of the infofile
       case "Vehicle":
-        if (
-          fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
+        return fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
           fileIdent.match(/^CarMaker-Truck\s\d{2}$/) ||
           fileIdent.match(/^CarMaker-Motorcycle\s\d{2}$/)
-        ) {
-          // delete the infofile handle
-          infofile.delete();
-          return true;
-        } else {
-          // delete the infofile handle
-          infofile.delete();
-          return false;
-        }
+          ? true
+          : false;
       // regex match for TestRun in the FileIdent property of the infofile
       case "TestRun":
-        if (fileIdent.match(/^CarMaker-TestRun\s\d{2}$/)) {
-          // delete the infofile handle
-          infofile.delete();
-          return true;
-        } else {
-          // delete the infofile handle
-          infofile.delete();
-          return false;
-        }
+        return fileIdent.match(/^CarMaker-TestRun\s\d{2}$/) ? true : false;
       case "Model":
         if (fileIdent.match(/^CarMaker-.+$/)) {
           // if it is a valid infofile, but a vehicle or test run infofile, return false (expected a model)
-          if (
-            fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
+          return fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
             fileIdent.match(/^CarMaker-Truck\s\d{2}$/) ||
             fileIdent.match(/^CarMaker-Motorcycle\s\d{2}$/) ||
             fileIdent.match(/^CarMaker-TestRun\s\d{2}$/)
-          ) {
-            // delete the infofile handle
-            infofile.delete();
-            return false;
-          } else {
-            // delete the infofile handle
-            infofile.delete();
-            return true;
-          }
+            ? false
+            : true;
         } else {
-          // delete the infofile handle
-          infofile.delete();
           return false;
         }
       case "Road":
         // regex pattern search for Roadfile
-        if (fileIdent.match(/^IPGRoad.+$/)) {
-          // delete the infofile handle
-          infofile.delete();
-          return true;
-        } else {
-          // delete the infofile handle
-          infofile.delete();
-          return false;
-        }
+        return fileIdent.match(/^IPGRoad.+$/) ? true : false;
       default:
-        // delete the infofile handle
-        infofile.delete();
         return false;
     }
   } catch {
@@ -113,6 +75,9 @@ function isValidInfoFile({ file, type }) {
 
     // throw the error
     throw new Error(error);
+  } finally {
+    // delete the infofile handle
+    infofile.delete();
   }
 }
 
