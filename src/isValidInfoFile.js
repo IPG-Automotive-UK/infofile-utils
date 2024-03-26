@@ -52,12 +52,10 @@ function isValidInfoFile({ file, type }) {
   }
 
   // read the info file
-  console.log(file);
   const infofile = readInfoFile(file);
 
   try {
     const fileIdent = infofile.getString("FileIdent");
-    console.log(fileIdent);
 
     if (!type) {
       return fileIdent.match(/^IPGRoad.+$/) ||
