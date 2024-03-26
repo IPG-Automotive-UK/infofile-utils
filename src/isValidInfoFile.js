@@ -6,7 +6,33 @@ const { readInfoFile } = require("./utils");
  * @returns tf Boolean indicating valid type or not.
  */
 function isValidType(type) {
-  return ["Vehicle", "TestRun", "Model", "Road"].includes(type);
+  return [
+    "Vehicle",
+    "Car",
+    "Motorcycle",
+    "Truck",
+    "TestRun",
+    "Road",
+    "Trailer",
+    "Tire",
+    "Driver",
+    "TrafficBehavior",
+    "TrafficDriver",
+    "TrafficTemplate",
+    "SavedSelections",
+    "UserDriver",
+    "SuspensionKinematics-skc",
+    "SuspensionKinematics-mbs",
+    "ADTF",
+    "DataDict",
+    "GPUConfig",
+    "PTBattery-BattECM",
+    "AirBrake",
+    "HydESP",
+    "HydIPB",
+    "Suspension",
+    "SuspensionControl",
+  ].includes(type);
 }
 
 /**
@@ -34,7 +60,9 @@ function isValidInfoFile({ file, type }) {
     console.log(fileIdent);
 
     if (!type) {
-      return fileIdent.match(/^IPGRoad.+$/) || fileIdent.match(/^CarMaker-.+$/)
+      return fileIdent.match(/^IPGRoad.+$/) ||
+        fileIdent.match(/^CarMaker-.+$/) ||
+        fileIdent.match(/^GUI-.+$/)
         ? true
         : false;
     }
@@ -57,6 +85,9 @@ function isValidInfoFile({ file, type }) {
       // regex match for TestRun in the FileIdent property of the infofile
       case "TestRun":
         return fileIdent.match(/^CarMaker-TestRun\s\d{2}$/) ? true : false;
+      case "Road":
+        //regex pattern search for Roadfile
+        return fileIdent.match(/^IPGRoad.+$/) ? true : false;
       case "Trailer":
         return fileIdent.match(/^CarMaker-Trailer\s\d{2}$/) ? true : false;
       case "Tire":
@@ -81,12 +112,12 @@ function isValidInfoFile({ file, type }) {
         return fileIdent.match(/^GUI-SavedSelections\s\d{2}$/) ? true : false;
       case "UserDriver":
         return fileIdent.match(/^CarMaker-UserDriver-.+$/) ? true : false;
-      case "SuspKnC-skc":
+      case "SuspensionKinematics-skc":
         return fileIdent.match(/^CarMaker-SuspKnC-\*\s.+$/) ? true : false;
-      case "SuspKnC-mbs":
+      case "SuspensionKinematics-mbs":
         return fileIdent.match(/^CarMaker-SuspKnC-[^*]/) ? true : false;
-      case "ATDF":
-        return fileIdent.match(/^CarMaker-ATDF\s.+$/) ? true : false;
+      case "ADTF":
+        return fileIdent.match(/^CarMaker-ADTF\s.+$/) ? true : false;
       case "DataDict":
         return fileIdent.match(/^CarMaker-DataDict\s.+$/) ? true : false;
       case "GPUConfig":
@@ -109,9 +140,6 @@ function isValidInfoFile({ file, type }) {
         return fileIdent.match(/^CarMaker-Susp_.+$/) ? true : false;
       case "SuspensionControl":
         return fileIdent.match(/^CarMaker-SuspControl.+$/) ? true : false;
-      case "Road":
-        //regex pattern search for Roadfile
-        return fileIdent.match(/^IPGRoad.+$/) ? true : false;
       default:
         return false;
     }

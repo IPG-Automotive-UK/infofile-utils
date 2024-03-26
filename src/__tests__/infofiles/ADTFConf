@@ -1,0 +1,61 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-ADTF 2.0
+Description:
+	Example ADTF configuration without synchronization
+ADTF.active = 0
+ADTF.Protocol = TCP
+ADTF.Version = 3
+ADTF.HostURL = http://localhost:8000
+ADTF.DDL_filename = adtf.description
+
+ADTF.Sync.Mode = 0
+ADTF.Sync.StreamName =
+ADTF.Sync.StreamNameOut =
+ADTF.Sync.ExpUpdCycleCount = 0
+ADTF.Sync.SigNameIn =
+ADTF.Sync.SigNameOut =
+ADTF.Sync.MaxPermDev = 0
+ADTF.Sync.Step = 1
+ADTF.Sync.TimeOut = 0.5
+
+ADTF.Stream.In:
+	FeedbackTime		Info
+	TrafficFeedback		Traffic
+	CMRecv			Vehicle
+ADTF.Stream.Out:
+	CMSend			Vehicle				100
+	Info			Info				100
+	TrafficInfo		Traffic				100
+
+# Stream Mappings:
+ADTF.FeedbackTime.StreamMap:
+	Time UserOut_00 1.0
+ADTF.CMRecv.StreamMap:
+	Distance UserOut_01 1.0
+	Engine.rotv UserOut_02 1.0
+	v UserOut_03 3.6
+	Wheel.0.rotv UserOut_04 1.0
+ADTF.CMSend.StreamMap:
+	Distance Vhcl.Distance 1.0
+	Engine.on PT.ECU.Engine_on 1.0
+	Engine.rotv Vhcl.Engine.rotv 1.0
+	v Vhcl.v 1.0
+	Wheel.0.rotv Vhcl.FL.rotv 1.0
+	Wheel.0.tx Vhcl.FL.tx 1.0
+	Wheel.0.ty Vhcl.FL.ty 1.0
+	Wheel.0.tz Vhcl.FL.tz 1.0
+	Wheel.1.rotv Vhcl.FR.rotv 1.0
+	Wheel.1.tx Vhcl.FR.tx 1.0
+	Wheel.1.ty Vhcl.FR.ty 1.0
+	Wheel.1.tz Vhcl.FR.tz 1.0
+	Wheel.2.rotv Vhcl.RL.rotv 1.0
+	Wheel.2.tx Vhcl.RL.tx 1.0
+	Wheel.2.ty Vhcl.RL.ty 1.0
+	Wheel.2.tz Vhcl.RL.tz 1.0
+	Wheel.3.rotv Vhcl.RR.rotv 1.0
+	Wheel.3.tx Vhcl.RR.tx 1.0
+	Wheel.3.ty Vhcl.RR.ty 1.0
+	Wheel.3.tz Vhcl.RR.tz 1.0
+ADTF.Info.StreamMap:
+	Time Time 1.0
+ADTF.SyncRunLevel = 1
