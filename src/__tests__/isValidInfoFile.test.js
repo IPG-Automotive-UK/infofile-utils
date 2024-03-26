@@ -95,7 +95,7 @@ const filePTBatteryBattECM = path.resolve(
 );
 
 // get the path to the test air brake info file
-const relativePathAirBrakeInfoFile = "./infofiles/Demo1AxleTrailerAirBrake";
+const relativePathAirBrakeInfoFile = "./infofiles/Demo1AxleTrailerAirbrake";
 const fileAirBrake = path.resolve(__dirname, relativePathAirBrakeInfoFile);
 
 // get the path to the test HydESP info file
