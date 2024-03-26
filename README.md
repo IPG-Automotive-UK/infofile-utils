@@ -279,9 +279,30 @@ const file = "C:\infofiles\infofile";
 // If no type is specified, any valid infofile will be taken as valid. However, files which are not infofiles still be regarded as invalid!
 // List of values for type:
 // "Vehicle" (for cars, motorcycles and trucks)
+// "Car" (for Car infofiles)
+// "Motorcycle" (for Motorcycle infofiles)
+// "Truck" (for Truck infofiles)
 // "TestRun" (for test runs)
 // "Road" (for road infofiles)
-// "Model" (for anything else, which is a valid infofile)
+// "Trailer" (for Trailer infofiles)
+// "Tire" (for Tire infofiles)
+// "Driver" (for Driver infofiles)
+// "TrafficBehavior" (for TrafficBehavior infofiles)
+// "TrafficDriver" (for TrafficDriver infofiles)
+// "TrafficTemplate" (for TrafficTemplate, e. g. vehicles, pedestrians, buildings, etc. infofiles)
+// "SavedSelections" (for SavedSelections infofiles)
+// "UserDriver" (for UserDriver infofiles)
+// "SuspensionKinematics-skc" (for Suspension Kinematics infofiles with a .skc file extension)
+// "SuspensionKinematics-mbs" (for Suspension Kinematics infofiles with a .mbs file extension)
+// "ADTF" (for ADTF infofifles)
+// "DataDict" (for DataDict infofiles)
+// "GPUConfig" (for GPUConfig infofiles)
+// "PTBattery-BattECM" (for PTBattery-BattECM infofiles)
+// "AirBrake" (for AirBrake infofiles)
+// "HydESP" (for HydESP infofiles)
+// "HydIPB" (for HydIPB infofiles)
+// "Suspension" (for various Suspension infofiles)
+// "SuspensionControl" (for various SuspensionControl infofiles)
 const validationWithoutType = isValidInfoFile({ file: file });
 const validationWithType = isValidInfoFile({ file: file, type: "Vehicle" });
 
