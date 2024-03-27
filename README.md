@@ -260,58 +260,6 @@ console.log(status)
 
 </details>
 
-### Validate whether a files is indeed an infofile:
-
-<details>
-<summary></b><code>isValidInfoFile</code></b></summary>
-Returns a boolean value to show whether the file is a valid infofile or not.
-
-### Check whether a file is an infofile
-
-```
-// import the library
-const infofile = require("@ipguk/infofile-utils");
-
-// get the absolute path to the infofile
-const file = "C:\infofiles\infofile";
-
-// call the function. The property "type" is an optional property.
-// If no type is specified, any valid infofile will be taken as valid. However, files which are not infofiles still be regarded as invalid!
-// List of values for type:
-// "Vehicle" (for cars, motorcycles and trucks)
-// "Car" (for Car infofiles)
-// "Motorcycle" (for Motorcycle infofiles)
-// "Truck" (for Truck infofiles)
-// "TestRun" (for test runs)
-// "Road" (for road infofiles)
-// "Trailer" (for Trailer infofiles)
-// "Tire" (for Tire infofiles)
-// "Driver" (for Driver infofiles)
-// "TrafficBehavior" (for TrafficBehavior infofiles)
-// "TrafficDriver" (for TrafficDriver infofiles)
-// "TrafficTemplate" (for TrafficTemplate, e. g. vehicles, pedestrians, buildings, etc. infofiles)
-// "SavedSelections" (for SavedSelections infofiles)
-// "UserDriver" (for UserDriver infofiles)
-// "SuspensionKinematics-skc" (for Suspension Kinematics infofiles with a .skc file extension)
-// "SuspensionKinematics-mbs" (for Suspension Kinematics infofiles with a .mbs file extension)
-// "ADTF" (for ADTF infofifles)
-// "DataDict" (for DataDict infofiles)
-// "GPUConfig" (for GPUConfig infofiles)
-// "PTBattery-BattECM" (for PTBattery-BattECM infofiles)
-// "AirBrake" (for AirBrake infofiles)
-// "HydESP" (for HydESP infofiles)
-// "HydIPB" (for HydIPB infofiles)
-// "Suspension" (for various Suspension infofiles)
-// "SuspensionControl" (for various SuspensionControl infofiles)
-const validationWithoutType = isValidInfoFile({ file: file });
-const validationWithType = isValidInfoFile({ file: file, type: "Vehicle" });
-
-// console.log the status, returns true if valid, false if not
-console.log(validationWithType)
-```
-
-</details>
-
 <details>
 <summary></b><code>setValue</code></b></summary>
 A universal function to set values to an infofile.
@@ -476,6 +424,58 @@ status = infofile.setText({file, values:[{keys: "Description", value: ["This is 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Description", status: 0}, {keys: "Eng.Description", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
 
+```
+
+</details>
+
+### Validate whether a file is indeed an infofile:
+
+<details>
+<summary></b><code>isValidInfoFile</code></b></summary>
+Returns a boolean value to show whether the file is a valid infofile or not.
+
+### Check whether a file is an infofile
+
+```
+// import the library
+const infofile = require("@ipguk/infofile-utils");
+
+// get the absolute path to the infofile
+const file = "C:\infofiles\infofile";
+
+// call the function. The property "type" is an optional property.
+// If no type is specified, any valid infofile will be taken as valid. However, files which are not infofiles still be regarded as invalid!
+// List of values for type:
+// "Vehicle" (for cars, motorcycles and trucks)
+// "Car" (for Car infofiles)
+// "Motorcycle" (for Motorcycle infofiles)
+// "Truck" (for Truck infofiles)
+// "TestRun" (for test runs)
+// "Road" (for road infofiles)
+// "Trailer" (for Trailer infofiles)
+// "Tire" (for Tire infofiles)
+// "Driver" (for Driver infofiles)
+// "TrafficBehavior" (for TrafficBehavior infofiles)
+// "TrafficDriver" (for TrafficDriver infofiles)
+// "TrafficTemplate" (for TrafficTemplate, e. g. vehicles, pedestrians, buildings, etc. infofiles)
+// "SavedSelections" (for SavedSelections infofiles)
+// "UserDriver" (for UserDriver infofiles)
+// "SuspensionKinematics-skc" (for Suspension Kinematics infofiles with a .skc file extension)
+// "SuspensionKinematics-mbs" (for Suspension Kinematics infofiles with a .mbs file extension)
+// "ADTF" (for ADTF infofifles)
+// "DataDict" (for DataDict infofiles)
+// "GPUConfig" (for GPUConfig infofiles)
+// "PTBattery-BattECM" (for PTBattery-BattECM infofiles)
+// "AirBrake" (for AirBrake infofiles)
+// "HydESP" (for HydESP infofiles)
+// "HydIPB" (for HydIPB infofiles)
+// "Suspension" (for various Suspension infofiles)
+// "SuspensionControl" (for various SuspensionControl infofiles)
+const validationWithoutType = isValidInfoFile({ file: file });
+const validationWithType = isValidInfoFile({ file: file, type: "Vehicle" });
+
+// console.log the status, returns true if valid, false if not
+console.log(validationWithType)
 ```
 
 </details>
