@@ -1,0 +1,82 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-AirBrakeSystem-TrAirbrake 1
+FileCreator = TruckMaker 2015-02-06 09:43:17 - original creator: eub
+
+Description:
+	Trailer: 1-axle airbrake, parkbrake
+	Brake-Model: IPG Airbrake
+
+###--------------------------------------------------------------------------###
+Airbrake.Graphic = Demo1AxleTrailerAirbrake.png
+
+###--------------------------------------------------------------------------###
+# See the Pneumatic Toolbox documentation for the whole list of possible
+# component parameters and their default values.
+###--------------------------------------------------------------------------###
+
+### Air Brake Quantity Switches ---------------------------------------------###
+#DeclQuants.Pipes = 1
+#DeclQuants.All = 1
+#DeclQuants.Temperature = 1
+#DeclQuants.Density = 1
+#DeclQuants.Valve = 1
+#DeclQuants.Flux = 1
+
+### Airbrake Components -----------------------------------------------------###
+Comp.Tr.Type = Trailer
+Comp.R.Type = Reservoir
+Comp.R.Volume = 0.05
+Comp.R.Pressure = 11e5
+
+Comp.RV.Type = RelayValve
+Comp.RV.SupplyValve = 9e-8 0.4 0.01 0.01  1e5
+Comp.RV.CtrlValve = 1e-8 0.4 0.2  0.2   2e5
+Comp.RV.ReleaseValve = 15e-8 0.4 0.05 0.001 1e5
+
+Comp.RVL.Type = RelayValve
+Comp.RVL.SupplyValve = 9e-8 0.4 0.01 0.01  1e5
+Comp.RVL.CtrlValve = 1e-8 0.4 0.2  0.2   2e5
+Comp.RVL.ReleaseValve = 15e-8 0.4 0.05 0.001 1e5
+
+Comp.RVR.Type = RelayValve
+Comp.RVR.SupplyValve = 9e-8 0.4 0.01 0.01  1e5
+Comp.RVR.CtrlValve = 1e-8 0.4 0.2  0.2   2e5
+Comp.RVR.ReleaseValve = 15e-8 0.4 0.05 0.001 1e5
+
+
+Comp.DSBFL.Type = DiscSpringBrake
+Comp.DSBFL.Position = FL
+Comp.DSBFL.12.Pressure = 11e5
+
+Comp.DSBFR.Type = DiscSpringBrake
+Comp.DSBFR.Position = FR
+Comp.DSBFR.12.Pressure = 11e5
+
+
+Comp.TP1.Type = TPiece
+Comp.TP2.Type = TPiece
+Comp.TP3.Type = TPiece
+Comp.TP4.Type = TPiece
+Comp.TP5.Type = TPiece
+Comp.TP6.Type = TPiece
+
+### Airbrake System Setup ---------------------------------------------------###
+###            comp-out   comp-in       Len[m]  Cal[mm]   p[bar]   T[K]   lambda
+PipeDefaults = 2       10        1       20      0.005
+
+Pipe.1 = Tr-22      RV-4
+Pipe.2 = Tr-21      TP1-1
+Pipe.3 = TP1-21     RV-1
+Pipe.4 = TP1-22     R-1
+Pipe.5 = R-2        TP2-1         10
+Pipe.6 = TP2-21     TP3-1
+Pipe.7 = TP2-22     RVR-1
+Pipe.8 = TP3-22     RVL-1
+Pipe.9 = TP3-21     TP4-1
+Pipe.10 = TP4-21     DSBFL-12
+Pipe.11 = TP4-22     DSBFR-12
+Pipe.12 = RV-2       TP6-1         10
+Pipe.13 = TP6-21     RVR-4
+Pipe.14 = TP6-22     RVL-4
+Pipe.15 = RVR-2      DSBFR-11
+Pipe.16 = RVL-2      DSBFL-11

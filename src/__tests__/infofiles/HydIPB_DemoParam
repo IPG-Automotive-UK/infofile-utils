@@ -1,0 +1,604 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-HydBrakeSystem-HydIPB 1
+FileCreator = CarMaker 13.0
+FileClass.New = 13.0
+
+Description:
+	ECU:
+	Car: DemoCar, a car of the Golf class
+	Hyd.-Model: IPG HydIPB
+
+###############################################################################
+### Braking System Parameters for BrakeHyd_IPGGeneric #########################
+###############################################################################
+
+###############################################################################
+# Brake Fluid
+###############################################################################
+# Fluid.Ref.Temp = reference temperature. The Pipe Flow Coefficients of the lines have to be
+#		   determined for this temperature [K]
+#
+# The viscosity of the brake fluid has to be indicated for two temperatures:
+# Fluid.P1.Temp = Temperature 1 [K]
+# Fluid.P1.KinViscosity  = corresponding viscosity [mm^2/s]
+# Fluid.P2.Temp = Temperature 2 [K]
+# Fluid.P2.KinViscosity  = corresponding viscosity [mm^2/s]
+#
+# Example BASF Hydraulan 400NV-1:
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 950
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 40
+#
+# Example BASF Hydraulan 502:
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 760
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 30
+#
+# Example ATE DOT4
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 1150
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 40
+#
+
+
+###############################################################################
+# Brake Circuit Configuration
+###############################################################################
+# CircuitConfig = X : 	diagonal split
+# CircuitConfig = II:	parallel (front/rear) split
+###############################################################################
+
+CircuitConfig = X
+
+
+###############################################################################
+# Brake Pedal
+###############################################################################
+
+Pedal.Ratio = 3.0
+
+###############################################################################
+# Park Brake
+###############################################################################
+
+Park.Torque_max = 0 0 1000 1000
+
+###############################################################################
+# Pressure Booster
+###############################################################################
+#
+# PresBooster.Ctrl.Mode determines the mode of the Pressure Booster Controller.
+#
+# PresBooster.Ctrl.Mode = PresBuildCyl_Ctrl:
+# HydBrakeCU control signals are modified by Pressure Booster Controller model
+# PresBuildCyl_Ctrl.
+# If a target torque or target pressure is set, it can be amplified.
+# The target pressure can optionally be converted into a target torque.
+# PresBooster.Ctrl.Amplify [-]: Amplification factor of the target pressure
+# PresBooster.Ctrl.ConvertPres2Trq [-]: Conversion of the target pressure
+# into a target torque
+#
+# PresBooster.Ctrl.Mode  = DVA:
+# HydBrakeCU control signals are modified via DVA. Pressure Booster Controller
+# passes unmodified signals to the Pressure Booster
+#
+# PresBooster.Ctrl.Mode   = User:
+#	Pressure Booster Controller model specified by user
+#
+#
+# PresBooster.Mode determines the mode of the Pressure Booster.
+#
+# PresBooster.Mode = PresBuildCyl:
+# The Pressure Booster is modelled as a Cylinder with a Motor and a transmission gear.
+# PresBooster.Area [cm^2]: Area of the Pressure Booster piston
+# PresBooster.Cyl2Motor.Ratio [rad / m]: Transmission ratio from cylinder to motor.
+#
+# PresBooster.Mode   = User:
+#	Pressure Booster model specified by user
+#
+# PresBooster.Motor.Mode determines the mode of the Pressure Booster Motor.
+#
+# The Pressure Booster Motor is only available for the PressureBooster.Mode PresBuildCyl.
+#
+# PresBooster.Mode = DCMotor : The Pressure Booster Motor is modelled as a simple DC-Motor
+# with a PI-Controller, controlling the motor torque to the target torque, 
+# motor inertia and viscious friction
+# PresBooster.Motor.Kt [Nm/A]: Motor torque constant
+# PresBooster.Motor.Inertia [kgm^2]: Motor Inertia
+# PresBooster.Motor.ViscFric [Nms]: Motor viscous friction coefficient
+# PresBooster.Motor.CurrentCtrl.P [-]: Proportional parameter of the PI-Controller
+# PresBooster.Motor.CurrentCtrl.I [-]: Integral parameter of the PI-Controller
+#
+# PresBooster.Mode   = User:
+#	Pressure Booster Motor model specified by user
+#
+###############################################################################
+
+PresBooster.Ctrl.Mode = PresBuildCyl_Ctrl
+
+PresBooster.Ctrl.Amplify = 5
+PresBooster.Ctrl.ConvertPres2Trq = 1
+
+PresBooster.Mode = PresBuildCyl
+
+PresBooster.Area = 4.5
+PresBooster.Cyl2Motor.Ratio = 1.0
+
+PresBooster.Motor.Mode = DCMotor
+
+PresBooster.Motor.Kt = 300
+PresBooster.Motor.CurrentCtrl.I = 0.3
+PresBooster.Motor.CurrentCtrl.P = 1e-4
+PresBooster.Motor.Inertia = 1.5e-4
+PresBooster.Motor.ViscFric = 0.02
+
+###############################################################################
+# Master Cylinder
+###############################################################################
+#
+# Transforms brake pedal force in brake pressure
+#
+# MasterCyl.Area [cm^2]: Area of the piston
+# MasterCyl.PosCompBore_1 [mm]: piston travel to close compensation bore 1
+# MasterCyl.PosCompBore_12 [mm]: piston travel to close compensation bore 2
+# MasterCyl.Spring_1 [N/m]: dF/dx of spring 1
+# MasterCyl.Spring_2 [N/m]: dF/dx of spring 2
+# MasterCyl.Preload [N] : Preload of the spring(s)
+#
+###############################################################################
+
+MasterCyl.Area = 4.5
+MasterCyl.PosCompBore_1 = 0
+MasterCyl.PosCompBore_2 = 0
+MasterCyl.Preload = 0
+MasterCyl.Spring_1 = 0
+MasterCyl.Spring_2 = 0
+
+###############################################################################
+# Wheel Brakes
+###############################################################################
+#
+# The brake torque is calculated by the following formula:
+#
+#         BrakeTorque = (Pressure - PreloadPressure) * Area * Ratio * Radius * ScaleFactor
+#
+# Area [cm^2]  	:Total  effective (!) area of the ensemble (!) of brake
+# 		 cylinders of one side (! (outboard or inboard)) of brake
+# 		 pistons of a single (!) brake.
+#
+# For Ratio.Mode = Coeff:
+# Ratio  [-]    :ratio of braking force to actuating force 
+#                This parameter takes into account the influence of the internal
+#                transmission ratio (!) of the brake as well as the
+#		         Coulomb friction coefficient (!).
+#		         Frequently: par = 2*Coulomb
+#                                (factor 2 comes from inboard + outboard)
+#
+# For Ratio.Mode = Curve:
+# Ratio.Data:
+# <Tab> pressure [bar] <tab> corresponding ratio [-]
+#		 ratio of braking force to actuating force as a function
+#		 of the applied brake pressure.
+#
+# Radius  [m]  	:Effective (!) brake radius (Brake Force -> Brake Torque)
+#
+# Brake Cylinder: Pressure/Volume Curves
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For BrakeCyl.<WC>.VolPres.Mode = Coeff:
+# BrakeCyl.<WC>.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Brake Cylinder as a coefficient
+#
+# For BrakeCyl.<WC>.VolPres.Mode = Curve:
+# BrakeCyl.<WC>.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in brake cylinder
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the cylinder.
+#
+# Symmetry of Front & Rear Wheel Brake Cylinders can be paramterized with
+# BrakeCyl.Front.Symmetric = 1
+# BrakeCyl.Rear.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Front.Symmetric = 1
+
+BrakeCyl.FL.Area = 23.0
+BrakeCyl.FL.Radius = 0.1
+BrakeCyl.FL.PreloadPressure = 0.5
+BrakeCyl.FL.Ratio.Mode = Coeff
+BrakeCyl.FL.Ratio = 0.7
+
+BrakeCyl.FL.VolPres.Mode = Curve
+BrakeCyl.FL.Pres2Vol.Data:
+	0	0.00
+	5	0.20
+	10	0.39
+	15	0.56
+	20	0.72
+	25	0.87
+	40	1.28
+	60	1.75
+	80	2.15
+	200	3.84
+	
+BrakeCyl.Rear.Symmetric = 1
+
+BrakeCyl.RL.Area = 11.0
+BrakeCyl.RL.Radius = 0.1
+BrakeCyl.RL.PreloadPressure = 0.5
+BrakeCyl.RL.Ratio.Mode = Coeff
+BrakeCyl.RL.Ratio = 0.7
+
+BrakeCyl.RL.VolPres.Mode = Curve
+BrakeCyl.RL.Pres2Vol.Data:
+	0	0.0
+	5	0.09
+	10	0.16
+	15 	0.25
+	20	0.31
+	25	0.38
+	40	0.55
+	60	0.75
+	80	0.91
+	200	1.69
+###############################################################################
+# Pedal Force Feedback Emulator: Pressure Volume Characteristic
+###############################################################################
+#
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For Emulator.VolPres.Mode = Coeff:
+# Emulator.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Pedal Force Feedback Emulator as a coefficient
+#
+# For Emulator.VolPres.Mode = Curve:
+# Emulator.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in Pedal Force Feeback Emulator cylinder
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the cylinder.
+#
+###############################################################################
+
+Emulator.VolPres.Mode = Curve
+
+Emulator.Pres2Vol.Data:
+	0.0     0.0
+	5.0     2.68
+	10.0    4.69
+	15.0    6.32
+	20.0    7.6
+
+
+###############################################################################
+# Damper Chambers
+###############################################################################
+# The Damper Chambers are situation at the circuit entries and connected Master Cylinder chambers
+# and the Pressure Booster.
+# For numerical reasons, the value given should not be too high.
+#
+# Pressure/Volume Curves
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For DamperChamber<i>.VolPres.Mode = Coeff:
+# DamperChamber<i>.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Damper Chamber <i> as a coefficient
+#
+# For DamperChamber<i>.VolPres.Mode = Curve:
+# DamperChamber<i>.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in Damper Chamber
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the Damper Chamber volume.
+# Symmetry of the Damper Chambers with
+# DamperChambers.Symmetric = 1
+###############################################################################
+
+DamperChambers.Symmetric = 1
+
+DamperChamber1.VolPres.Mode = Coeff
+
+DamperChamber1.Vol2Pres = 300.0
+
+
+
+###############################################################################
+# Valves
+###############################################################################
+# All valves are modelled by the relationship
+#
+# pDelta(q) = (q/qValveAct)^2  + (q/qPipe)
+#
+# q 		[cm^3]  : flow through the valve
+# pDelta 	[bar]	: pHigh - pLow
+# qValveAct [cm^3/(s*sqrt(bar))]
+#			: Actual flow coefficient of orifice
+# qPipe [cm^3/(s*bar))]
+#			: Flow coefficient through pipe
+#
+# For the check valves and the pressure limiting valve, the flow coefficient
+# qValveAct is always equal to qValve.
+# For the solenoid valves, the relation between the input signal (e.g.
+# pulse with, current, magnetic force) and the relative opening is described
+# as follows:
+#
+# qValveAct = transfer(signal) * qValve	with transfer = [0..1]
+#
+# if no other transfer function is given, the transfer function is proportional
+# Additional, optional features for solenoid valves:
+#
+# Transfer:
+# <Tab> signal [0..1] <tab> corresponding relative valve opening [0..1]
+# the given points are interpolated.
+#
+# Dynamics:
+# <Tab> pressure <Tab> opening time <Tab> closing time
+# describes the valve dynamics. Pressure ist the pressure difference applied
+# to the valve, opening time is the times to completely open a closed valve,
+# closing time the opposite.
+#
+#
+###############################################################################
+# Brake Cylinder Inlet Valves and Corresponding Pipe
+###############################################################################
+#
+# The Inlet valve (or supply valve) is situated before the wheel brake
+# It consists of a solenoid valve and a check valve in parallel.
+#
+
+# The inlet valve can be modelled as a throttle valve with pressure dependent
+# adjustment of the flow rate via changing the cross section of the valve with
+# BrakeCyl.Inlet.<WC>.SolV.Switchable = 1
+# The following parameters must then be given instead of *Orifice.FlowCoeff:
+# *BigOrifice.FlowCoeff	[cm^3/s]	: Flow coefficient of orifice when switched
+# 			                          to great orifice
+# *SmallOrifice.FlowCoeff [cm^3/s]	: Flow coefficient of orifice when switched
+# 			                          to small
+# *SwitchPres.Big2Small [bar]	    : Limit pressure above  which valve switches
+# 			                          from "great" to "small"
+# *SwitchPres.Small2Big [bar]	    : Limit pressure below which valve switches from
+# 			                          "small" to "great"
+#
+# Symmetry of Front & Rear Valves can be paramterized with
+# BrakeCyl.Inlet.FrontValves.Symmetric = 1
+# BrakeCyl.Inlet.RearValves.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Inlet.FrontValves.Symmetric = 1
+
+BrakeCyl.Inlet.FL.SolV.Switchable = 0
+
+BrakeCyl.Inlet.FL.SolV.Orifice.FlowCoeff = 4.0
+BrakeCyl.Inlet.FL.SolV.Pipe.FlowCoeff = 10.0
+
+BrakeCyl.Inlet.FL.SolV.Dynamics.Data:
+	0	0.001	0.02
+	100	0.001	0.02
+	200	0.001	0.02
+
+BrakeCyl.Inlet.FL.SolV.Transfer.Data:
+	0	0	1
+	0	0.5	0.4
+	0	1	0.0
+	200	0	1
+	200	0.5	0.4
+	200	1	0.0
+	
+BrakeCyl.Inlet.FL.CheckV.Orifice.FlowCoeff = 6.0
+BrakeCyl.Inlet.FL.CheckV.Pipe.FlowCoeff = 10.0
+
+	
+BrakeCyl.Inlet.RearValves.Symmetric = 1
+
+BrakeCyl.Inlet.RL.SolV.Switchable = 0
+
+BrakeCyl.Inlet.RL.SolV.Orifice.FlowCoeff = 1.0
+BrakeCyl.Inlet.RL.SolV.Pipe.FlowCoeff = 10.0
+
+BrakeCyl.Inlet.RL.SolV.Dynamics.Data:
+	0	0.001	0.02
+	100	0.001	0.02
+	200	0.001	0.02
+	
+BrakeCyl.Inlet.RL.SolV.Transfer.Data:
+	0	0	1
+	0	0.5	0.4
+	0	1	0.0
+	200	0	1
+	200	0.5	0.4
+	200	1	0.0
+	
+BrakeCyl.Inlet.RL.CheckV.Orifice.FlowCoeff = 6.0
+BrakeCyl.Inlet.RL.CheckV.Pipe.FlowCoeff = 10.0
+
+###############################################################################
+# Brake Cylinder Outlet Valves
+###############################################################################
+#
+# The outlet valve (discharge valve) is situated behind the wheel brake
+#
+# Symmetry of Front & Rear Valves can be paramterized with
+# BrakeCyl.Outlet.FrontValves.Symmetric = 1
+# BrakeCyl.Outlet.RearValves.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Outlet.FrontValves.Symmetric = 1
+
+BrakeCyl.Outlet.FL.SolV.Orifice.FlowCoeff = 4.0
+BrakeCyl.Outlet.FL.SolV.Pipe.FlowCoeff = 20.0
+
+BrakeCyl.Outlet.FL.SolV.Dynamics.Data:
+	0	2000	2000
+	200	2000	2000
+	
+BrakeCyl.Outlet.FL.SolV.Transfer.Data:
+	0	0    0
+	0	1    1
+	200	0    0
+	200 1    1
+
+BrakeCyl.Outlet.RearValves.Symmetric = 1
+
+BrakeCyl.Outlet.RL.SolV.Orifice.FlowCoeff = 1.5
+BrakeCyl.Outlet.RL.SolV.Pipe.FlowCoeff = 20.0
+
+BrakeCyl.Outlet.RL.SolV.Dynamics.Data:
+	0	2000	2000
+	200	2000	2000
+	
+BrakeCyl.Outlet.RL.SolV.Transfer.Data:
+	0	0    0
+	0	1    1
+	200	0    0
+	200 1    1
+
+
+###############################################################################
+# Chamber Valves
+# Solenoid Valve with Check Valve
+###############################################################################
+# The Chamber Valves consist of a solenoid valve and a check valve (optional) in parallel.
+#
+# Symmetry of the Chamber Valves with
+# ChamberValves.Symmetric = 1
+#
+# Check Valve activation with
+# Chamber<i>.CheckV.Active = 1
+###############################################################################
+
+ChamberValves.Symmetric = 1
+
+Chamber1.SolV.Dynamics.Data:
+	0	0.001	0.001
+	100	0.001	0.001
+	200	0.001	0.001
+Chamber1.SolV.Orifice.FlowCoeff = 5.0
+Chamber1.SolV.Pipe.FlowCoeff = 20.0
+Chamber1.SolV.Transfer.Data:
+	0	0    1
+	0	1    0
+	200	0    1
+	200 1    0
+	
+Chamber1.CheckV.Active = 1
+
+Chamber1.CheckV.Orifice.FlowCoeff = 5.0
+Chamber1.CheckV.Pipe.FlowCoeff = 20.0
+
+###############################################################################
+# Check Valve of the Pressure Booster
+###############################################################################
+# The Pressure Booster Check Valve connects the Pressure Booster volume to the Reservoir 
+###############################################################################
+
+PresBooster.CheckV.Orifice.FlowCoeff = 4.0
+PresBooster.CheckV.Pipe.FlowCoeff = 20.0
+
+###############################################################################
+# Pressure Booster Valves
+###############################################################################
+# The Pressure Booster Valves are used to separate the brake circuits from the
+# Pressure Booster cylinder. Each of the Pressure Booster Valves consist of a solenoid
+# valve that is closed, when not driven, a check valve (optional), that opens, when the pressure in the
+# Pressure Booster exceeds the pressure in the corresponding circuit and a pressure limiting
+# valve (optional) that opens if the pressure in the corresponding circuit exceeds the pressure limit.
+#
+# PresBooster<i>.PresLimV.pOpen	[bar] 	: At a pressure difference superior to PresBooster<i>.PresLimV.pOpen,
+#			                              the pressure limiting valve opens.
+# The pressure limiting valve is then modelled by the relationship
+# pDelta(q) = PresBooster<i>.PresLimV.pOpen + (q/PLim.qValve)^2  + (q/PLim.qPipe)
+#
+# Symmetry of the Pressure Booster Valves with
+# PresBoosterValves.Symmetric = 1
+
+# Check Valve activation with
+# PresBooster<i>.CheckV.Active = 1
+#
+# Pressure limiting Valve activation with
+# PresBooster<i>.PresLimV.Active = 1
+###############################################################################
+
+PresBoosterValves.Symmetric = 1
+
+PresBooster1.SolV.Orifice.FlowCoeff = 5.0
+PresBooster1.SolV.Pipe.FlowCoeff = 20.0
+
+PresBooster1.SolV.Dynamics.Data:
+	0	0.001	0.001
+	100	0.001	0.001
+	200	0.001	0.001
+PresBooster1.SolV.Transfer.Data:
+	0	0    0
+	0	1    1
+	200	0    0
+	200 1    1
+	
+PresBooster1.CheckV.Active = 1
+
+PresBooster1.CheckV.Orifice.FlowCoeff = 5.0
+PresBooster1.CheckV.Pipe.FlowCoeff = 20.0
+
+PresBooster1.PresLimV.Active = 1
+
+PresBooster1.PresLimV.Orifice.FlowCoeff = 5.0
+PresBooster1.PresLimV.Pipe.FlowCoeff = 20.0
+PresBooster1.PresLimV.pOpen = 180.0
+	
+###############################################################################
+# Pedal Force Feedback Emulator Valves
+###############################################################################
+# The Pedal Force Feedback Emulator Valve connects the Master Cylinder’s first chamber
+# with the Pedal Force Feedback volume. It consists of a solenoid valve that is closed when
+# not driven and a check valve that opens, when the pressure in the Pedal Force Feedback
+# Emulator exceeds the pressure in the Master Cylinder.
+###############################################################################
+
+Emulator.SolV.Dynamics.Data:
+	0	0.001	0.001
+	100	0.001	0.001
+	200	0.001	0.001
+Emulator.SolV.Orifice.FlowCoeff = 20.0
+Emulator.SolV.Pipe.FlowCoeff = 50.0
+Emulator.SolV.Transfer.Data:
+	0	0    0
+	0	1    1
+	200	0    0
+	200 1    1
+	
+Emulator.CheckV.Orifice.FlowCoeff = 5.0
+Emulator.CheckV.Pipe.FlowCoeff = 20.0
+
+###############################################################################
+# Reservoir Valve
+###############################################################################
+# The Reservoir Valve connects the Master Cylinder’s first chamber with the Reservoir. It con-
+# sists of a solenoid valve that is closed if not driven and a check valve that opens, when the
+# pressure in the Reservoir exceeds the pressure in the Master Cylinder’s first chamber.
+###############################################################################
+
+Reservoir.SolV.Orifice.FlowCoeff = 4.0
+Reservoir.SolV.Pipe.FlowCoeff = 20.0
+
+Reservoir.SolV.Dynamics.Data:
+	0	0.01	0.01
+	100	0.002	0.01
+	200	0.001	0.01
+
+Reservoir.SolV.Transfer.Data:
+	0	0    0
+	0	1    1
+	200	0    0
+	200 1    1
+	
+Reservoir.CheckV.Orifice.FlowCoeff = 5.0
+Reservoir.CheckV.Pipe.FlowCoeff = 20.0

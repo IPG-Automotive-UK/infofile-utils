@@ -1,0 +1,536 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-HydBrakeSystem-HydESP 5
+FileCreator = CarMaker 2015-02-06 11:17:16 - original creator: cs
+
+Description:
+	ECU:
+	Car: DemoCar, a car of the Golf class
+	Hyd.-Model: IPG HydESP
+
+###############################################################################
+### Braking System Parameters for BrakeHyd_IPGGeneric #########################
+###############################################################################
+# Braking system:
+#
+#					Master cylinder ------| Pedal
+#					with Pedal Booster
+#					    |	|
+#	     to other circuit --------------+	|
+#						|
+#						|
+#						|
+#		+-------------------------------+
+#		|				|
+#	    SuctionValve		     PilotValve
+#		|				|
+#		|				|
+#		|				|
+#	      SuppL----->-HydraulicPump->----Attenuator
+#		|				|
+#		|				|
+#	    CheckValve				|
+#		|				|
+#		|				+---------------+
+#	  LowPressure    		    	|		|
+#	  Accumulator				|		|
+#		+-----------OutletValve	     InletValve		|
+#		|		|		|		|
+#		|		+-------+-------+		|
+#		^			|		   	|
+#  	   from Outlet 		  BrakeCylinder		   to Inlet
+#          other BrakeCyl				   other BrakeCyl
+#
+#
+#
+
+
+###############################################################################
+# Brake Fluid
+###############################################################################
+# Fluid.Ref.Temp = reference temperature. The Pipe Flow Coefficients of the lines have to be
+#		   determined for this temperature [K]
+#
+# The viscosity of the brake fluid has to be indicated for two temperatures:
+# Fluid.P1.Temp = Temperature 1 [K]
+# Fluid.P1.KinViscosity  = corresponding viscosity [mm^2/s]
+# Fluid.P2.Temp = Temperature 2 [K]
+# Fluid.P2.KinViscosity  = corresponding viscosity [mm^2/s]
+#
+# Example BASF Hydraulan 400NV-1:
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 950
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 40
+#
+# Example BASF Hydraulan 502:
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 760
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 30
+#
+# Example ATE DOT4
+# Fluid.P1.Temp = 233
+# Fluid.P1.KinViscosity  = 1150
+# Fluid.P2.Temp = 273
+# Fluid.P2.KinViscosity  = 40
+#
+
+
+###############################################################################
+# Brake Circuit Configuration
+###############################################################################
+# CircuitConfig = X : 	diagonal split
+# CircuitConfig = II:	parallel (front/rear) split
+###############################################################################
+
+CircuitConfig = X
+
+
+###############################################################################
+# Brake Pedal
+###############################################################################
+
+Pedal.Ratio = 3.0
+
+###############################################################################
+# Park Brake
+###############################################################################
+
+Park.Torque_max = 0 0 1000 1000
+
+###############################################################################
+# Brake Pedal Booster
+###############################################################################
+#
+# PedalBooster.Mode determines the mode of the Pedal Booster or precharge pump used.
+#
+# PedalBooster.Mode 	= none : no Brake Pedal Booster
+#
+# PedalBooster.Mode   = Mechanical
+#	Pedal Booster with mechanical amplification only
+# 	Parameters:
+#
+#	PedalBooster.AmplifyOpt =	Optional Pedal Booster start amplification ratio
+#	PedalBooster.Amplify = 	Pedal Booster amplification ratio
+#
+#	PedalBooster.RunOutOpt =	Optional Run-out pressure
+#			(above brake pressure = PedalBooster.RunOutOpt, booster
+#			amplification is PedalBooster.Amplify)
+# 	PedalBooster.RunOut =	Run-out pressure
+#			(above brake pressure = PedalBooster.RunOut, booster
+#			amplification is 1)
+#
+# PedalBooster.Mode   = TargetPressure :
+#	Controlled Pedal Booster with pressure proportional to input signal
+#	or precharge pump
+# 	Parameters:
+#
+#	PedalBooster.AmplifyOpt =	Optional Pedal Booster start amplification ratio
+#	PedalBooster.Amplify = 	Pedal Booster amplification ratio
+#
+#	PedalBooster.RunOutOpt =	Optional Run-out pressure
+#			(above brake pressure = PedalBooster.RunOutOpt, booster
+#			amplification is PedalBooster.Amplify)
+# 	PedalBooster.RunOut =	Run-out pressure
+#			(above brake pressure = PedalBooster.RunOut, booster
+#			amplification is 1)
+#	PedalBooster.Delay =  	Delay between signal and pressure rise
+#	PedalBooster.63Prcnt = 	Time constant for pressure rise.
+#			(After t =BooDelay + PedalBooster.63Prcnt, booster pressure has
+#			reached 63 % of the target value.)
+#	PedalBooster.Sign2Press =	Target pressure = BoosterConstant * input signal
+#	PedalBooster.relF     =	Pedal force to open the release switch
+#
+# PedalBooster.Mode	= PressureGradient:
+#	Booster with pressure gradient dp/dt = f(input signal)
+# 	Parameters:
+#
+#	PedalBooster.AmplifyOpt =	Optional Pedal Booster start amplification ratio
+#	PedalBooster.Amplify = 	Pedal Booster amplification ratio
+#
+#	PedalBooster.RunOutOpt =	Optional Run-out pressure
+#			(above brake pressure = PedalBoo.RunOutOpt, booster
+#			amplification is PedalBooster.Amplify)
+# 	PedalBooster.RunOut =	Run-out pressure
+#			(above brake pressure = PedalBooster.RunOut, booster
+#			amplification is 1)
+#	PedalBooster.pMax  =    	max pressure difference the Pedal Booster is able to produce
+#		 	when solenoid valve is actuated
+# 	PedalBooster.pGrad.mapping = Relation Pedal Booster Voltage - Pressure Gradient:
+# 	<Tab> voltage [0..1] <Space> corresponding pressure rise [bar/s]
+#
+###############################################################################
+
+PedalBooster.Mode = Mechanical
+PedalBooster.Amplify = 5
+PedalBooster.RunOut = 100
+
+###############################################################################
+# Master Cylinder
+###############################################################################
+#
+# Transforms brake pedal booster force in brake pressure
+#
+# MasterCyl.Area [cm^2]: Area of the piston
+# MasterCyl.PosCompBore [mm]: piston travel to close compensation bore
+# MasterCyl.Spring [N/m]: dF/dx of the spring(s)
+# MasterCyl.Preload [N] : Preload of the spring(s)
+#
+###############################################################################
+
+MasterCyl.Area = 4.5
+MasterCyl.PosCompBore = 0
+MasterCyl.Spring = 0
+MasterCyl.Preload = 0
+
+###############################################################################
+# Wheel Brakes
+###############################################################################
+#
+# The brake torque is calculated by the following formula:
+#
+#         BrakeTorque = (Pressure - PreloadPressure) * Area * Ratio * Radius * ScaleFactor
+#
+# Area [cm^2]  	:Total  effective (!) area of the ensemble (!) of brake
+# 		 cylinders of one side (! (outboard or inboard)) of brake
+# 		 pistons of a single (!) brake.
+#
+# For Ratio.Mode = Coeff:
+# Ratio  [-]    :ratio of braking force to actuating force 
+#                This parameter takes into account the influence of the internal
+#                transmission ratio (!) of the brake as well as the
+#		         Coulomb friction coefficient (!).
+#		         Frequently: par = 2*Coulomb
+#                                (factor 2 comes from inboard + outboard)
+#
+# For Ratio.Mode = Curve:
+# Ratio.Data:
+# <Tab> pressure [bar] <tab> corresponding ratio [-]
+#		 ratio of braking force to actuating force as a function
+#		 of the applied brake pressure.
+#
+# Radius  [m]  	:Effective (!) brake radius (Brake Force -> Brake Torque)
+#
+# Brake Cylinder: Pressure/Volume Curves
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For BrakeCyl.<WC>.VolPres.Mode = Coeff:
+# BrakeCyl.<WC>.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Brake Cylinder as a coefficient
+#
+# For BrakeCyl.<WC>.VolPres.Mode = Curve:
+# BrakeCyl.<WC>.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in brake cylinder
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the cylinder.
+#
+# Symmetry of Front & Rear Wheel Brake Cylinders can be paramterized with
+# BrakeCyl.Front.Symmetric = 1
+# BrakeCyl.Rear.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Front.Symmetric = 1
+
+BrakeCyl.FL.Area = 23.0
+BrakeCyl.FL.Radius = 0.1
+BrakeCyl.FL.PreloadPressure = 0.5
+BrakeCyl.FL.Ratio.Mode = Coeff
+BrakeCyl.FL.Ratio = 0.7
+
+BrakeCyl.FL.VolPres.Mode = Curve
+BrakeCyl.FL.Pres2Vol.Data:
+	0	0.00
+	5	0.20
+	10	0.39
+	15	0.56
+	20	0.72
+	25	0.87
+	40	1.28
+	60	1.75
+	80	2.15
+	200	3.84
+	
+BrakeCyl.Rear.Symmetric = 1
+
+BrakeCyl.RL.Area = 11.0
+BrakeCyl.RL.Radius = 0.1
+BrakeCyl.RL.PreloadPressure = 0.5
+BrakeCyl.RL.Ratio.Mode = Coeff
+BrakeCyl.RL.Ratio = 0.7
+
+BrakeCyl.RL.VolPres.Mode = Curve
+BrakeCyl.RL.Pres2Vol.Data:
+	0	0.0
+	5	0.09
+	10	0.16
+	15 	0.25
+	20	0.31
+	25	0.38
+	40	0.55
+	60	0.75
+	80	0.91
+	200	1.69
+###############################################################################
+# Hydraulic Pump: Two Circuit Pumps Driven by One Electric Motor
+###############################################################################
+#
+# Steady State Volume Flow as a function of pDelta = pHigh-pLow and pIn>pEdge:
+#
+#    q = (qMax - cLoss*pDelta) * (1-exp((pEdge-pLow)/(p63Prcnt-pEdge))
+#
+# Full		[s]	: Time constant Tau when pump is accelerating
+# Zero:         [s]	: Time constant Tau when pump is deccelerating
+#
+# cLoss  	[cm^3/(s*bar)	: loss Coefficient or leak Coefficient.
+# 			Loss of delivery efficiency with increase of pDelta
+# 			Small cLoss  are aequivalent to a high efficiency
+# 			characteristic of the pump.
+# pEdge:	[bar]	: EdgePressure
+# 			Only for pressures pLow higher than pEdge the
+# 			Hydraulic pump works. Below pEdge no fluid is pumped.
+# p63Prcnt 	[bar] 	: 63 % Pressure:
+# 			If pLow = p63Prcnt the Pump delivers 63 % of its
+# 			full delivery capacity (pDelta being kept fixed!).
+#
+# GenVmax	[Volt]	: Generated voltage of the pump at maximum rotational
+#			speed (optional)
+###############################################################################
+
+Pump.qMax = 5.0
+Pump.cLoss = 0.01
+Pump.Full = 0.1
+Pump.Zero = 0.1
+Pump.pEdge = -0.8
+Pump.p63Prcnt = -0.5
+Pump.GenVmax = 8.0
+
+
+###############################################################################
+# Low Pressure Accumulator: Pressure Volume Characteristic
+###############################################################################
+#
+# vMax  [cm^3] 		Maximum Volume of pressure accumulator
+# pMin  [bar] 		Pressure below which the volume is minimal
+# pMax  [bar] 		Pressure above which the volume is maximal
+#
+###############################################################################
+
+LowPresAcc.vMax = 5.0
+LowPresAcc.pMin = 1.0
+LowPresAcc.pMax = 5.0
+
+
+
+###############################################################################
+# Suction Line of the Pump
+###############################################################################
+# This element ist situated at the low pressure side of the hydraulic pump.
+# For numerical reasons, the value given should not be too high.
+#
+# Pressure/Volume Curves
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For SuppL.VolPres.Mode = Coeff:
+# SuppL.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Supply Line as a coefficient
+#
+# For SuppL.VolPres.Mode = Curve:
+# SuppL.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in Supply Line
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the Supply Line volume.
+###############################################################################
+
+SuppL.VolPres.Mode = Coeff
+SuppL.Vol2Pres = 50.0
+
+
+###############################################################################
+# Attenuator
+###############################################################################
+# This element is situated at the high pressure side of the pump
+# For numerical reasons, its value should not be too high.
+#
+# Pressure/Volume Curves
+# The Pressure Volume Characteristic can be parameterized as coefficient or as curve
+#
+# For Att.VolPres.Mode = Coeff:
+# Att.Vol2Pres [bar/cm^3]: Pressure Volume Characteristic of Attenuator as a coefficient
+#
+# For Att.VolPres.Mode = Curve:
+# Att.Pres2Vol.Data:
+# Pressure Volume Characteristic as a curve
+#<tab> p <tab> v
+#
+# p		[bar]		: Vector of pressure values in Attenuator
+# v		[cm^3]		: Vector of volume values corresponding to
+#   	    	    	    	  pressure values. It is the volume of
+#   	    	    	    	  oil absorbed by the Attenuator.
+###############################################################################
+
+Att.VolPres.Mode = Coeff
+Att.Vol2Pres = 300.0
+
+
+###############################################################################
+# Valves
+###############################################################################
+# All valves are modelled by the relationship
+#
+# pDelta(q) = (q/qValveAct)^2  + (q/qPipe)
+#
+# q 		[cm^3]  : flow through the valve
+# pDelta 	[bar]	: pHigh - pLow
+# qValveAct [cm^3/(s*sqrt(bar))]
+#			: Actual flow coefficient of orifice
+# qPipe [cm^3/(s*bar))]
+#			: Flow coefficient through pipe
+#
+# For the check valves and the pressure limiting valve, the flow coefficient
+# qValveAct is always equal to qValve.
+# For the solenoid valves, the relation between the input signal (e.g.
+# pulse with, current, magnetic force) and the relative opening is described
+# as follows:
+#
+# qValveAct = transfer(signal) * qValve	with transfer = [0..1]
+#
+# if no other transfer function is given, the transfer function is proportional
+# Additional, optional features for solenoid valves:
+#
+# Transfer:
+# <Tab> signal [0..1] <tab> corresponding relative valve opening [0..1]
+# the given points are interpolated.
+#
+# Dynamics:
+# <Tab> pressure <Tab> opening time <Tab> closing time
+# describes the valve dynamics. Pressure ist the pressure difference applied
+# to the valve, opening time is the times to completely open a closed valve,
+# closing time the opposite.
+#
+#
+###############################################################################
+# Brake Cylinder Inlet Valves and Corresponding Pipe
+###############################################################################
+#
+# The Inlet valve (or supply valve) is situated before the wheel brake
+# It consists of a solenoid valve and a check valve in parallel.
+#
+
+# The inlet valve can be modelled as a throttle valve with pressure dependent
+# adjustment of the flow rate via changing the cross section of the valve.
+# The following parameters must then be given instead of *Orifice.FlowCoeff:
+# *BigOrifice.FlowCoeff	[cm^3/s]	: Flow coefficient of orifice when switched
+# 			                          to great orifice
+# *SmallOrifice.FlowCoeff [cm^3/s]	: Flow coefficient of orifice when switched
+# 			                          to small
+# 'SwitchPres.Big2Small 	[bar]		: Limit pressure above  which valve switches
+# 			                              from "great" to "small"
+# 'SwitchPres.Small2Big 	[bar]		: Limit pressure below which valve switches from
+# 			                              "small" to "great"
+#
+# Symmetry of Front & Rear Valves can be paramterized with
+# BrakeCyl.Inlet.FrontValves.Symmetric = 1
+# BrakeCyl.Inlet.RearValves.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Inlet.FrontValves.Symmetric = 1
+
+BrakeCyl.Inlet.FL.SolV.Orifice.FlowCoeff = 4.0
+BrakeCyl.Inlet.FL.SolV.Pipe.FlowCoeff = 10.0
+
+BrakeCyl.Inlet.FL.CheckV.Orifice.FlowCoeff = 6.0
+BrakeCyl.Inlet.FL.CheckV.Pipe.FlowCoeff = 10.0
+
+BrakeCyl.Inlet.FL.SolV.Dynamics.Data:
+	0	0.01	0.01
+	100	0.002	0.01
+	200	0.001	0.01
+
+BrakeCyl.Inlet.FL.SolV.Transfer.Data:
+	0	1
+	0.5	0.4
+	1	0.0
+
+	
+BrakeCyl.Inlet.RearValves.Symmetric = 1
+
+BrakeCyl.Inlet.RL.SolV.Orifice.FlowCoeff = 1.0
+BrakeCyl.Inlet.RL.SolV.Pipe.FlowCoeff = 10.0
+
+BrakeCyl.Inlet.RL.CheckV.Orifice.FlowCoeff = 6.0
+BrakeCyl.Inlet.RL.CheckV.Pipe.FlowCoeff = 10.0
+
+
+###############################################################################
+# Brake Cylinder Outlet Valves
+###############################################################################
+#
+# The outlet valve (discharge valve) is situated behind the wheel brake#
+#
+# Symmetry of Front & Rear Valves can be paramterized with
+# BrakeCyl.Outlet.FrontValves.Symmetric = 1
+# BrakeCyl.Outlet.RearValves.Symmetric  = 1
+###############################################################################
+
+BrakeCyl.Outlet.FrontValves.Symmetric = 1
+
+BrakeCyl.Outlet.FL.SolV.Orifice.FlowCoeff = 4.0
+BrakeCyl.Outlet.FL.SolV.Pipe.FlowCoeff = 20.0
+
+BrakeCyl.Outlet.RearValves.Symmetric = 1
+
+BrakeCyl.Outlet.RL.SolV.Orifice.FlowCoeff = 1.5
+BrakeCyl.Outlet.RL.SolV.Pipe.FlowCoeff = 20.0
+
+
+###############################################################################
+# Pilot Valve
+# Solenoid Valve with Pressure Limiting Valve
+# and Check Valve
+###############################################################################
+#
+# The Pilot Valve consist of a solenoid valve, a pressure limiting valve 
+# and a check valve in parallel.
+# pOpen	[bar] 	:	At a pressure difference superior to Pilot.PresLimV.pOpen,
+#			        the pressure limiting valve opens.
+# The pressure limiting valve is then modelled by the relationship
+# pDelta(q) = Pilot.PresLimV.pOpen + (q/PLim.qValve)^2  + (q/PLim.qPipe)
+###############################################################################
+
+Pilot.SolV.Orifice.FlowCoeff = 5.0
+Pilot.SolV.Pipe.FlowCoeff = 20.0
+
+Pilot.PresLimV.Orifice.FlowCoeff = 5.0
+Pilot.PresLimV.Pipe.FlowCoeff = 20.0
+Pilot.PresLimV.pOpen = 180.0
+
+Pilot.CheckV.Orifice.FlowCoeff = 5.0
+Pilot.CheckV.Pipe.FlowCoeff = 20.0
+
+###############################################################################
+# Suction Valve
+###############################################################################
+#
+# The suction valve is situated between the master cylinder and the low
+# pressure side of the hydraulic pump.
+###############################################################################
+
+Suction.SolV.Orifice.FlowCoeff = 10.0
+Suction.SolV.Pipe.FlowCoeff = 20.0
+
+###############################################################################
+# Check Valve of the Low Pressure Accumulator
+###############################################################################
+#
+# This valve is situated between the low pressure accumulator and the
+# low pressure side of the hydraulic pump.
+###############################################################################
+
+LowPresAcc.CheckV.Orifice.FlowCoeff = 6.0
+LowPresAcc.CheckV.Pipe.FlowCoeff = 20.0

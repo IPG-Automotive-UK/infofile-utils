@@ -1,0 +1,98 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-SuspControl-AirSuspControl_wSystem 10
+FileCreator = TruckMaker 11.0
+
+Description:
+	Trailer 1-Axle: AirSuspControl_wSystem model
+	Suspension Control-Unit Model: IPG AirSuspControl_wSystem
+
+###--------------------------------------------------------------------------###
+# See the Pneumatic Toolbox documentation for the whole list of possible
+# component parameters and their default values.
+###--------------------------------------------------------------------------###
+
+### Air Suspension Control Quantity Switches --------------------------------###
+#DeclQuants.Pipes = 1
+#DeclQuants.All = 1
+#DeclQuants.Temperature = 1
+#DeclQuants.Density = 1
+#DeclQuants.Valve = 1
+#DeclQuants.Flux = 1
+
+### Air Suspension Control --------------------------------------------------###
+### Control Strategy
+Ctrl.AutoCtrl = 1
+Ctrl.CtrlAxle = RA
+Ctrl.EPS.Mode = Open
+Ctrl.Lift = 0.8
+
+### Suspension
+Comp.Susp.Type = Suspension
+Comp.Susp.ID = 1
+
+### Electric Pressure Supply
+Comp.EPS.Type = EValve
+Comp.EPS.ID = 0
+Comp.EPS.n_outlets = 1
+Comp.EPS.Temperature = 293.15
+Comp.EPS.Pressure = 1.01325e5
+Comp.EPS.1.Volume = 0.3e-3
+Comp.EPS.2.Volume = 0.3e-3
+Comp.EPS.CtrlValve = 0.5e-7 0.5 0.03 0.03 2e5
+Comp.EPS.ReleaseValve = 0.5e-7 0.5 0.03 0.03 1e5
+
+### Electric Load Dependent Valve
+Comp.ELV.Type = EValve
+Comp.ELV.ID = 1
+Comp.ELV.n_outlets = 1
+Comp.ELV.Temperature = 293.15
+Comp.ELV.Pressure = 1.01325e5
+Comp.ELV.1.Volume = 0.3e-3
+Comp.ELV.2.Volume = 0.3e-3
+Comp.ELV.CtrlValve = 0.5e-7 0.5 0.03 0.03 2e5
+Comp.ELV.ReleaseValve = 0.3e-7 0.5 0.03 0.03 1e5
+
+### Reservoir
+Comp.Reservoir.Type = Reservoir
+Comp.Reservoir.Invariant = 0
+Comp.Reservoir.Temperature = 293.15
+Comp.Reservoir.Pressure = 11e5
+Comp.Reservoir.Volume = 0.1
+
+### Suspension Spring Valve
+Comp.SSV_FL.Type = SuspensionSpringValve
+Comp.SSV_FL.Position = FL
+Comp.SSV_FL.Temperature = 293.15
+Comp.SSV_FL.Pressure = 1.01325e5
+Comp.SSV_FL.Volume = 0.3e-3
+
+Comp.SSV_FR.Type = SuspensionSpringValve
+Comp.SSV_FR.Position = FR
+Comp.SSV_FR.Temperature = 293.15
+Comp.SSV_FR.Pressure = 1.01325e5
+Comp.SSV_FR.Volume = 0.3e-3
+
+### Suspension Valve
+Comp.SV.Type = SuspensionValve
+Comp.SV.ID = 2
+Comp.SV.Temperature = 293.15
+Comp.SV.Pressure = 1.01325e5
+Comp.SV.1.Volume = 1.0e-4
+Comp.SV.2.Volume = 1.0e-4
+Comp.SV.SupplyValve = 3e-8 0.5 0.05 0.05 1e5
+
+### TPieces
+Comp.TPC.Type = TPiece
+Comp.TPC.Calibre = 0.006
+
+### System Setup (Pipes):----------------------------------------------------###
+###            comp-out   comp-in       Len[m]  Cal[mm]   p[bar]  T[K]   lambda
+PipeDefaults = 2      10     1.013     25     0.0
+
+Pipe.1 = Susp-2       EPS-1       5   10
+Pipe.2 = EPS-2        Reservoir-1 5   10
+Pipe.3 = Reservoir-22 SV-1        10  10
+Pipe.4 = Reservoir-21 ELV-1       2   10
+Pipe.5 = ELV-2        TPC-1       2   10
+Pipe.6 = TPC-21       SSV_FL-1    2   10
+Pipe.7 = TPC-22       SSV_FR-1    2   10

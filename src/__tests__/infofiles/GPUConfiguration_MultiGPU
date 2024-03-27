@@ -1,0 +1,53 @@
+#INFOFILE1.1 (UTF-8) - Do not remove this line!
+FileIdent = CarMaker-GPUConfig 1.1
+GPUList.N = 3
+GPUDevice.0.Host = localhost
+GPUDevice.0.DeviceID = 0
+GPUDevice.0.Tags = host_gpu Device_0 Default
+GPUDevice.0.UserDefined.SSHActive = 0
+GPUDevice.0.UserDefined.MovieActive = 0
+GPUDevice.0.UserDefined.SSHCmd:
+	%C
+	-X
+	-o PubkeyAuthentication=yes
+	-o UserKnownHostsFile=/dev/null
+	-o LogLevel=Error
+	-o StrictHostKeyChecking=no
+	%H
+GPUDevice.0.UserDefined.MovieCmd:
+	%C
+	%A
+	-cudadevice %N
+GPUDevice.0.UserDefined.StartScriptFName =
+GPUDevice.1.Host = second_computer_ip
+GPUDevice.1.DeviceID = 0
+GPUDevice.1.Tags = second_computer_gpu0 Device_1 Default
+GPUDevice.1.UserDefined.SSHActive = 0
+GPUDevice.1.UserDefined.MovieActive = 0
+GPUDevice.1.UserDefined.SSHCmd:
+	%C
+	-X
+	-o PubkeyAuthentication=yes
+	-o UserKnownHostsFile=/dev/null
+	-o LogLevel=Error
+	-o StrictHostKeyChecking=no
+	%H
+GPUDevice.1.UserDefined.MovieCmd:
+	%C
+	%A
+	-cudadevice %N
+GPUDevice.1.UserDefined.StartScriptFName =
+GPUDevice.2.Host = second_computer_ip
+GPUDevice.2.DeviceID = 0
+GPUDevice.2.Tags = second_computer_gpu1 Device_2 Default
+GPUDevice.2.UserDefined.SSHActive = 0
+GPUDevice.2.UserDefined.MovieActive = 0
+GPUDevice.2.UserDefined.SSHCmd:
+	%C
+	-X
+	" username@%H"
+GPUDevice.2.UserDefined.MovieCmd:
+	%C
+	%A
+	-cudadevice %N
+GPUDevice.2.UserDefined.StartScriptFName =
