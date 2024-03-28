@@ -69,45 +69,45 @@ function isValidInfoFile({ file, type }) {
     switch (type) {
       // regex match for possible vehicle types in the FileIdent property of the infofile
       case "Vehicle":
-        return fileIdent.match(/^CarMaker-Car\s\d{2}$/) ||
-          fileIdent.match(/^CarMaker-Truck\s\d{2}$/) ||
-          fileIdent.match(/^CarMaker-Motorcycle\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-Car\s\d{1}/) ||
+          fileIdent.match(/^CarMaker-Truck\s\d{1}/) ||
+          fileIdent.match(/^CarMaker-Motorcycle\s\d{1}/)
           ? true
           : false;
       case "Car":
-        return fileIdent.match(/^CarMaker-Car\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^CarMaker-Car\s\d{1}/) ? true : false;
       case "Motorcycle":
-        return fileIdent.match(/^CarMaker-Motorcycle\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^CarMaker-Motorcycle\s\d{1}/) ? true : false;
       case "Truck":
-        return fileIdent.match(/^CarMaker-Truck\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^CarMaker-Truck\s\d{1}/) ? true : false;
       // regex match for TestRun in the FileIdent property of the infofile
       case "TestRun":
-        return fileIdent.match(/^CarMaker-TestRun\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^CarMaker-TestRun\s\d{1}/) ? true : false;
       case "Road":
         //regex pattern search for Roadfile
         return fileIdent.match(/^IPGRoad.+$/) ? true : false;
       case "Trailer":
-        return fileIdent.match(/^CarMaker-Trailer\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^CarMaker-Trailer\s\d{1}/) ? true : false;
       case "Tire":
         return fileIdent.match(/^CarMaker-Tire-.+$/) ? true : false;
       case "Driver":
-        return fileIdent.match(/^CarMaker-DriverTemplate\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-DriverTemplate\s\d{1}/)
           ? true
           : false;
       case "TrafficBehavior":
-        return fileIdent.match(/^CarMaker-TrafficGenDriverBehavior\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-TrafficGenDriverBehavior\s\d{1}/)
           ? true
           : false;
       case "TrafficDriver":
-        return fileIdent.match(/^CarMaker-TrafficAutoDriver\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-TrafficAutoDriver\s\d{1}/)
           ? true
           : false;
       case "TrafficTemplate":
-        return fileIdent.match(/^CarMaker-TrafficTemplate\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-TrafficTemplate\s\d{1}/)
           ? true
           : false;
       case "SavedSelections":
-        return fileIdent.match(/^GUI-SavedSelections\s\d{2}$/) ? true : false;
+        return fileIdent.match(/^GUI-SavedSelections\s\d{1}/) ? true : false;
       case "UserDriver":
         return fileIdent.match(/^CarMaker-UserDriver-.+$/) ? true : false;
       case "SuspensionKinematics-skc":
@@ -121,7 +121,7 @@ function isValidInfoFile({ file, type }) {
       case "GPUConfig":
         return fileIdent.match(/^CarMaker-GPUConfig\s.+$/) ? true : false;
       case "PTBattery-BattECM":
-        return fileIdent.match(/^CarMaker-PTBattery-BattECM\s\d{2}$/)
+        return fileIdent.match(/^CarMaker-PTBattery-BattECM\s\d{1}/)
           ? true
           : false;
       case "AirBrake":
