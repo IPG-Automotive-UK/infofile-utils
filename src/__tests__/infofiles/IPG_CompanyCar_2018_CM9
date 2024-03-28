@@ -1,6 +1,6 @@
 #INFOFILE1.1 - Do not remove this line!
-FileIdent = CarMaker-TrafficTemplate 13
-FileCreator = CarMaker 13.0
+FileIdent = CarMaker-TrafficTemplate 9
+FileCreator = CarMaker 9.0
 
 Info = Example Traffic Object Template
 Color = 1.0 0.0 0.0

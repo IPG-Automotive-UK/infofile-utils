@@ -1,0 +1,216 @@
+#INFOFILE1.1 (UTF-8) - Do not remove this line!
+FileIdent = CarMaker-Trailer 9
+FileCreator = CarMaker 9.0 TEMPLATE
+
+
+## Assembly ##############################################################
+
+RefPointInputSystem = 0.0 0.0 0.0
+Description:
+	Typical, unvalidated data for 1-axle small classic trailer
+	Tire: RT_165_70R13
+
+Virtual.PoA = -2.000 0.000 0.682
+Hitch2.System =
+Hitch2.pos = 0.0 0.0 -1.0
+
+Pvt.Bdy.mass = 0.0
+Pvt.Bdy.I = 0.0 0.0 0.0 -0.0 -0.0 -0.0
+Pvt.Bdy.pos = 0.0 0.0 0.0
+Drw.Bdy.mass = 0.0
+Drw.Bdy.I = 0.0 0.0 0.0 -0.0 -0.0 -0.0
+Drw.Bdy.pos = 0.0 0.0 0.0
+WheelCarrier.fl.mass = 8.0
+WheelCarrier.fl.I = 0.15 0.15 0.15 -0.0 -0.0 -0.0
+WheelCarrier.fl.pos = -2.0 0.6 0.235
+WheelCarrier.fr.mass = 8.0
+WheelCarrier.fr.I = 0.15 0.15 0.15 -0.0 -0.0 -0.0
+WheelCarrier.fr.pos = -2.0 -0.6 0.235
+Wheel.fl.mass = 15.0
+Wheel.fl.I = 0.25 0.8 0.25
+Wheel.fl.pos = -2.0 0.6 0.235
+Wheel.fr.mass = 15.0
+Wheel.fr.I = 0.25 0.8 0.25
+Wheel.fr.pos = -2.0 -0.6 0.235
+
+TrimLoad.0.mass = 0
+TrimLoad.0.I = 0 0 0
+TrimLoad.0.pos = 0 0 0
+TrimLoad.0.mounted = Fr1A
+TrimLoad.0.RefFr = FrD
+TrimLoad.0.name = Trim Load 0
+TrimLoad.1.mass = 0
+TrimLoad.1.I = 0 0 0
+TrimLoad.1.pos = 0 0 0
+TrimLoad.1.mounted = Fr1A
+TrimLoad.1.RefFr = FrD
+TrimLoad.1.name = Trim Load 1
+
+Assembly.Comment:
+
+
+## Body ##################################################################
+
+VehicleModel = Semi_1Axle
+nAxle = 1
+VehicleModel.Kind = RigidBody
+VehicleModel.Mode = BodyA
+Body.mass = 300
+Body.I = 100 300 500 -0.0 -0.0 -0.0
+Body.pos = -2.0 0.0 0.75
+Flex.JointFr1Fr1B.pos = -2.0 0.0 0.75
+Flex.JointFr1Fr1B.Kind = Coeff
+Flex.JointFr1Fr1B.k.x = 5000.0
+Flex.JointFr1Fr1B.k.y = 15000.0
+Flex.JointFr1Fr1B.k.x.Amplify = 1.0
+Flex.JointFr1Fr1B.k.y.Amplify = 1.0
+Flex.JointFr1Fr1B.d.x = 100.0
+Flex.JointFr1Fr1B.d.y = 100.0
+Flex.JointFr1Fr1B.d.x.Amplify = 1.0
+Flex.JointFr1Fr1B.d.y.Amplify = 1.0
+
+Movie.Skin.FName =
+Picture.PicFName =
+Vehicle.OuterSkin = -3.0 0.5 0.40 -1.0 -0.5 1.00
+ArticulationAngle_max = 70.0
+
+Aero.Kind = Coeff6x1 1
+Aero.Marker.pos = -1.0 0.0 0.5
+Aero.pos = -1.5 0.0 0.5
+Aero.Ax = 1.5
+Aero.lReference = 2.00
+Aero.Crosswind.Kind = Step
+Aero.Coeff:
+	-180 -0.55 0 0.2 0 -0.15 0
+	-160 -0.6 -1.0 0.35 -0.35 -0.25 0.15
+	-140 -0.5 -1.4 0.5 -0.5 -0.3 0.14
+	-120 -0.3 -1.6 0.55 -0.6 -0.25 0.11
+	-100 -0.1 -1.7 0.6 -0.65 -0.1 0.05
+	-80 0.1 -1.7 0.6 -0.65 0.1 -0.05
+	-60 0.3 -1.6 0.55 -0.6 0.25 -0.11
+	-40 0.5 -1.4 0.5 -0.5 0.3 -0.14
+	-20 0.61 -0.95 0.43 -0.37 0.24 -0.15
+	-17.5 0.63 -0.83 0.40 -0.33 0.23 -0.14
+	-15 0.63 -0.72 0.35 -0.28 0.22 -0.12
+	-12.5 0.61 -0.60 0.30 -0.23 0.21 -0.1
+	-10 0.59 -0.47 0.25 -0.18 0.2 -0.08
+	-7.5 0.58 -0.34 0.20 -0.13 0.18 -0.06
+	-5 0.56 -0.23 0.21 -0.08 0.17 -0.04
+	-2.5 0.54 -0.12 0.23 -0.04 0.16 -0.02
+	0 0.53 0 0.21 0 0.15 0
+	2.5 0.54 0.12 0.23 0.04 0.16 0.02
+	5 0.56 0.23 0.21 0.08 0.17 0.04
+	7.5 0.58 0.34 0.20 0.13 0.18 0.06
+	10 0.59 0.47 0.25 0.18 0.2 0.08
+	12.5 0.61 0.60 0.30 0.23 0.21 0.1
+	15 0.63 0.72 0.35 0.28 0.22 0.12
+	17.5 0.63 0.83 0.40 0.33 0.23 0.14
+	20 0.61 0.95 0.43 0.37 0.24 0.15
+	40 0.5 1.4 0.5 0.5 0.3 0.14
+	60 0.3 1.6 0.55 0.6 0.25 0.11
+	80 0.1 1.7 0.6 0.65 0.1 0.05
+	100 -0.1 1.7 0.6 0.65 -0.1 -0.05
+	120 -0.3 1.6 0.55 0.6 -0.25 -0.11
+	140 -0.5 1.4 0.5 0.5 -0.3 -0.14
+	160 -0.6 1.0 0.35 0.35 -0.25 -0.15
+	180 -0.55 0 0.2 0 -0.15 0
+
+Vhclbody.Comment:
+
+
+## Suspensions ###########################################################
+SuspF.Spring.Kind = Hookean 1
+SuspF.Spring.Amplify = 1
+SuspF.Spring = 50000
+SuspF.Parasitic.Stiffness.Kind =
+SuspF.Parasitic.Friction.Kind =
+SuspF.Damper.Kind = Newtonian 1
+SuspF.Damp_Push.Amplify = 1.0
+SuspF.Damp_Push = 5000
+SuspF.Damp_Pull.Amplify = 1.0
+SuspF.Damp_Pull = 5000
+SuspF.Buffer.Kind = Hookean 1
+SuspF.Buf_Push.tz0 = 0.1
+SuspF.Buf_Push.Amplify = 1.0
+SuspF.Buf_Push = 50000.0
+SuspF.Buf_Pull.tz0 = -0.1
+SuspF.Buf_Pull.Amplify = 1.0
+SuspF.Buf_Pull = 50000.0
+SuspF.Stabi.Kind = Hookean 1
+SuspF.Stabi.Amplify = 1.0
+SuspF.Stabi = 0.0
+SuspF.Kin.N = 1
+SuspF.Com.N = 0
+SuspF.Kin.0.Kind = Sleeve 1
+SuspF.Kin.0.L.Camber = 0
+SuspF.Kin.0.L.Toe = 0.0087
+SuspF.WhlBearing.On = 0
+SuspExtFrcs.Kind =
+SuspControl.Kind =
+Susp.Comment:
+
+
+## Tires #################################################################
+Tire.0 = Examples/RT_165_70R13
+Tire.1 = Examples/RT_165_70R13
+AxleF.TwinTiresOn = 0
+AxleF.Lift.Active = 0
+Tires.Comment:
+
+
+## Hitch #################################################################
+Hitch.Kind = Ball
+Hitch.System = Ball
+Hitch.pos = 0.0 0.0 0.40
+Hitch.On = 0
+Hitch.Comment:
+
+
+## Brake #################################################################
+Brake.Kind =
+Brake.Comment:
+
+## Sensor Parametrizations ###############################################
+Sensor.Param.0.Type = SAngle
+Sensor.Param.0.FName =
+Sensor.Param.0.Name = SL_Param
+Sensor.Param.N = 1
+Sensor.Comment:
+
+
+## Sensor Cluster ########################################################
+SensorCluster.N = 0
+
+
+## Sensor Instances ######################################################
+Sensor.N = 1
+Sensor.0.name = TrSS00
+Sensor.0.rot = 0.0 0.0 0.0
+Sensor.0.pos = -2.0 0.0 0.5
+Sensor.0.Visualization = 1
+Sensor.0.VisColor = 0.0 0.0 0.0
+Sensor.0.Mounting = Fr1A
+Sensor.0.Active = 1
+Sensor.0.Ref.Param = 0
+Sensor.0.Ref.Cluster =
+
+
+## Show ##################################################################
+Crypto.Show:
+	Picture.PicFName
+	Movie.Skin.FName
+	Vehicle.OuterSkin
+	nAxle
+	Brake.Kind
+	Brake.FName
+	CM4SL.ActivateFcn
+	CM4SL.StartFcn
+	CM4SL.StopFcn
+	Sensor.N
+	Sensor.0.Active
+	Sensor.0.Ref.Cluster
+	SensorCluster.N
+Crypto.AllowAccess:
+	GenericPlugin
+
+Additional.Comment:
