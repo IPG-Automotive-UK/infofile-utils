@@ -52,9 +52,10 @@ function isValidInfoFile({ file, type }) {
   }
 
   // read the info file
-  const infofile = readInfoFile(file);
+  let infofile;
 
   try {
+    infofile = readInfoFile(file);
     const fileIdent = infofile.getString("FileIdent");
 
     if (!type) {
@@ -119,15 +120,14 @@ function isValidInfoFile({ file, type }) {
       default:
         return false;
     }
-  } catch {
-    // get the error from the infofile handle
-    const error = infofile.getError();
-
-    // throw the error
-    throw new Error(error);
+  } catch (err) {
+    // if we failed to read the file it isn't valid
+    return false;
   } finally {
     // delete the infofile handle
-    infofile.delete();
+    if (infofile) {
+      infofile.delete();
+    }
   }
 }
 

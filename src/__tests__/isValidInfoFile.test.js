@@ -342,6 +342,16 @@ describe("isValidInfoFile tests", () => {
     ).toEqual(false);
   });
 
+  // returns false when file is unreadable
+  test("returns false when file is unreadable", () => {
+    expect(
+      isValidInfoFile({
+        file: path.resolve(__dirname, "./infofiles/MyBrake_FMU.fmu"),
+        type: "Vehicle",
+      })
+    ).toEqual(false);
+  });
+
   // test case throws error when the type is invalid
   test("throws error when the type is invalid", () => {
     expect(() => {
@@ -350,15 +360,5 @@ describe("isValidInfoFile tests", () => {
         type: "shouldThrowError",
       });
     }).toThrowError("type is invalid");
-  });
-
-  // test case throws error when path can't be found
-  test("throws error when path can't be found", () => {
-    expect(() => {
-      isValidInfoFile({
-        file: "./SomeFakeFile.car",
-        type: "Vehicle",
-      });
-    }).toThrowError("File read error");
   });
 });
