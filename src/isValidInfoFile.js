@@ -123,9 +123,6 @@ function isValidInfoFile({ file, type }) {
     // get the error from the infofile handle
     const error = infofile.getError();
 
-    // delete the infofile handle
-    infofile.delete();
-
     // throw the error
     throw new Error(error);
   } finally {
