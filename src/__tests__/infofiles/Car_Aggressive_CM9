@@ -1,0 +1,299 @@
+#INFOFILE1.1 (UTF-8) - Do not remove this line!
+FileIdent = CarMaker-DriverTemplate 9
+FileCreator = CarMaker Office 9.0
+Driver.Info = Preset Aggressive
+Driver.Mode = std
+Driver.MultiStep = 1
+Driver.Course.LapDriving = 1
+Driver.Course.CornerCutCoef = 0.8
+Driver.Course.ApexShiftCoef = 0.0
+Driver.Course.CornerRoundCoef = 0.0
+Driver.Course.ShapeCoef = 1.0
+Driver.Course.PylonShiftFdCoef = 0.1
+Driver.Course.PylonShiftBkCoef = 0.1
+Driver.Acc.GGExp:
+	50 1.5 1.5
+Driver.Acc.axMax = 4.0
+Driver.Acc.axMin = -6.0
+Driver.Acc.ayMax = 5.0
+Driver.Acc.UseVelDepend = 0
+Driver.Acc.VelDepend:
+	5.00 2.50 -2.50 1.00
+	10.00 2.80 -2.40 2.25
+	20.00 3.00 -2.40 3.30
+	30.00 3.50 -2.35 4.40
+	40.00 4.00 -2.35 4.60
+	50.00 4.10 -2.30 4.80
+	60.00 4.00 -2.20 5.00
+	70.00 3.80 -2.15 4.90
+	80.00 3.60 -2.10 4.75
+	90.00 3.40 -2.05 4.55
+	100.00 3.20 -2.05 4.40
+	110.00 3.00 -2.00 4.35
+	120.00 2.80 -2.00 4.30
+	130.00 2.70 -2.00 4.25
+	140.00 2.60 -2.00 4.20
+	150.00 2.50 -2.00 4.15
+	160.00 2.45 -1.95 4.10
+	170.00 2.40 -1.95 4.05
+	180.00 2.35 -1.95 4.00
+	190.00 2.30 -1.95 3.95
+	200.00 2.25 -1.95 3.90
+	210.00 2.20 -1.90 3.85
+	220.00 2.15 -1.90 3.80
+	230.00 2.10 -1.90 3.80
+	240.00 2.00 -1.90 3.80
+Driver.Acc.Factor.Accel = 1.0
+Driver.Acc.Factor.Decel = 1.0
+Driver.Acc.Factor.Lateral = 0.95
+Driver.Vel.CruisingSpeed = 250
+Driver.Vel.dtMinAccelDecel = 0.5
+Driver.Vel.Random.Amp = 0.0
+Driver.Vel.Random.Freq = 1.0
+Driver.Vel.LatInclFromRoad = 1
+Driver.Vel.MinimumSpeed = 1.0
+Driver.Long.Active = 1
+Driver.Long.TractionControl = 1
+Driver.Long.dtAccBrake = 0.25
+Driver.Long.dtAccBrakeKind = 0
+Driver.Long.DevMax = 0.0
+Driver.Long.tReact = 0.0
+Driver.Long.SmoothCoef = 0.0
+Driver.Long.SmoothThrottleLimit = 1.0
+Driver.Long.AccuracyCoef = 1
+Driver.Long.Rally.BrakeSlipCoef =
+Driver.Long.Rally.SideSlipCoef =
+Driver.Long.Rally.Active = 0
+Driver.Long.DriveCycle.Coef = 0
+Driver.Long.DriveCycle.Tol = 0
+Driver.Long.DragTorqueBraking = 0
+Driver.Long.ThrottleVelRelease = 10.0
+Driver.Long.ThrottleVelPush = 10.0
+Driver.Long.BrakeVelRelease = 10.0
+Driver.Long.BrakeVelPush = 10.0
+Driver.Long.ActuatorAccMax = 1000.0
+Driver.Long.ThrottleAmp = 1.0
+Driver.Long.BrakeAmp = 1.0
+Driver.Long.ClutchAmp = 1.0
+Driver.Long.dtSwitchGear = 0.0
+Driver.Long.Road3DRedCoef = 0.0
+Driver.Lat.Active = 1
+Driver.Lat.RiderRollType = 3
+Driver.Lat.RiderRollAmplify =
+Driver.Lat.DevMax = 0.0
+Driver.Lat.tReact = 0.0
+Driver.Lat.DevProReact = 0.0
+Driver.Lat.tDwell =
+Driver.Lat.StAHandOverHand =
+Driver.Lat.tHandOverHand =
+Driver.Lat.AccuracyCoef = 1.0
+Driver.Lat.StTorqueRequestSensitivity =
+Driver.Lat.StTorqueRequestCompCoef =
+Driver.Lat.StWhlAngleMax = 630
+Driver.Lat.StWhlAngleVelMax = 1500
+Driver.Lat.StWhlAngleAccMax = 20000
+Driver.Lat.StWhlTorqueMax = 20.0
+Driver.Lat.StWhlTorqueVelMax = 1000.0
+Driver.Lat.SteeringAmp = 1.0
+Driver.DecShift.UseBrakePark = 0
+Driver.DecShift.tSwitchGear = 0.5
+Driver.DecShift.AsymClutch = 0.0
+Driver.DecShift.AsymClutchDown = 0.0
+Driver.DecShift.AsymShift = 0.0
+Driver.DecShift.tSSNeutralGear =
+Driver.DecShift.nEngine.Limits:
+	2500 5000
+Driver.DecShift.nEngine.Shift:
+	3000 4500
+Driver.Consider.SpeedLimit = 1
+Driver.Consider.StopMarker = 1
+Driver.Consider.TrfLight = 1
+Driver.Consider.Traffic = 1
+Driver.Traffic.Overtake = 0
+Driver.Traffic.TimeGapMin = 1.8
+Driver.Traffic.TimeGapMax = 5.0
+Driver.Traffic.DistMin = 6.0
+Driver.Traffic.DistMax = 250.0
+Driver.Traffic.EcoCoef = 0.75
+Driver.Traffic.Overtake.Rate = 1.0
+Driver.Traffic.Overtake.dSpeedMin = 10.0
+Driver.Traffic.Overtake.Multilane = 0
+Driver.Traffic.Ongoing.FollowVelThresh = 60.0
+Driver.Traffic.Ongoing.OvertakeVelDiff = 20.0
+Driver.Traffic.Overtake.SetIndicator = 1
+Driver.Percept.nObjMax = 4
+Driver.Percept.nLanesMax = 3
+Driver.Percept.UpdRate = 100
+Driver.DecShift.nEngine.MaxSpeed.UserDefined = 0
+Driver.Acc.VelDepend.UserDefined = 0
+Driver.OutSdcv = 0
+Driver.Knowl.0.Name = DemoCar
+Driver.Knowl.0.Info = Adaption of DemoCar
+Driver.Knowl.0.Mode = std
+Driver.Knowl.0.Vehicle = Examples/DemoCar
+Driver.Knowl.0.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.0.Friction = 1.0
+Driver.Knowl.0.VehicleLimits.Date = 2023-11-06 11:04:42
+Driver.Knowl.0.VehicleLimits.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.0.ControllerDyn.Date = 2023-11-06 11:04:42
+Driver.Knowl.0.ControllerDyn.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.0.RaceAdaption.Date =
+Driver.Knowl.0.RaceAdaption.Testrun =
+Driver.Knowl.0.LearningRate =
+Driver.Knowl.0.Vhcl.ReferencePointType = PoI
+Driver.Knowl.0.Vhcl.Acc:
+	20.00	    4.65	   -9.25	    6.94
+	30.00	    4.71	   -9.25	    7.24
+	40.00	    4.68	   -9.25	    7.54
+	50.00	    4.28	   -9.25	    7.85
+	60.00	    3.45	   -9.25	    8.16
+	70.00	    2.94	   -9.26	    8.46
+	80.00	    2.71	   -9.27	    8.69
+	90.00	    2.48	   -9.29	    8.76
+	100.00	    2.17	   -9.30	    8.75
+	110.00	    1.94	   -9.32	    8.73
+	120.00	    1.78	   -9.34	    8.72
+	130.00	    1.59	   -9.36	    8.71
+	140.00	    1.41	   -9.38	    8.70
+	150.00	    1.28	   -9.41	    8.69
+	160.00	    1.15	   -9.43	    8.66
+	170.00	    1.04	   -9.45	    8.64
+	180.00	    1.00	   -9.48	    8.67
+	190.00	    0.99	   -9.51	    8.79
+	200.00	    1.00	   -9.55	    8.96
+	210.00	    1.00	   -9.57	    9.14
+	220.00	    1.00	   -9.59	    9.31
+	230.00	    1.00	   -9.59	    9.47
+	240.00	    1.00	   -9.59	    9.64
+Driver.Knowl.0.Vhcl.DrivelineKind = 0
+Driver.Knowl.0.nEngine.MaxSpeed:
+	800	7135
+	2700	6799
+	4022	6604
+	4359	6681
+	3863	7959
+Driver.Knowl.0.Long.tPreviewAcc = 1.147
+Driver.Knowl.0.Long.tPreviewBra = 0.697
+Driver.Knowl.0.Long.tPreEngDyn = 0.030
+Driver.Knowl.0.Long.tPreBraDyn = 0.059
+Driver.Knowl.0.Long.tPreEngDead = 0.000
+Driver.Knowl.0.Long.tPreBraDead = 0.000
+Driver.Knowl.0.Long.ThrottlePfP = 0.000
+Driver.Knowl.0.Long.BrakePfP = 0.000
+Driver.Knowl.0.Long.SlipMax:
+	40.78	   9.08	   5.21
+	75.18	   9.45	   5.42
+	107.38	   9.27	   5.32
+	143.51	   9.09	   5.22
+	180.36	   8.78	   5.03
+Driver.Knowl.0.Long.axDragG1 = 0.577
+Driver.Knowl.0.Long.vIdle = 6.337
+Driver.Knowl.0.Lat.tPreview = 0.524
+Driver.Knowl.0.Lat.tPreDyn = 0.097
+Driver.Knowl.0.Lat.tYawPro = 0.021
+Driver.Knowl.0.Lat.StWhlTorqueAmplify = 1.000
+Driver.Knowl.0.Lat.StWhlTorqueAmplifyC = 1.000
+Driver.Knowl.0.Lat.StWhlTorqueAmplifyV = 1.000
+Driver.Knowl.0.Lat.LimitSideSlip = 12.406
+Driver.Knowl.0.Learn.G2GearNo = 2
+Driver.Knowl.0.Learn.G3GearNo = 3
+Driver.Knowl.0.Learn.axAccG2 = 2.203
+Driver.Knowl.0.Learn.axAccMax = 4.67	2.94	2.05	1.51	1.00
+Driver.Knowl.0.Learn.axBravG2nEng05 = -9.249
+Driver.Knowl.0.Learn.nEngineIdle = 800
+Driver.Knowl.0.Learn.vG2nEng025 = 37.237
+Driver.Knowl.0.Learn.vG2nEng075 = 88.704
+Driver.Knowl.0.Learn.vnEng05 = 35.173	62.850	88.394	113.582	146.375
+Driver.Knowl.0.Long.nEngineMax = 7959
+Driver.Knowl.0.Long.vMax = 239.409
+Driver.Knowl.0.Vhcl.hCOG = 0.629
+Driver.Knowl.0.Learn.ayMax = 0.00	8.66	8.75	8.73	8.70
+Driver.Knowl.1.Name = CompanyCar
+Driver.Knowl.1.Info = Adaption of CompanyCar
+Driver.Knowl.1.Mode = std
+Driver.Knowl.1.Vehicle = Examples/Demo_IPG_CompanyCar
+Driver.Knowl.1.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.1.Friction = 1.0
+Driver.Knowl.1.VehicleLimits.Date = 2023-11-06 11:05:38
+Driver.Knowl.1.VehicleLimits.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.1.ControllerDyn.Date = 2023-11-06 11:05:38
+Driver.Knowl.1.ControllerDyn.Testrun = Examples/BasicFunctions/Driver/HandlingCourse
+Driver.Knowl.1.RaceAdaption.Date =
+Driver.Knowl.1.RaceAdaption.Testrun =
+Driver.Knowl.1.LearningRate =
+Driver.Knowl.1.Vhcl.ReferencePointType = PoI
+Driver.Knowl.1.Vhcl.Acc:
+	20.00	    8.17	  -12.03	    9.02
+	30.00	    8.13	  -12.02	    9.24
+	40.00	    7.99	  -12.02	    9.47
+	50.00	    7.70	  -12.02	    9.70
+	60.00	    7.00	  -12.03	    9.93
+	70.00	    5.91	  -12.08	   10.15
+	80.00	    5.37	  -12.19	   10.31
+	90.00	    5.17	  -12.29	   10.35
+	100.00	    4.76	  -12.34	   10.31
+	110.00	    3.99	  -12.36	   10.27
+	120.00	    3.43	  -12.36	   10.23
+	130.00	    3.23	  -12.36	   10.20
+	140.00	    3.14	  -12.36	   10.16
+	150.00	    2.97	  -12.36	   10.13
+	160.00	    2.58	  -12.36	   10.09
+	170.00	    2.11	  -12.36	   10.05
+	180.00	    1.86	  -12.37	   10.00
+	190.00	    1.75	  -12.37	    9.95
+	200.00	    1.65	  -12.37	    9.89
+	210.00	    1.51	  -12.37	    9.83
+	220.00	    1.30	  -12.36	    9.81
+	230.00	    1.08	  -12.36	    9.89
+	240.00	    1.00	  -12.41	   10.01
+	250.00	    0.99	  -12.58	   10.13
+	260.00	    1.00	  -12.81	   10.25
+	270.00	    1.00	  -12.90	   10.37
+	280.00	    1.00	  -12.91	   10.49
+	290.00	    1.00	  -12.90	   10.60
+Driver.Knowl.1.Vhcl.DrivelineKind = 1
+Driver.Knowl.1.nEngine.MaxSpeed:
+	806	6705
+	2532	6570
+	3658	6511
+	3958	6426
+	3648	5897
+	2868	7135
+Driver.Knowl.1.Long.tPreviewAcc = 0.848
+Driver.Knowl.1.Long.tPreviewBra = 0.572
+Driver.Knowl.1.Long.tPreEngDyn = 0.030
+Driver.Knowl.1.Long.tPreBraDyn = 0.061
+Driver.Knowl.1.Long.tPreEngDead = 0.000
+Driver.Knowl.1.Long.tPreBraDead = 0.000
+Driver.Knowl.1.Long.ThrottlePfP = 0.000
+Driver.Knowl.1.Long.BrakePfP = 0.000
+Driver.Knowl.1.Long.SlipMax:
+	42.01	   4.41	   2.52
+	78.89	   4.55	   2.61
+	112.88	   4.46	   2.56
+	148.23	   4.36	   2.50
+	185.43	   4.26	   2.44
+	221.21	   4.18	   2.40
+Driver.Knowl.1.Long.axDragG1 = 0.822
+Driver.Knowl.1.Long.vIdle = 7.594
+Driver.Knowl.1.Lat.tPreview = 0.499
+Driver.Knowl.1.Lat.tPreDyn = 0.072
+Driver.Knowl.1.Lat.tYawPro = 0.018
+Driver.Knowl.1.Lat.StWhlTorqueAmplify = 1.000
+Driver.Knowl.1.Lat.StWhlTorqueAmplifyC = 1.000
+Driver.Knowl.1.Lat.StWhlTorqueAmplifyV = 1.000
+Driver.Knowl.1.Lat.LimitSideSlip = 8.689
+Driver.Knowl.1.Learn.G2GearNo = 2
+Driver.Knowl.1.Learn.G3GearNo = 3
+Driver.Knowl.1.Learn.axAccG2 = 4.971
+Driver.Knowl.1.Learn.axAccMax = 8.15	5.41	3.45	2.24	1.51	1.09
+Driver.Knowl.1.Learn.axBravG2nEng05 = -11.735
+Driver.Knowl.1.Learn.nEngineIdle = 806
+Driver.Knowl.1.Learn.vG2nEng025 = 38.853
+Driver.Knowl.1.Learn.vG2nEng075 = 90.328
+Driver.Knowl.1.Learn.vnEng05 = 37.721	64.472	100.083	141.377	181.477	209.449
+Driver.Knowl.1.Long.nEngineMax = 7135
+Driver.Knowl.1.Long.vMax = 280.128
+Driver.Knowl.1.Vhcl.hCOG = 0.586
+Driver.Knowl.1.Learn.ayMax = 0.00	10.28	10.37	10.27	10.13	9.96
+Driver.Knowl.N = 2

@@ -1,0 +1,25 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-TrafficAutoDriver 9
+FileCreator = CarMaker 9.0
+ObjectClassType = 1 0
+Long.Kind = Generic
+Long.Gen.DistPreview = 200.0
+Long.Gen.DistStand = 1.5
+Long.Gen.AccMax = 4.0
+Long.Gen.DecComf = -3.0
+Long.Gen.PCtrlSpd = 0.55
+Long.Gen.TimeGap = 1.0
+Long.Gen.TAdaptDist = 2.0
+Long.Gen.TAdaptRelSpd_low = 1.5
+Long.Gen.TAdaptRelSpd_high = 0.8
+Long.Gen.RelSpdRef = 1.0
+Long.Gen.DecMax = -10.0
+Long.CPV.AccLatMax = 5.0
+Long.Merge.Cautious = 0.25
+Long.Junction.Param = 0.20  0.10  0.10
+Long.ConsiderRoadElm = 1  1  1
+Lat.Kind = HDMbased
+Lat.HDMbased.Mode = 1  1
+Lat.HDMbased.Param = 0.20  0.30  0.70  0.30  0.30  0.30
+Lat.HDMbased.AsymMode = ByCountry
+SDweight = 0.2
