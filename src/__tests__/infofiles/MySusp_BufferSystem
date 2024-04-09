@@ -1,0 +1,21 @@
+#INFOFILE1.1 (UTF-8) - Do not remove this line!
+FileIdent = CarMaker-Susp_BufferSystem-MyModel 1
+FileCreator = CarMaker 12.0
+FileClass.New = 13.0
+
+## Modelclass-specific Parameters ########################################
+Susp.BufferSystem.TimeInvariant = 1
+
+## Additional Parameters #################################################
+Description:
+	Parameters for suspension buffer system
+	with example model MySusp_BufferSystem.c and
+	obligatory modelclass-specific parameter.
+SFH.Buf_PullFL = 	0.09 50000
+SFH.Buf_PullFR = 	0.09 50000
+SFH.Buf_PullRL = 	0.065 50000
+SFH.Buf_PullRR = 	0.065 50000
+SFH.Buf_PushFL = 	-0.055 50000
+SFH.Buf_PushFR = 	-0.055 50000
+SFH.Buf_PushRL = 	-0.08 50000
+SFH.Buf_PushRR = 	-0.08 50000

@@ -41,7 +41,7 @@ Returns a double value from an infofile for a given key or an array of keys. The
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the double value for the keys "WheelCarrier.fl.mass"
 const wheelCarrierValue = infofile.getDouble({file, keys:"WheelCarrier.fl.mass"});
@@ -57,7 +57,7 @@ console.log(wheelCarrierValue)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the double values for the keys "WheelCarrier.fl.mass" and "WheelCarrier.fr.mass"
 const wheelCarrierValues = infofile.getDouble({file, keys:["WheelCarrier.fl.mass", "WheelCarrier.fr.mass"]});
@@ -79,7 +79,7 @@ A universal function for getting values from an infofile. All numerical key valu
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the value for the keys "WheelCarrier.fl.mass"
 const wheelCarrierValue = infofile.getValue({file, keys:"WheelCarrier.fl.mass"});
@@ -95,7 +95,7 @@ console.log(wheelCarrierValue)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the values for the keys "WheelCarrier.fl.mass" and "SuspF.Spring.Kind"
 const values = infofile.getValue({file, keys:["WheelCarrier.fl.mass", "SuspF.Spring.Kind"]});
@@ -117,7 +117,7 @@ Returns a long value from an infofile for a given key or an array of keys. The v
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the long value for the keys "Body.mass"
 const bodyMassValue = infofile.getLong({file, keys:"Body.mass"});
@@ -133,7 +133,7 @@ console.log(bodyMassValue)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the long values for the keys "Body.mass" and "nAxle"
 const longValues = infofile.getLong({file, keys:["Body.mass", "nAxle"]});
@@ -155,7 +155,7 @@ Returns a string value from an infofile for a given keys or an array of keys.
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the string value for the keys "Aero.Crosswind.Kind"
 const aeroCrosswindKind = infofile.getString({file, keys:"Aero.Crosswind.Kind"});
@@ -171,7 +171,7 @@ console.log(aeroCrosswindKind)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the string values for the keys "Body.mass" and "Aero.Kind"
 const stringValues = infofile.getString({file, keys:["Aero.Crosswind.Kind", "Aero.Kind"]});
@@ -193,7 +193,7 @@ Returns a text value from an infofile for a given keys or an array of keys. This
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the text value for the keys "Description"
 const description = infofile.getText({file, keys:"Description"});
@@ -209,7 +209,7 @@ console.log(description)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the text values for the keys "Description" and "Aero.Coeff"
 const textValues = infofile.getText({file, keys:["Description", "Aero.Coeff"]});
@@ -233,7 +233,7 @@ Sets a double value to an infofile for a given keys.
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the double value for the keys "SuspF.Spring.l0" to 0.351
 status = infofile.setDouble({file, values:{keys: "SuspF.Spring.l0", value: 0.351}});
@@ -249,7 +249,7 @@ console.log(status)
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the double values for the keys "SuspF.Spring.l0" and "Body.mass" to 0.351 and 1830.15
 status = infofile.setDouble({file, values:[{keys: SuspF.Spring.l0", value: 0.351}, {keys: "Body.mass", value:  1830.15}]});
@@ -267,33 +267,37 @@ A universal function to set values to an infofile.
 ### Setting a single value to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the value for the keys "SuspF.Spring.l0" to 0.351
 status = infofile.setValue({file, values:{keys: "SuspF.Spring.l0", value: 0.351}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 ### Setting an array of values to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the values for the keys "SuspF.Spring.l0" and "Aero.Crosswind.Kind" to 0.351 and "Step"
-status = infofile.setValue({file, values:[{keys: "SuspF.Spring.l0", value: 0.351}, {keys: "Aero.Crosswind.Kind", value:  "Step"}]});
+status = infofile.setValue({file, values:[{keys: "SuspF.Spring.l0", value: 0.351}, {keys: "Aero.Crosswind.Kind", value: "Step"}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "SuspF.Spring.l0", status: 0}, {keys: "Aero.Crosswind.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 </details>
@@ -305,33 +309,37 @@ Sets a long value to an infofile for a given keys.
 ### Setting a single long value to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the long value for the keys "Body.mass" to 1801
 status = infofile.setLong({file, values:{keys: "Body.mass", value: 1801}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 ### Setting an array of long values to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the long values for the keys "Body.mass" and "nAxle" to 1801 and 2
 status = infofile.setLong({file, values:[{keys: "Body.mass", value: 1801}, {keys: "nAxle", value: 2}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Body.mass", status: 0}, {keys: "nAxle", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 </details>
@@ -343,33 +351,37 @@ Sets a string value to an infofile for a given keys.
 ### Setting a single string value to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the string value for the keys "Aero.Crosswind.Kind" to "Step"
 status = infofile.setString({file, values:{keys: "Aero.Crosswind.Kind", value: "Step"}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 ### Setting an array of string values to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the string values for the keys "Aero.Crosswind.Kind" and "Eng.Kind" to "Step" and "Flex"
 status = infofile.setString({file, values:[{keys: "Aero.Crosswind.Kind", value: "Step"}, {keys: "Eng.Kind", value: "Flex"}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Aero.Crosswind.Kind", status: 0}, {keys: "Eng.Kind", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 </details>
@@ -381,33 +393,89 @@ Sets a text value to an infofile for a given keys. This is an array of strings a
 ### Setting a single text value to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the text value for the keys "Description" to ["This is a description", "This is a description on a second line"]
 status = infofile.setText({file, values:{keys: "Description", value: ["This is a description", "This is a description on a second line"]}});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 ### Setting an array of text values to an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // set the text values for the keys "Description" and "Eng.Description" to ["This is a description", "This is a description on a second line"] and ["This is a description", "This is a description on a second line"]
 status = infofile.setText({file, values:[{keys: "Description", value: ["This is a description", "This is a description on a second line"]}, {keys: "Eng.Description", value: ["This is a description", "This is a description on a second line"]}]});
 
 // console.log the status, array of objects with the keys "keys" and "status" e.g. [{keys: "Description", status: 0}, {keys: "Eng.Description", status: 0}] where status is 0 if successful, -1 if not
 console.log(status)
+
+```
+
+</details>
+
+### Validate whether a file is indeed an infofile:
+
+<details>
+<summary></b><code>isValidInfoFile</code></b></summary>
+Returns a boolean value to show whether the file is a valid infofile or not.
+
+### Check whether a file is an infofile
+
+```
+// import the library
+const infofile = require("@ipguk/infofile-utils");
+
+// get the absolute path to the infofile
+const file = "C:\infofiles\infofile";
+
+// call the function. The property "type" is an optional property.
+// If no type is specified, any valid infofile will be taken as valid. However, files which are not infofiles still be regarded as invalid!
+// List of values for type:
+// "Vehicle" (for cars, motorcycles and trucks)
+// "Car" (for Car infofiles)
+// "Motorcycle" (for Motorcycle infofiles)
+// "Truck" (for Truck infofiles)
+// "TestRun" (for test runs)
+// "Road" (for road infofiles)
+// "Trailer" (for Trailer infofiles)
+// "Tire" (for Tire infofiles)
+// "Driver" (for Driver infofiles)
+// "TrafficBehavior" (for TrafficBehavior infofiles)
+// "TrafficDriver" (for TrafficDriver infofiles)
+// "TrafficTemplate" (for TrafficTemplate, e. g. vehicles, pedestrians, buildings, etc. infofiles)
+// "SavedSelections" (for SavedSelections infofiles)
+// "UserDriver" (for UserDriver infofiles)
+// "SuspensionKinematics-skc" (for Suspension Kinematics infofiles with a .skc file extension)
+// "SuspensionKinematics-mbs" (for Suspension Kinematics infofiles with a .mbs file extension)
+// "ADTF" (for ADTF infofifles)
+// "DataDict" (for DataDict infofiles)
+// "GPUConfig" (for GPUConfig infofiles)
+// "PTBattery-BattECM" (for PTBattery-BattECM infofiles)
+// "AirBrake" (for AirBrake infofiles)
+// "HydESP" (for HydESP infofiles)
+// "HydIPB" (for HydIPB infofiles)
+// "Suspension" (for various Suspension infofiles)
+// "SuspensionControl" (for various SuspensionControl infofiles)
+const validationWithoutType = isValidInfoFile({ file: file });
+const validationWithType = isValidInfoFile({ file: file, type: "Vehicle" });
+
+// console.log the status, returns true if valid, false if not
+console.log(validationWithType)
 ```
 
 </details>
@@ -421,33 +489,37 @@ Lists the keys in an infofile, for a given prefix, if no prefix is provided all 
 ### Listing all keys in an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // list all keys in the infofile
 keys = infofile.getKey({file});
 
 // console.log the keys, returns an array of keys e.g. ["Body.mass", "nAxle"]
 console.log(keys)
+
 ```
 
 ### Listing keys in an infofile for a given prefix:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // list all keys in the infofile for the prefix "Aero"
 keys = infofile.getKey({ file, prefix: "Aero" });
 
 // console.log the keys, returns an array of keys e.g. ["Aero.Crosswind.Kind", "Aero.Crosswind.Speed"]
 console.log(keys)
+
 ```
 
 </details>
@@ -459,33 +531,37 @@ Lists the getKeyKind, returns String_Key, Text_Key or No_Key
 ### Get the getKeyKind for a single keys:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the getKeyKind for the keys "Body.mass"
 keyKind = infofile.getKeyKind({file, keys: "Body.mass"});
 
 // console.log the keyKind, returns String_Key if keys is a single line string, Text_Key if keys is a text array and No_Key if keys is not found
 console.log(keyKind)
+
 ```
 
 ### Get the getKeyKind for a list of keys:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // get the getKeyKind for the keys "Body.mass" and "nAxle"
 getKeyKind = infofile.getKeyKind({file, keys: ["Body.mass", "nAxle"]});
 
 // console.log the getKeyKind, returns an array of getKeyKind e.g. ["String_Key", "No_Key"]
 console.log(getKeyKind)
+
 ```
 
 </details>
@@ -497,33 +573,38 @@ Deletes a key from an infofile
 ### Delete a single keys from an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // delete the keys "Body.mass"
 status = infofile.deleteKey({file, keys: "Body.mass"});
 
 // console.log the status, returns 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 ### Delete a list of keys from an infofile:
 
 ```
+
 // import the library
 const infofile = require("@ipguk/infofile-utils");
 
 // get the absolute path to the infofile
-const file = C:\infofiles\infofile
+const file = "C:\infofiles\infofile";
 
 // delete the keys "Body.mass" and "nAxle"
 status = infofile.deleteKey({file, keys: ["Body.mass", "nAxle"]});
 
 // console.log the status, returns an object with the keys "keys" and "status" e.g. {keys: "Body.mass", status: 0}, {keys: "nAxle", status: 0} where status is 0 if successful, -1 if not
 console.log(status)
+
 ```
 
 </details>
+```

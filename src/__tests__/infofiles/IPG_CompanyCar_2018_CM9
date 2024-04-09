@@ -1,0 +1,34 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-TrafficTemplate 9
+FileCreator = CarMaker 9.0
+
+Info = Example Traffic Object Template
+Color = 1.0 0.0 0.0
+ObjectClass = Car
+ObjectKind = Movable
+RCSClass = RCS_Car
+Movie.Geometry = 3D/Vehicles/IPG_CompanyCar_2018.mobj
+Basics.Dimension = 4.47 1.97 1.12
+Basics.Offset = 0.15 0.0
+Basics.Fr12CoM = 2.21
+Motion.Kind = 4Wheel
+Motion.mass = 1600
+Motion.Overhang = 0.95  0.90
+Motion.I = 660 2050 2400
+Motion.Cf = 1.9e5
+Motion.Cr = 2.4e5
+Motion.C_roll = 2.0e5
+Motion.D_roll = 2.0e4
+Motion.C_pitch = 3.9e5
+Motion.D_pitch = 3.9e4
+Motion.SteerCtrl.Ang_max = 40.0
+Motion.HitchRearType = BallHitch
+Motion.HitchRearPos = 0.0 0.0
+Motion.AnimateHitch = 0
+LVD.AxMax = 6.5
+LVD.vMax = 270
+LVD.Pmax = 260
+LVD.tBuildUp = 0.15
+
+# Parameters for Assistant of stochastically distributed traffic
+SDweight = 0.05

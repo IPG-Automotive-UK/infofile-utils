@@ -1,0 +1,9 @@
+#INFOFILE1 - Do not remove this line!
+FileIdent = CarMaker-UserDriver-MyUserDriver 1
+
+UserDriver.kp = 0.5
+UserDriver.ki = 0.5
+UserDriver.kd = 0.0
+UserDriver.tPreview = 5.0
+UserDriver.TPTF = 0.5
+UserDriver.TargetVel = 70.0
