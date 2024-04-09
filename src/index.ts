@@ -12,3 +12,4 @@ export type { SetLong } from "./setLong.types";
 export type { SetString } from "./setString.types";
 export type { SetText } from "./setText.types";
 export type { SetValue } from "./setValue.types";
+export type { IsValidInfoFile } from "./isValidInfoFile.types";
