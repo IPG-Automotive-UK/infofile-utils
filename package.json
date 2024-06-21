@@ -6,7 +6,6 @@
   "author": "IPG Automotive UK",
   "license": "MIT",
   "dependencies": {
-    "jest": "^29.7.0",
     "uuid": "^9.0.1"
   },
   "scripts": {
@@ -14,5 +13,8 @@
     "test:watch": "jest --watch",
     "test:windows": "docker-compose -f ./docker/windows/docker-compose-test-windows.yml -p infofile-node-addon-test up --build --abort-on-container-exit",
     "test:linux": "docker-compose -f ./docker/linux/docker-compose-test-linux.yml -p infofile-node-addon-test up --build --abort-on-container-exit"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
